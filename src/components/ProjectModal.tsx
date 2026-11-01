@@ -1,0 +1,292 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { Project } from "@/types/project";
+import {
+  X,
+  ExternalLink,
+  CheckCircle2,
+  FileCode,
+  Shield,
+  Layers,
+  Sparkles,
+  Play,
+  Maximize2,
+} from "lucide-react";
+import { ChromeIcon, GithubIcon } from "@/components/BrandIcons";
+
+interface ProjectModalProps {
+  project: Project | null;
+  onClose: () => void;
+}
+
+export const ProjectModal: React.FC<ProjectModalProps> = ({
+  project,
+  onClose,
+}) => {
+  const [activeTab, setActiveTab] = useState<"overview" | "sandbox">("overview");
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  if (!project) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
+        onClick={onClose}
+      />
+
+      {/* Modal Dialog Box */}
+      <div className="relative z-10 flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] shadow-2xl shadow-cyan-950/40">
+        {/* Header */}
+        <div className="flex items-start justify-between border-b border-white/10 bg-[#10121c]/80 p-5 sm:p-6 backdrop-blur-xl">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-md border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs font-mono tracking-wide text-zinc-300 uppercase">
+                {project.categoryLabel}
+              </span>
+              {project.badge && (
+                <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-0.5 text-xs font-medium text-cyan-300">
+                  {project.badge}
+                </span>
+              )}
+              <span className="flex items-center gap-1.5 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-xs text-emerald-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                {project.statusLabel || "Live & Aktiv"}
+              </span>
+            </div>
+
+            <h2 className="mt-2 text-xl font-bold text-white sm:text-2xl">
+              {project.title}
+            </h2>
+            <p className="mt-1 text-xs text-zinc-400 sm:text-sm">
+              {project.tagline}
+            </p>
+          </div>
+
+          <button
+            onClick={onClose}
+            className="rounded-xl border border-white/10 bg-zinc-900/60 p-2 text-zinc-400 hover:border-white/20 hover:text-white"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Navigation Tabs (Overview vs Live Sandbox) */}
+        {project.sandboxPreview?.enabled && (
+          <div className="flex border-b border-white/10 bg-zinc-950/40 px-6">
+            <button
+              onClick={() => setActiveTab("overview")}
+              className={`border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
+                activeTab === "overview"
+                  ? "border-cyan-400 text-cyan-300"
+                  : "border-transparent text-zinc-400 hover:text-zinc-200"
+              }`}
+            >
+              Architektur & Details
+            </button>
+            <button
+              onClick={() => setActiveTab("sandbox")}
+              className={`flex items-center gap-1.5 border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
+                activeTab === "sandbox"
+                  ? "border-cyan-400 text-cyan-300"
+                  : "border-transparent text-zinc-400 hover:text-zinc-200"
+              }`}
+            >
+              <Play className="h-3 w-3 text-emerald-400" />
+              <span>Live In-Hub Sandbox</span>
+            </button>
+          </div>
+        )}
+
+        {/* Content Body */}
+        <div className="overflow-y-auto p-5 sm:p-6 space-y-6">
+          {activeTab === "overview" ? (
+            <>
+              {/* Problemstellung */}
+              <div className="rounded-xl border border-red-500/20 bg-red-950/10 p-4">
+                <div className="text-xs font-mono uppercase tracking-wider text-red-300 font-semibold">
+                  1. Problemstellung & Motivation:
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+                  {project.problemStatement}
+                </p>
+              </div>
+
+              {/* Technische Umsetzung */}
+              <div className="rounded-xl border border-cyan-500/20 bg-cyan-950/10 p-4">
+                <div className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-semibold">
+                  2. Technische Lösung & Methodik:
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-300">
+                  {project.technicalSolution}
+                </p>
+              </div>
+
+              {/* Architektur Highlights */}
+              <div>
+                <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
+                  Architektur-Highlights & Best Practices:
+                </h4>
+                <div className="mt-3 grid gap-2.5">
+                  {project.architectureHighlights.map((highlight, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-2.5 rounded-lg border border-white/5 bg-zinc-900/40 p-2.5 text-xs text-zinc-300"
+                    >
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-cyan-400" />
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Tech Stack */}
+              <div>
+                <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
+                  Eingesetzte Technologien & APIs:
+                </h4>
+                <div className="mt-2.5 flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-lg border border-white/10 bg-zinc-900/80 px-2.5 py-1 text-xs font-mono text-cyan-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Stats/Metriken (falls vorhanden) */}
+              {project.stats && (
+                <div className="grid grid-cols-2 gap-3 rounded-xl border border-white/5 bg-black/40 p-3 sm:grid-cols-4">
+                  {project.stats.users && (
+                    <div>
+                      <div className="text-[10px] text-zinc-400">Nutzer</div>
+                      <div className="text-xs font-semibold text-white">
+                        {project.stats.users}
+                      </div>
+                    </div>
+                  )}
+                  {project.stats.rating && (
+                    <div>
+                      <div className="text-[10px] text-zinc-400">Bewertung</div>
+                      <div className="text-xs font-semibold text-amber-300">
+                        {project.stats.rating}
+                      </div>
+                    </div>
+                  )}
+                  {project.stats.version && (
+                    <div>
+                      <div className="text-[10px] text-zinc-400">Version</div>
+                      <div className="text-xs font-mono text-zinc-300">
+                        {project.stats.version}
+                      </div>
+                    </div>
+                  )}
+                  {project.stats.releaseDate && (
+                    <div>
+                      <div className="text-[10px] text-zinc-400">Veröffentlicht</div>
+                      <div className="text-xs text-zinc-300">
+                        {project.stats.releaseDate}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </>
+          ) : (
+            /* Live Sandbox Preview Tab */
+            <div className="space-y-4">
+              <div className="flex items-center justify-between text-xs text-zinc-400">
+                <span>Interaktiver Testlauf im Hub Sandbox-Frame</span>
+                {project.sandboxPreview?.embedUrl && (
+                  <a
+                    href={project.sandboxPreview.embedUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-cyan-400 hover:underline"
+                  >
+                    <span>In neuem Tab öffnen</span>
+                    <Maximize2 className="h-3 w-3" />
+                  </a>
+                )}
+              </div>
+              <div className="relative h-[450px] w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
+                {project.sandboxPreview?.embedUrl ? (
+                  <iframe
+                    src={project.sandboxPreview.embedUrl}
+                    title={project.title}
+                    className="h-full w-full border-0"
+                    sandbox="allow-scripts allow-same-origin allow-forms"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center text-xs text-zinc-500">
+                    Keine Einbettungs-URL hinterlegt.
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer Actions */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 bg-[#10121c]/80 p-4 sm:p-6 backdrop-blur-xl">
+          <div className="flex flex-wrap gap-2">
+            {project.links.chromeWebStore && (
+              <a
+                href={project.links.chromeWebStore}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 rounded-xl border border-cyan-500/40 bg-cyan-950/40 px-3.5 py-2 text-xs font-medium text-cyan-300 shadow-glow-cyan/20 transition-all hover:bg-cyan-900/50"
+              >
+                <ChromeIcon className="h-4 w-4" />
+                <span>Chrome Web Store</span>
+              </a>
+            )}
+
+            {project.links.demoUrl && (
+              <a
+                href={project.links.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/80 px-3.5 py-2 text-xs font-medium text-white transition-all hover:border-cyan-500/40 hover:bg-zinc-800"
+              >
+                <ExternalLink className="h-4 w-4" />
+                <span>Live Demo / GitHub Page</span>
+              </a>
+            )}
+
+            {project.links.githubUrl && (
+              <a
+                href={project.links.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/80 px-3.5 py-2 text-xs font-medium text-zinc-300 transition-all hover:border-white/20 hover:text-white"
+              >
+                <GithubIcon className="h-4 w-4" />
+                <span>Source Code</span>
+              </a>
+            )}
+          </div>
+
+          <button
+            onClick={onClose}
+            className="rounded-xl border border-white/10 bg-zinc-900/60 px-4 py-2 text-xs text-zinc-300 hover:bg-zinc-800 hover:text-white"
+          >
+            Schließen
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
