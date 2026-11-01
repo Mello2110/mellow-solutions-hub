@@ -5,11 +5,8 @@ import { Project } from "@/types/project";
 import {
   ExternalLink,
   ChevronRight,
-  ShieldCheck,
   Star,
   Users,
-  Code2,
-  PlayCircle,
 } from "lucide-react";
 import { ChromeIcon, GithubIcon } from "@/components/BrandIcons";
 
@@ -23,9 +20,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   onOpenDetails,
 }) => {
   return (
-    <article className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0e1017]/80 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-cyan-500/40 hover:shadow-card-subtle hover:shadow-glow-cyan/15">
+    <article className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0e1017]/80 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-brand-copper/40 hover:shadow-card-subtle hover:shadow-glow-copper/15">
       {/* Top Ambient Glow on Hover */}
-      <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-cyan-500/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-cyan-500/20" />
+      <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-brand-copper/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-brand-copper/20" />
 
       <div>
         {/* Header: Category Badge + Status */}
@@ -35,7 +32,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               {project.categoryLabel}
             </span>
             {project.badge && (
-              <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-medium text-cyan-300">
+              <span className="rounded-md border border-brand-copper/30 bg-brand-copper/10 px-2 py-0.5 text-[10px] font-medium text-brand-copperLight">
                 {project.badge}
               </span>
             )}
@@ -54,7 +51,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Title & Tagline */}
-        <h3 className="mt-3 text-lg font-bold text-white transition-colors group-hover:text-cyan-300">
+        <h3 className="mt-3 text-lg font-bold text-white transition-colors group-hover:text-brand-copperLight">
           {project.title}
         </h3>
         <p className="mt-1.5 text-xs leading-relaxed text-zinc-400 line-clamp-2">
@@ -114,7 +111,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* Footer Actions */}
       <div className="mt-5 flex items-center justify-between border-t border-white/5 pt-3">
-        {/* External Links: Chrome Store / Demo / GitHub */}
+        {/* External Links */}
         <div className="flex items-center gap-1.5">
           {project.links.chromeWebStore && (
             <a
@@ -156,10 +153,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Deep Dive Case Study Trigger */}
         <button
           onClick={() => onOpenDetails(project)}
-          className="flex items-center gap-1 rounded-lg border border-cyan-500/30 bg-cyan-950/30 px-3 py-1.5 text-xs font-medium text-cyan-300 transition-all hover:border-cyan-400 hover:bg-cyan-900/40 hover:shadow-glow-cyan/20"
+          className="flex items-center gap-1 rounded-lg border border-white/10 bg-zinc-900/60 px-3 py-1.5 text-xs font-medium text-zinc-200 transition-all hover:border-brand-copper/60 hover:bg-brand-copper/15 hover:text-white hover:shadow-glow-copper/20"
         >
-          <span>Architektur & Details</span>
-          <ChevronRight className="h-3.5 w-3.5" />
+          <span>Architektur &amp; Details</span>
+          <ChevronRight className="h-3.5 w-3.5 text-brand-copper" />
         </button>
       </div>
     </article>

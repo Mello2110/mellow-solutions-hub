@@ -6,23 +6,22 @@ import {
   X,
   ExternalLink,
   CheckCircle2,
-  FileCode,
-  Shield,
-  Layers,
-  Sparkles,
   Play,
   Maximize2,
+  Coffee,
 } from "lucide-react";
 import { ChromeIcon, GithubIcon } from "@/components/BrandIcons";
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
+  onOpenSponsor?: () => void;
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({
   project,
   onClose,
+  onOpenSponsor,
 }) => {
   const [activeTab, setActiveTab] = useState<"overview" | "sandbox">("overview");
 
@@ -54,7 +53,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 {project.categoryLabel}
               </span>
               {project.badge && (
-                <span className="rounded-md border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-0.5 text-xs font-medium text-cyan-300">
+                <span className="rounded-md border border-brand-copper/30 bg-brand-copper/10 px-2.5 py-0.5 text-xs font-medium text-brand-copperLight">
                   {project.badge}
                 </span>
               )}
@@ -87,7 +86,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               onClick={() => setActiveTab("overview")}
               className={`border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
                 activeTab === "overview"
-                  ? "border-cyan-400 text-cyan-300"
+                  ? "border-brand-copper text-brand-copperLight"
                   : "border-transparent text-zinc-400 hover:text-zinc-200"
               }`}
             >
@@ -97,7 +96,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               onClick={() => setActiveTab("sandbox")}
               className={`flex items-center gap-1.5 border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
                 activeTab === "sandbox"
-                  ? "border-cyan-400 text-cyan-300"
+                  ? "border-brand-copper text-brand-copperLight"
                   : "border-transparent text-zinc-400 hover:text-zinc-200"
               }`}
             >
@@ -166,43 +165,23 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 </div>
               </div>
 
-              {/* Stats/Metriken (falls vorhanden) */}
-              {project.stats && (
-                <div className="grid grid-cols-2 gap-3 rounded-xl border border-white/5 bg-black/40 p-3 sm:grid-cols-4">
-                  {project.stats.users && (
-                    <div>
-                      <div className="text-[10px] text-zinc-400">Nutzer</div>
-                      <div className="text-xs font-semibold text-white">
-                        {project.stats.users}
-                      </div>
-                    </div>
-                  )}
-                  {project.stats.rating && (
-                    <div>
-                      <div className="text-[10px] text-zinc-400">Bewertung</div>
-                      <div className="text-xs font-semibold text-amber-300">
-                        {project.stats.rating}
-                      </div>
-                    </div>
-                  )}
-                  {project.stats.version && (
-                    <div>
-                      <div className="text-[10px] text-zinc-400">Version</div>
-                      <div className="text-xs font-mono text-zinc-300">
-                        {project.stats.version}
-                      </div>
-                    </div>
-                  )}
-                  {project.stats.releaseDate && (
-                    <div>
-                      <div className="text-[10px] text-zinc-400">Veröffentlicht</div>
-                      <div className="text-xs text-zinc-300">
-                        {project.stats.releaseDate}
-                      </div>
-                    </div>
-                  )}
+              {/* Support Callout inside the Case Study */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-xl border border-brand-copper/30 bg-brand-copper/10 p-4 text-xs">
+                <div className="flex items-center gap-2.5 text-zinc-300">
+                  <Coffee className="h-4 w-4 text-brand-copper shrink-0" />
+                  <span>
+                    Gefällt dir dieses Tool? Unterstütze die werbefreie Entwicklung auf Buy Me a Coffee.
+                  </span>
                 </div>
-              )}
+                <a
+                  href="https://buymeacoffee.com/mellowsolutions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-lg border border-brand-copper/50 bg-brand-copper px-3 py-1.5 text-xs font-semibold text-white whitespace-nowrap shadow-glow-copper/20 hover:brightness-110"
+                >
+                  Kaffee spendieren
+                </a>
+              </div>
             </>
           ) : (
             /* Live Sandbox Preview Tab */

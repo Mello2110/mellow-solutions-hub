@@ -10,12 +10,13 @@ import {
   Cpu,
   Filter,
   X,
+  Boxes,
 } from "lucide-react";
 
 interface CategoryFilterProps {
   categories: CategoryMeta[];
-  selectedCategory: ProjectCategory | "all";
-  onSelectCategory: (category: ProjectCategory | "all") => void;
+  selectedCategory: string;
+  onSelectCategory: (category: string) => void;
   availableTechStacks: string[];
   selectedTech: string | null;
   onSelectTech: (tech: string | null) => void;
@@ -41,7 +42,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
 }) => {
   return (
     <div className="space-y-4">
-      {/* Category Tabs */}
+      {/* Category Tabs Bar */}
       <div className="flex flex-wrap items-center gap-2 border-b border-white/5 pb-4">
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat.id;
@@ -53,24 +54,24 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               onClick={() => onSelectCategory(cat.id)}
               className={`group flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-medium transition-all ${
                 isSelected
-                  ? "border-cyan-500/50 bg-cyan-950/40 text-cyan-300 shadow-glow-cyan/20"
+                  ? "border-brand-copper/60 bg-brand-copper/20 text-white shadow-glow-copper/20"
                   : "border-white/5 bg-[#0e1017]/60 text-zinc-400 hover:border-white/20 hover:bg-[#131622] hover:text-zinc-200"
               }`}
             >
               <span
                 className={`${
                   isSelected
-                    ? "text-cyan-400"
+                    ? "text-brand-copperLight"
                     : "text-zinc-400 group-hover:text-zinc-300"
                 }`}
               >
-                {ICONS_MAP[cat.iconName] || <LayoutGrid className="h-4 w-4" />}
+                {ICONS_MAP[cat.iconName] || <Boxes className="h-4 w-4" />}
               </span>
               <span>{cat.label}</span>
               <span
                 className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono ${
                   isSelected
-                    ? "bg-cyan-500/20 text-cyan-200"
+                    ? "bg-brand-copper/30 text-white"
                     : "bg-white/5 text-zinc-400"
                 }`}
               >
@@ -87,7 +88,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
           <div className="flex items-center gap-1.5 text-xs text-zinc-400 mr-2">
             <Filter className="h-3 w-3 text-cyan-400" />
             <span className="text-[11px] uppercase tracking-wider font-mono">
-              Tech Stack:
+              Technologie:
             </span>
           </div>
 
@@ -99,7 +100,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                 onClick={() => onSelectTech(isSelected ? null : tech)}
                 className={`flex items-center gap-1 rounded-lg border px-2.5 py-1 text-[11px] font-mono transition-all ${
                   isSelected
-                    ? "border-emerald-500/60 bg-emerald-950/40 text-emerald-300 shadow-glow-emerald/20"
+                    ? "border-cyan-500/60 bg-cyan-950/40 text-cyan-300 shadow-glow-cyan/20"
                     : "border-white/5 bg-zinc-900/40 text-zinc-400 hover:border-white/20 hover:text-zinc-300"
                 }`}
               >
@@ -112,7 +113,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
           {selectedTech && (
             <button
               onClick={() => onSelectTech(null)}
-              className="text-[11px] text-zinc-400 hover:text-zinc-300 underline underline-offset-2 ml-1"
+              className="text-[11px] text-zinc-400 hover:text-brand-copperLight underline underline-offset-2 ml-1"
             >
               Filter aufheben
             </button>
