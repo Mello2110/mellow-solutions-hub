@@ -367,8 +367,11 @@ export default function HomePage() {
         onSelectProject={(p) => setActiveProject(p)}
       />
 
-      {/* Footer */}
-      <Footer onOpenSponsor={() => setIsSponsorModalOpen(true)} />
+      {/* Footer with Portfolio Notice / Disclaimer */}
+      <Footer
+        onOpenSponsor={() => setIsSponsorModalOpen(true)}
+        language={language}
+      />
     </div>
   );
 }

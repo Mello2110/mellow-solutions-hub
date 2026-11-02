@@ -37,21 +37,21 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
       className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col justify-between py-12 sm:py-16 scroll-mt-16"
     >
       <div className="my-auto w-full">
-        {/* Main Spotlight Card Container */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#10121d] via-[#0c0d15] to-[#08090f] p-7 sm:p-9 lg:p-11 shadow-2xl backdrop-blur-xl">
-          {/* Subtle Ambient Glow Orbs */}
-          <div className="pointer-events-none absolute -left-20 -top-20 h-64 w-64 rounded-full bg-[#C76C6A]/15 blur-3xl" />
-          <div className="pointer-events-none absolute -right-20 -bottom-20 h-64 w-64 rounded-full bg-cyan-500/15 blur-3xl" />
+        {/* Main Spotlight Card Container: Deep, calm midnight blue gradient */}
+        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#0c101d] via-[#080b14] to-[#06070c] p-7 sm:p-9 lg:p-11 shadow-2xl backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)]">
+          {/* Calm, De-saturated Dark Blue Ambient Glow */}
+          <div className="pointer-events-none absolute -left-20 -top-20 h-80 w-80 rounded-full bg-blue-950/35 blur-3xl" />
+          <div className="pointer-events-none absolute -right-20 -bottom-20 h-80 w-80 rounded-full bg-sky-950/30 blur-3xl" />
 
-          {/* Top Bar: Category Pill & Project Switcher (Clean, no 'Segment 02' label) */}
+          {/* Top Bar: Category Pill & Project Switcher */}
           <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-5">
             <div className="flex items-center gap-2.5">
-              <span className="flex h-2 w-2 rounded-full bg-[#C76C6A] animate-ping" />
-              <span className="font-mono text-xs font-semibold tracking-wider text-[#C76C6A] uppercase">
+              <span className="flex h-2 w-2 rounded-full bg-[#C76C6A]" />
+              <span className="font-mono text-xs font-semibold tracking-wider text-zinc-300 uppercase">
                 {t.flagshipBadge}
               </span>
               <span className="text-zinc-600">&bull;</span>
-              <span className="rounded-lg border border-cyan-500/30 bg-cyan-950/40 px-2.5 py-1 text-xs font-mono text-cyan-300">
+              <span className="rounded-lg border border-sky-500/25 bg-sky-950/35 px-2.5 py-1 text-xs font-mono text-sky-300">
                 {current.categoryLabel}
               </span>
               {current.badge && (
@@ -70,7 +70,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                     onClick={() => setActiveIndex(idx)}
                     className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
                       activeIndex === idx
-                        ? "border border-[#C76C6A]/40 bg-[#C76C6A]/20 text-white shadow-sm"
+                        ? "border border-sky-500/40 bg-sky-950/40 text-white shadow-sm"
                         : "text-zinc-400 hover:text-zinc-200"
                     }`}
                   >
@@ -94,10 +94,11 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                 </p>
               </div>
 
-              {/* Problem & Solution Cards with Clean Internal Padding */}
+              {/* Problem & Solution Cards with Clean Internal Highlight Colors */}
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-red-500/20 bg-red-950/15 p-5">
-                  <div className="font-mono text-[10px] text-red-300 uppercase tracking-wider font-semibold">
+                <div className="rounded-2xl border border-rose-900/30 bg-rose-950/15 p-5">
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-rose-300 uppercase tracking-wider font-semibold">
+                    <span className="h-1.5 w-1.5 rounded-full bg-rose-400" />
                     {t.problemTitle}
                   </div>
                   <p className="mt-2 text-xs leading-relaxed text-zinc-300">
@@ -105,8 +106,9 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-cyan-500/20 bg-cyan-950/15 p-5">
-                  <div className="font-mono text-[10px] text-cyan-300 uppercase tracking-wider font-semibold">
+                <div className="rounded-2xl border border-sky-500/30 bg-sky-950/25 p-5">
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-sky-300 uppercase tracking-wider font-semibold">
+                    <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
                     {t.solutionTitle}
                   </div>
                   <p className="mt-2 text-xs leading-relaxed text-zinc-300">
@@ -123,7 +125,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                 {current.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-lg border border-white/10 bg-zinc-900/80 px-2.5 py-0.5 text-xs font-mono text-cyan-200"
+                    className="rounded-lg border border-white/10 bg-zinc-900/80 px-2.5 py-0.5 text-xs font-mono text-sky-200"
                   >
                     {tech}
                   </span>
@@ -132,7 +134,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
             </div>
 
             {/* Right Column: Highlights & Actions */}
-            <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-white/10 bg-zinc-950/80 p-6 space-y-5 shadow-inner">
+            <div className="lg:col-span-5 flex flex-col justify-between rounded-2xl border border-white/10 bg-zinc-950/85 p-6 space-y-5 shadow-inner">
               <div>
                 <div className="flex items-center justify-between border-b border-white/5 pb-3">
                   <span className="font-mono text-xs font-semibold text-zinc-200 uppercase tracking-wider">
@@ -149,7 +151,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                       key={i}
                       className="flex items-start gap-2.5 text-xs leading-relaxed text-zinc-300"
                     >
-                      <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-cyan-400" />
+                      <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-sky-400" />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -180,10 +182,10 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
               <div className="space-y-2 pt-2 border-t border-white/5">
                 <button
                   onClick={() => onOpenDetails(current)}
-                  className="group flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-500/40 bg-gradient-to-r from-cyan-950/60 to-zinc-900 px-4 py-2.5 text-xs font-semibold text-cyan-200 shadow-glow-cyan/20 transition-all hover:border-cyan-400 hover:text-white"
+                  className="group flex w-full items-center justify-center gap-2 rounded-xl border border-sky-500/40 bg-gradient-to-r from-sky-950/50 to-zinc-900 px-4 py-2.5 text-xs font-semibold text-sky-200 transition-all hover:border-sky-400 hover:text-white"
                 >
                   <span>{t.openCaseStudy}</span>
-                  <ArrowRight className="h-3.5 w-3.5 text-cyan-400 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="h-3.5 w-3.5 text-sky-400 transition-transform group-hover:translate-x-1" />
                 </button>
 
                 <div className="flex gap-2">
@@ -192,9 +194,9 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                       href={current.links.chromeWebStore}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/60 py-2 text-xs font-medium text-zinc-300 transition-colors hover:border-cyan-500/30 hover:text-white"
+                      className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/60 py-2 text-xs font-medium text-zinc-300 transition-colors hover:border-sky-500/30 hover:text-white"
                     >
-                      <ChromeIcon className="h-3.5 w-3.5 text-cyan-400" />
+                      <ChromeIcon className="h-3.5 w-3.5 text-sky-400" />
                       <span>{t.chromeStore}</span>
                     </a>
                   )}

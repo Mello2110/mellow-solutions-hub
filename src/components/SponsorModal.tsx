@@ -65,9 +65,9 @@ export const SponsorModal: React.FC<SponsorModalProps> = ({
           <p>
             Alle hier vorgestellten Chrome-Extensions, Webapps und HTML-Tools sind{" "}
             <span className="font-semibold text-white">
-              vollkommen werbefrei, ohne Tracking
+              vollkommen kostenlos nutzbar
             </span>{" "}
-            und auf Langlebigkeit ausgelegt.
+            und darauf ausgelegt, alltägliche digitale Abläufe zu vereinfachen.
           </p>
           <div className="rounded-xl border border-white/5 bg-zinc-950/60 p-3.5 text-zinc-400">
             <div className="font-mono text-[11px] text-brand-copperLight font-semibold uppercase tracking-wider mb-1">

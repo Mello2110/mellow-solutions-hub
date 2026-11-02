@@ -170,7 +170,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 <div className="flex items-center gap-2.5 text-zinc-300">
                   <Coffee className="h-4 w-4 text-brand-copper shrink-0" />
                   <span>
-                    Gefällt dir dieses Tool? Unterstütze die werbefreie Entwicklung auf Buy Me a Coffee.
+                    Gefällt dir dieses Tool? Unterstütze die unabhängige Weiterentwicklung auf Buy Me a Coffee.
                   </span>
                 </div>
                 <a

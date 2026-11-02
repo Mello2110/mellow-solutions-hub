@@ -24,21 +24,21 @@ export const Hero: React.FC<HeroProps> = ({
       className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
     >
       {/* Center Harmonized Content Block */}
-      <div className="my-auto mx-auto max-w-2xl text-center flex flex-col items-center px-4">
+      <div className="my-auto mx-auto max-w-4xl text-center flex flex-col items-center px-4">
         {/* Clean 2D Typographic Lockup (Timeless & Minimalist) */}
         <div className="mb-7 sm:mb-9 flex justify-center">
           <MellowLogo variant="hero" size={440} />
         </div>
 
         {/* Unified Statement & Description Block */}
-        <div className="space-y-3 max-w-xl mx-auto">
-          {/* Core Focus Proposition */}
-          <h1 className="text-xl sm:text-2xl lg:text-[25px] font-semibold tracking-tight text-white leading-snug">
+        <div className="space-y-3 max-w-3xl mx-auto">
+          {/* Core Focus Proposition: Single line on sm+ screens */}
+          <h1 className="text-base sm:text-lg md:text-xl lg:text-[23px] font-semibold tracking-tight text-white whitespace-normal sm:whitespace-nowrap leading-snug">
             {t.subtitle}
           </h1>
 
           {/* Integrated Purpose & Scope Paragraph */}
-          <p className="text-xs sm:text-sm lg:text-[14px] text-zinc-400 max-w-lg mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm lg:text-[14px] text-zinc-400 max-w-xl mx-auto leading-relaxed">
             <span className="text-[#C76C6A] font-medium">{t.title} &mdash; </span>
             {t.description}
           </p>

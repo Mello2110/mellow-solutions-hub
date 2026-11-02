@@ -57,6 +57,10 @@ export interface Translations {
   footer: {
     tagline: string;
     supportBtn: string;
+    disclaimerBadge: string;
+    disclaimerTitle: string;
+    disclaimerP1: string;
+    disclaimerP2: string;
   };
 }
 
@@ -73,7 +77,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       title: "Crafted with Precision & Purpose",
       subtitle: "Solutions for Daily Struggles and Business Procedures.",
       description:
-        "Independent browser extensions, web applications, and developer utilities. Ad-free, privacy-first, and built for lasting utility.",
+        "Independent browser extensions, web applications, and developer utilities. Free to use, built to help, and crafted for lasting utility.",
       quote: "“Everything should be made as simple as possible, but not simpler.”",
       quoteAuthor: "Albert Einstein",
       scrollPrompt: "Explore Featured Flagship",
@@ -111,7 +115,7 @@ export const DICTIONARY: Record<Language, Translations> = {
     sponsor: {
       title: "Support Mellow Solutions",
       subtitle: "Independent & Transparent Software Development",
-      p1: "All extensions and tools are 100% ad-free, privacy-first, and built without third-party tracking.",
+      p1: "All extensions and tools are free to use, crafted with dedication to eliminate everyday friction and make digital procedures easier.",
       whyTitle: "What are contributions used for?",
       reasons: [
         "Chrome Web Store developer registration and API fees",
@@ -123,8 +127,14 @@ export const DICTIONARY: Record<Language, Translations> = {
       copied: "Link copied to clipboard!",
     },
     footer: {
-      tagline: "Software crafted with love &bull; 100% ad-free &bull; Zero tracking",
+      tagline: "Software crafted with love &bull; Free to use &bull; Built to help",
       supportBtn: "Buy me a coffee",
+      disclaimerBadge: "Portfolio & Non-Commercial Notice",
+      disclaimerTitle: "Personal Developer Showcase & Free Utilities",
+      disclaimerP1:
+        "Mellow Solutions is an independent developer portfolio and sandbox created to showcase modern software architecture, Chrome extensions, and web utilities. All tools are provided free of charge in the spirit of open, problem-solving craft.",
+      disclaimerP2:
+        "Unless explicitly stated otherwise, all tools and services are provided 'as is' without warranties of any kind. Use of the software is at your own discretion and responsibility. No commercial service-level agreements or guarantees of availability are implied.",
     },
   },
   de: {
@@ -139,7 +149,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       title: "Mit Präzision & Zweckmäßigkeit gefertigt",
       subtitle: "Lösungen für alltägliche Herausforderungen und Geschäftsprozesse.",
       description:
-        "Unabhängige Chrome-Extensions, Webanwendungen und Entwickler-Tools. Werbefrei, datenschutzorientiert und auf echten Nutzen ausgelegt.",
+        "Unabhängige Chrome-Extensions, Webanwendungen und Entwickler-Tools. Kostenlos nutzbar, darauf ausgelegt Menschen zu helfen und Hürden nachhaltig zu überwinden.",
       quote: "„Alles sollte so einfach wie möglich gemacht werden, aber nicht einfacher.“",
       quoteAuthor: "Albert Einstein",
       scrollPrompt: "Flaggschiff erkunden",
@@ -177,7 +187,7 @@ export const DICTIONARY: Record<Language, Translations> = {
     sponsor: {
       title: "Mellow Solutions unterstützen",
       subtitle: "Unabhängige & transparente Softwareentwicklung",
-      p1: "Alle hier vorgestellten Extensions und Tools sind vollkommen werbefrei, ohne Tracking und auf Langlebigkeit ausgelegt.",
+      p1: "Alle hier vorgestellten Extensions und Tools sind kostenlos nutzbar, mit Hingabe gebaut und darauf ausgelegt, alltägliche Hürden zu verringern.",
       whyTitle: "Wofür werden Spenden genutzt?",
       reasons: [
         "Entwickler- & API-Gebühren des Chrome Web Stores",
@@ -189,8 +199,14 @@ export const DICTIONARY: Record<Language, Translations> = {
       copied: "Link in die Zwischenablage kopiert!",
     },
     footer: {
-      tagline: "Software mit Liebe gebaut &bull; 100% werbefrei &bull; Zero Tracking",
+      tagline: "Software mit Liebe gebaut &bull; Kostenlos nutzbar &bull; Entwickelt, um zu helfen",
       supportBtn: "Kaffee spendieren",
+      disclaimerBadge: "Portfolio & Haftungsausschluss",
+      disclaimerTitle: "Persönliches Entwickler-Portfolio & Werkzeuge",
+      disclaimerP1:
+        "Mellow Solutions dient als persönliches Entwickler-Portfolio und Projekt-Showcase für praxiserprobte Webapplikationen, Chrome-Extensions und Hilfswerkzeuge. Sämtliche Tools werden unentgeltlich und im Rahmen unabhängiger Entwicklung aus Eigenbedarf und Freude am Coden bereitgestellt.",
+      disclaimerP2:
+        "Sofern nicht ausdrücklich anders ausgewiesen, erfolgt die Bereitstellung der Software 'as is' ohne gewerbliche Gewährleistung oder garantierte Verfügbarkeit. Die Nutzung erfolgt eigenverantwortlich und auf eigenes Risiko.",
     },
   },
 };
