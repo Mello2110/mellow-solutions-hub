@@ -22,12 +22,12 @@ architectureHighlights:
   - "Dark Swiss-precision aesthetic with high-resolution 2D vector branding"
 links:
   chromeWebStore: ""
-  demoUrl: "http://localhost:3000"
+  demoUrl: "https://mellow-solutions-hub.vercel.app"
   githubUrl: "https://github.com/Mello2110/mellow-solutions-hub"
 sandbox:
   enabled: true
   type: "remote"
-  embedUrl: "http://localhost:3000"
+  embedUrl: "https://mellow-solutions-hub.vercel.app"
   notes: "Live interactive showcase and product directory"
 stats:
   version: "v1.0.0"
@@ -45,7 +45,7 @@ stats:
 
 <!-- QUICK ACCESS / CALL TO ACTION -->
 <p align="left">
-  <a href="http://localhost:3000"><b>🚀 Live Platform / Demo</b></a> &nbsp;|&nbsp;
+  <a href="https://mellow-solutions-hub.vercel.app"><b>🚀 Live Platform / Demo</b></a> &nbsp;|&nbsp;
   <a href="https://github.com/Mello2110/mellow-solutions-hub"><b>💻 GitHub Repository</b></a> &nbsp;|&nbsp;
   <a href="https://github.com/Mello2110"><b>🌐 Author Profile</b></a>
 </p>

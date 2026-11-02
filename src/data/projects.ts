@@ -126,11 +126,11 @@ export const INITIAL_PROJECTS: Project[] = [
     techStack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Lucide Icons", "Zod"],
     links: {
       githubUrl: "https://github.com/Mello2110/mellow-solutions-hub",
-      demoUrl: "http://localhost:3000",
+      demoUrl: "https://mellow-solutions-hub.vercel.app",
     },
     sandboxPreview: {
       enabled: true,
-      embedUrl: "http://localhost:3000",
+      embedUrl: "https://mellow-solutions-hub.vercel.app",
       description: "Interactive live preview of the Mellow Solutions Hub platform.",
     },
     stats: {
