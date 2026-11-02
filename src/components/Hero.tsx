@@ -21,46 +21,46 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section
       id="hero"
-      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-10 sm:py-14"
+      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
     >
-      {/* Center Unified Content Block */}
+      {/* Center Harmonized Content Block */}
       <div className="my-auto mx-auto max-w-3xl text-center flex flex-col items-center">
-        {/* The New 3D Hero Monogram */}
-        <div className="mb-7">
-          <MellowLogo variant="hero" size={270} />
+        {/* The Authentic 3D Hero Monogram from MellowSolutionsHero */}
+        <div className="mb-5 sm:mb-6">
+          <MellowLogo variant="hero" size={320} />
         </div>
 
-        {/* Cohesive Typography Block */}
-        <div className="space-y-3 max-w-2xl">
+        {/* Cohesive Typography Block in Golden Ratio */}
+        <div className="space-y-2.5 max-w-2xl px-2">
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
             {t.title}
           </h1>
 
           {/* Sub-headline: Solutions for Daily Struggles and Business Procedures */}
-          <p className="text-base sm:text-xl font-medium text-[#C76C6A] tracking-normal">
+          <p className="text-base sm:text-lg font-medium text-[#C76C6A] tracking-normal">
             {t.subtitle}
           </p>
 
-          {/* Clear, understated description */}
-          <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed pt-1">
+          {/* Clear, refined description */}
+          <p className="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed pt-0.5">
             {t.description}
           </p>
         </div>
 
         {/* Albert Einstein Quote Block */}
-        <div className="mt-8 pt-6 border-t border-white/5 max-w-lg mx-auto">
-          <blockquote className="text-sm sm:text-base italic text-zinc-300 font-serif leading-relaxed">
+        <div className="mt-7 pt-5 border-t border-white/10 max-w-md mx-auto">
+          <blockquote className="text-xs sm:text-sm italic text-zinc-300 font-serif leading-relaxed">
             {t.quote}
           </blockquote>
-          <cite className="block mt-2 font-mono text-[11px] text-zinc-400 not-italic uppercase tracking-widest">
+          <cite className="block mt-1.5 font-mono text-[10px] text-zinc-400 not-italic uppercase tracking-widest">
             &mdash; {t.quoteAuthor}
           </cite>
         </div>
       </div>
 
       {/* Unified Single Scroll-Down Button at the bottom of the segment */}
-      <div className="mx-auto flex flex-col items-center pb-4 text-zinc-500">
+      <div className="mx-auto flex flex-col items-center pb-3 text-zinc-500">
         <button
           onClick={onScrollToSpotlight}
           className="group flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/60 px-5 py-2.5 text-xs font-medium text-zinc-300 shadow-sm transition-all hover:border-white/25 hover:bg-zinc-800 hover:text-white"

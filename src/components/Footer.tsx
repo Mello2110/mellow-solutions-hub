@@ -1,7 +1,7 @@
 import React from "react";
-import { Coffee, Heart } from "lucide-react";
+import Image from "next/image";
+import { Coffee } from "lucide-react";
 import { GithubIcon } from "@/components/BrandIcons";
-import { MellowLogo } from "@/components/MellowLogo";
 
 interface FooterProps {
   onOpenSponsor: () => void;
@@ -9,25 +9,38 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onOpenSponsor }) => {
   return (
-    <footer className="mt-24 border-t border-white/5 bg-[#08090d]/90 py-12 text-zinc-500 backdrop-blur-md">
+    <footer className="border-t border-white/5 bg-[#07080b] py-12 text-zinc-500 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-          {/* Logo & Vision */}
-          <div className="flex flex-col items-center sm:items-start gap-2">
-            <MellowLogo variant="full" />
-            <p className="text-[11px] text-zinc-400 mt-1">
-              Nachhaltige, funktionale Software &bull; 100% werbefrei
-            </p>
+          {/* Logo & Vision with MellowSolutionsLogoDunkel */}
+          <div className="flex items-center gap-3.5">
+            <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-[#090b10]">
+              <Image
+                src="/assets/MellowSolutionsAppIcon.png"
+                alt="Mellow Solutions"
+                width={36}
+                height={36}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-[12px] font-semibold tracking-[0.24em] text-zinc-200 uppercase">
+                Mellow Solutions
+              </span>
+              <p className="text-[10px] text-zinc-500">
+                Crafted with Love &bull; 100% Ad-Free &bull; Zero Tracking
+              </p>
+            </div>
           </div>
 
           {/* Center: Support Button */}
           <div className="flex items-center gap-3">
             <button
               onClick={onOpenSponsor}
-              className="flex items-center gap-1.5 rounded-xl border border-brand-copper/40 bg-brand-copper/15 px-3 py-1.5 text-xs font-medium text-brand-copperLight transition-all hover:bg-brand-copper/25 hover:text-white shadow-glow-copper/10"
+              className="flex items-center gap-1.5 rounded-xl border border-[#C76C6A]/40 bg-[#C76C6A]/15 px-3 py-1.5 text-xs font-medium text-white transition-all hover:bg-[#C76C6A]/25 shadow-sm"
             >
-              <Coffee className="h-3.5 w-3.5 text-brand-copper" />
-              <span>Kaffee spendieren</span>
+              <Coffee className="h-3.5 w-3.5 text-[#C76C6A]" />
+              <span>Buy Me a Coffee</span>
             </button>
 
             <a
@@ -46,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenSponsor }) => {
             <p className="text-zinc-400">
               Next.js 15 &bull; TypeScript &bull; Tailwind CSS
             </p>
-            <p className="mt-1 text-[11px] text-zinc-400">
+            <p className="mt-1 text-[11px] text-zinc-600">
               Pragmatic Engineering &bull; Mellow Solutions
             </p>
           </div>
