@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { CategoryMeta, ProjectCategory } from "@/types/project";
+import { CategoryMeta } from "@/types/project";
 import {
   LayoutGrid,
   Puzzle,
@@ -54,14 +54,14 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               onClick={() => onSelectCategory(cat.id)}
               className={`group flex items-center gap-2 rounded-xl border px-3.5 py-2 text-xs font-medium transition-all ${
                 isSelected
-                  ? "border-brand-copper/60 bg-brand-copper/20 text-white shadow-glow-copper/20"
-                  : "border-white/5 bg-[#0e1017]/60 text-zinc-400 hover:border-white/20 hover:bg-[#131622] hover:text-zinc-200"
+                  ? "border-[#C76C6A]/60 bg-[#C76C6A]/20 text-white shadow-glow-copper/25"
+                  : "border-white/10 bg-[#0e1017]/70 text-zinc-400 hover:border-white/20 hover:bg-[#131622] hover:text-zinc-200"
               }`}
             >
               <span
                 className={`${
                   isSelected
-                    ? "text-brand-copperLight"
+                    ? "text-[#C76C6A]"
                     : "text-zinc-400 group-hover:text-zinc-300"
                 }`}
               >
@@ -71,7 +71,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               <span
                 className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono ${
                   isSelected
-                    ? "bg-brand-copper/30 text-white"
+                    ? "bg-[#C76C6A]/40 text-white"
                     : "bg-white/5 text-zinc-400"
                 }`}
               >
@@ -100,7 +100,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
                 onClick={() => onSelectTech(isSelected ? null : tech)}
                 className={`flex items-center gap-1 rounded-lg border px-2.5 py-1 text-[11px] font-mono transition-all ${
                   isSelected
-                    ? "border-cyan-500/60 bg-cyan-950/40 text-cyan-300 shadow-glow-cyan/20"
+                    ? "border-cyan-500/60 bg-cyan-950/50 text-cyan-300 shadow-glow-cyan/20"
                     : "border-white/5 bg-zinc-900/40 text-zinc-400 hover:border-white/20 hover:text-zinc-300"
                 }`}
               >
@@ -113,7 +113,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
           {selectedTech && (
             <button
               onClick={() => onSelectTech(null)}
-              className="text-[11px] text-zinc-400 hover:text-brand-copperLight underline underline-offset-2 ml-1"
+              className="text-[11px] text-zinc-400 hover:text-[#C76C6A] underline underline-offset-2 ml-1"
             >
               Filter aufheben
             </button>
