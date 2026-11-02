@@ -25,9 +25,9 @@ export const Hero: React.FC<HeroProps> = ({
     >
       {/* Center Harmonized Content Block */}
       <div className="my-auto mx-auto max-w-3xl text-center flex flex-col items-center">
-        {/* The Authentic 3D Hero Monogram from MellowSolutionsHero */}
-        <div className="mb-5 sm:mb-6">
-          <MellowLogo variant="hero" size={320} />
+        {/* Clean 2D Typographic Lockup (Timeless & Minimalist) */}
+        <div className="mb-6 sm:mb-8 flex justify-center">
+          <MellowLogo variant="hero" size={480} />
         </div>
 
         {/* Cohesive Typography Block in Golden Ratio */}
