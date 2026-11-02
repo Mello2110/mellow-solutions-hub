@@ -104,6 +104,41 @@ export const INITIAL_PROJECTS: Project[] = [
     },
   },
   {
+    id: "mellow-solutions-hub",
+    title: "Mellow Solutions Hub",
+    tagline: "Curated portfolio & product showcase for developer utilities, Chrome extensions, and web applications.",
+    category: "webapp",
+    categoryLabel: "Fullstack Web App",
+    status: "production",
+    statusLabel: "Live",
+    featured: false,
+    badge: "Portfolio & Hub",
+    problemStatement:
+      "Developer portfolios often suffer from fragmented repositories, buried live demos, and a lack of architectural depth required for technical evaluations.",
+    technicalSolution:
+      "A performance-tuned Next.js 15 web platform featuring viewport-snapping stages, instant client-side catalog filtering, and structured markdown ingestion.",
+    architectureHighlights: [
+      "3-stage viewport snapping engine with zero-jitter catalog pinning",
+      "Bilingual dictionary architecture with instant EN/DE switching",
+      "Strict Zod-validated data pipeline for project case studies and live sandbox embeds",
+      "Dark Swiss-precision aesthetic with high-resolution 2D vector branding",
+    ],
+    techStack: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Lucide Icons", "Zod"],
+    links: {
+      githubUrl: "https://github.com/Mello2110/mellow-solutions-hub",
+      demoUrl: "http://localhost:3000",
+    },
+    sandboxPreview: {
+      enabled: true,
+      embedUrl: "http://localhost:3000",
+      description: "Interactive live preview of the Mellow Solutions Hub platform.",
+    },
+    stats: {
+      version: "v1.0.0",
+      releaseDate: "2026",
+    },
+  },
+  {
     id: "dev-hub-dashboard",
     title: "Mellow DevHub & Snippet Cloud",
     tagline: "Zentrales Entwickler-Dashboard für wiederverwendbare Micro-Components und Snippets.",
