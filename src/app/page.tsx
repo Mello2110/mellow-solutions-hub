@@ -113,7 +113,14 @@ export default function HomePage() {
   // Fixed Category Selection: Update category and instantly pin to exact catalog top
   const handleSelectCategory = (categoryId: string) => {
     setSelectedCategory(categoryId);
-    // Pin immediately so browser never clamps into spotlight
+    requestAnimationFrame(() => {
+      pinToCatalog("instant");
+    });
+  };
+
+  // Fixed Tech Stack Selection: Update tech chip and instantly pin to exact catalog top
+  const handleSelectTech = (tech: string | null) => {
+    setSelectedTech(tech);
     requestAnimationFrame(() => {
       pinToCatalog("instant");
     });
@@ -137,7 +144,7 @@ export default function HomePage() {
     pinToCatalog("smooth");
   };
 
-  // Reset all filters
+  // Reset all filters and re-align
   const handleResetFilters = () => {
     setSelectedCategory("all");
     setSelectedTech(null);
@@ -188,12 +195,12 @@ export default function HomePage() {
 
         {/* ========================================================
             SEGMENT 03: Categorized Product Catalog
-            min-h-[120vh] guarantees the browser NEVER forces scroll
-            upwards into Spotlight even if a category has only 1 card!
+            min-h-[140vh] guarantees that even with a single card,
+            the browser NEVER clamps the scroll position into Spotlight!
            ======================================================== */}
         <section
           id="katalog"
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-16 min-h-[120vh] pb-40"
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-16 min-h-[140vh] pb-52"
         >
           {/* Main Title & Personal Motto */}
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/5 pb-6 mb-8 gap-6">
@@ -236,7 +243,7 @@ export default function HomePage() {
             onSelectCategory={handleSelectCategory}
             availableTechStacks={availableTechStacks}
             selectedTech={selectedTech}
-            onSelectTech={setSelectedTech}
+            onSelectTech={handleSelectTech}
             categoryCounts={categoryCounts}
           />
 
