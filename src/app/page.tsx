@@ -126,6 +126,14 @@ export default function HomePage() {
     });
   };
 
+  // Smooth scroll to top / Segment 01
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   // Smooth scroll from Hero to Spotlight
   const scrollToSpotlight = () => {
     const el = document.getElementById("spotlight");
@@ -169,6 +177,7 @@ export default function HomePage() {
         projectCount={projects.length}
         language={language}
         onToggleLanguage={handleToggleLanguage}
+        onScrollToTop={scrollToTop}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
         onOpenSponsor={() => setIsSponsorModalOpen(true)}
       />

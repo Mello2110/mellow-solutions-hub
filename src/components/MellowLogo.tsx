@@ -90,33 +90,27 @@ export const MellowLogo: React.FC<MellowLogoProps> = ({
     );
   }
 
-  // 4. Header / Compact App Icon with Live Status Indicator
-  const iconSize = size || 36;
+  // 4. Header / Compact App Logo: MellowSolutionsLogoWeißOBG (Pure white on transparent, no dot)
+  const logoHeight = size || 26;
+  const logoWidth = Math.round(logoHeight * (317 / 161));
 
   return (
-    <div className={`flex items-center gap-3.5 ${className}`}>
-      {/* 2D Dark Squircle App Icon */}
-      <div
-        className="relative shrink-0 overflow-hidden rounded-xl border border-white/15 bg-[#090b10] shadow-sm transition-colors hover:border-white/30"
-        style={{ width: iconSize, height: iconSize }}
-      >
+    <div className={`flex items-center gap-3 ${className}`}>
+      {/* Authentic MellowSolutionsLogoWeißOBG Mark */}
+      <div className="relative shrink-0 flex items-center justify-center">
         <Image
-          src="/assets/mellow-appicon-2d.png"
-          alt="Mellow Solutions App Icon"
-          width={iconSize}
-          height={iconSize}
+          src="/assets/MellowSolutionsLogoWeißOBG_tight.png"
+          alt="Mellow Solutions Logo"
+          width={logoWidth}
+          height={logoHeight}
           priority
-          className="h-full w-full object-cover"
+          className="h-[24px] sm:h-[26px] w-auto object-contain transition-transform group-hover:scale-105"
         />
-        <span className="absolute -bottom-0.5 -right-0.5 flex h-2 w-2 z-20">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 border border-[#08090d]" />
-        </span>
       </div>
 
       {/* Header Typography: Clean & Spaced */}
       <div className="flex flex-col text-left">
-        <span className="text-[12px] sm:text-[13px] font-semibold tracking-[0.24em] text-zinc-100 uppercase">
+        <span className="text-[12px] sm:text-[13px] font-semibold tracking-[0.24em] text-zinc-100 uppercase transition-colors group-hover:text-white select-none">
           Mellow Solutions
         </span>
       </div>

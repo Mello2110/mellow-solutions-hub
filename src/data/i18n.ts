@@ -70,7 +70,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       github: "GitHub",
     },
     hero: {
-      title: "Crafted with Precision & Purpose.",
+      title: "Crafted with Precision & Purpose",
       subtitle: "Solutions for Daily Struggles and Business Procedures.",
       description:
         "Independent browser extensions, web applications, and developer utilities. Ad-free, privacy-first, and built for lasting utility.",
@@ -136,7 +136,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       github: "GitHub",
     },
     hero: {
-      title: "Präzision & Zweckmäßigkeit.",
+      title: "Mit Präzision & Zweckmäßigkeit gefertigt",
       subtitle: "Lösungen für alltägliche Herausforderungen und Geschäftsprozesse.",
       description:
         "Unabhängige Chrome-Extensions, Webanwendungen und Entwickler-Tools. Werbefrei, datenschutzorientiert und auf echten Nutzen ausgelegt.",

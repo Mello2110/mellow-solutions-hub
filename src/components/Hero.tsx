@@ -24,36 +24,32 @@ export const Hero: React.FC<HeroProps> = ({
       className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
     >
       {/* Center Harmonized Content Block */}
-      <div className="my-auto mx-auto max-w-3xl text-center flex flex-col items-center">
+      <div className="my-auto mx-auto max-w-2xl text-center flex flex-col items-center px-4">
         {/* Clean 2D Typographic Lockup (Timeless & Minimalist) */}
-        <div className="mb-6 sm:mb-8 flex justify-center">
-          <MellowLogo variant="hero" size={480} />
+        <div className="mb-7 sm:mb-9 flex justify-center">
+          <MellowLogo variant="hero" size={440} />
         </div>
 
-        {/* Cohesive Typography Block in Golden Ratio */}
-        <div className="space-y-2.5 max-w-2xl px-2">
-          {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            {t.title}
+        {/* Unified Statement & Description Block */}
+        <div className="space-y-3 max-w-xl mx-auto">
+          {/* Core Focus Proposition */}
+          <h1 className="text-xl sm:text-2xl lg:text-[25px] font-semibold tracking-tight text-white leading-snug">
+            {t.subtitle}
           </h1>
 
-          {/* Sub-headline: Solutions for Daily Struggles and Business Procedures */}
-          <p className="text-base sm:text-lg font-medium text-[#C76C6A] tracking-normal">
-            {t.subtitle}
-          </p>
-
-          {/* Clear, refined description */}
-          <p className="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed pt-0.5">
+          {/* Integrated Purpose & Scope Paragraph */}
+          <p className="text-xs sm:text-sm lg:text-[14px] text-zinc-400 max-w-lg mx-auto leading-relaxed">
+            <span className="text-[#C76C6A] font-medium">{t.title} &mdash; </span>
             {t.description}
           </p>
         </div>
 
-        {/* Albert Einstein Quote Block */}
-        <div className="mt-7 pt-5 border-t border-white/10 max-w-md mx-auto">
+        {/* Albert Einstein Guiding Philosophy Block */}
+        <div className="mt-8 sm:mt-9 pt-6 border-t border-white/[0.08] max-w-sm mx-auto">
           <blockquote className="text-xs sm:text-sm italic text-zinc-300 font-serif leading-relaxed">
             {t.quote}
           </blockquote>
-          <cite className="block mt-1.5 font-mono text-[10px] text-zinc-400 not-italic uppercase tracking-widest">
+          <cite className="block mt-2 font-mono text-[10px] text-[#C76C6A] not-italic uppercase tracking-widest">
             &mdash; {t.quoteAuthor}
           </cite>
         </div>

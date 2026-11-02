@@ -12,6 +12,7 @@ interface HeaderProps {
   projectCount: number;
   language: Language;
   onToggleLanguage: () => void;
+  onScrollToTop?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -20,15 +21,22 @@ export const Header: React.FC<HeaderProps> = ({
   projectCount,
   language,
   onToggleLanguage,
+  onScrollToTop,
 }) => {
   const t = DICTIONARY[language].nav;
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-white/[0.07] bg-[#07080b]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Brand Logo */}
+        {/* Brand Logo & Title (Clickable to scroll to top) */}
         <div className="flex items-center gap-3">
-          <MellowLogo variant="compact" />
+          <button
+            onClick={onScrollToTop}
+            className="group flex items-center text-left transition-opacity hover:opacity-90 active:scale-[0.98] focus:outline-none"
+            title="Scroll to Top / Start"
+          >
+            <MellowLogo variant="compact" />
+          </button>
           <span className="hidden rounded-full border border-[#C76C6A]/30 bg-[#C76C6A]/10 px-2.5 py-0.5 text-[10px] font-mono text-zinc-300 md:inline-block">
             {t.productsCount(projectCount)}
           </span>
