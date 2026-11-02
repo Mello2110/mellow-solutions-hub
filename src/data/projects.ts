@@ -31,6 +31,12 @@ export const CATEGORIES: CategoryMeta[] = [
     description: "CLI-Skripte, Hintergrundprozesse und API-Integrationen zur Workflow-Optimierung.",
     iconName: "Cpu",
   },
+  {
+    id: "other",
+    label: "Sonstige & Experimente",
+    description: "Bibliotheken, APIs, Templates, Daten-Pipelines und experimentelle Utilities.",
+    iconName: "Package",
+  },
 ];
 
 export const INITIAL_PROJECTS: Project[] = [

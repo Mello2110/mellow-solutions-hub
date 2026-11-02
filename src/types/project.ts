@@ -5,6 +5,7 @@ export const ProjectCategorySchema = z.enum([
   "webapp",
   "tool",
   "automation",
+  "other",
 ]);
 
 export type ProjectCategory = z.infer<typeof ProjectCategorySchema>;

@@ -8,6 +8,7 @@ import {
   Globe,
   Wrench,
   Cpu,
+  Package,
   Filter,
   X,
   Boxes,
@@ -29,6 +30,7 @@ const ICONS_MAP: Record<string, React.ReactNode> = {
   Globe: <Globe className="h-4 w-4" />,
   Wrench: <Wrench className="h-4 w-4" />,
   Cpu: <Cpu className="h-4 w-4" />,
+  Package: <Package className="h-4 w-4" />,
 };
 
 export const CategoryFilter: React.FC<CategoryFilterProps> = ({
