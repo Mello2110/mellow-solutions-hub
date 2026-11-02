@@ -98,35 +98,63 @@ export default function HomePage() {
     });
   }, [projects, selectedCategory, selectedTech, searchQuery]);
 
-  // Clean category selection without unwanted jumping
-  const handleSelectCategory = (categoryId: string) => {
-    setSelectedCategory(categoryId);
+  // Deterministic, fixed-anchor scroll to Catalog header
+  const scrollToCatalogHeader = () => {
+    const catalogEl = document.getElementById("katalog");
+    if (catalogEl) {
+      const headerHeight = 70; // 64px header + buffer
+      const targetY = catalogEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth",
+      });
+    }
   };
 
-  // Explicit smooth scroll from Hero to Spotlight
+  // Fixed Category Selection with guaranteed stable scroll positioning
+  const handleSelectCategory = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    // Align to the catalog header cleanly
+    requestAnimationFrame(() => {
+      scrollToCatalogHeader();
+    });
+  };
+
+  // Smooth scroll from Hero to Spotlight
   const scrollToSpotlight = () => {
     const el = document.getElementById("spotlight");
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      const headerHeight = 70;
+      const targetY = el.getBoundingClientRect().top + window.scrollY - headerHeight;
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth",
+      });
     }
   };
 
-  // Explicit smooth scroll from Spotlight to Catalog
+  // Smooth scroll from Spotlight to Catalog
   const scrollToCatalog = () => {
-    const el = document.getElementById("katalog");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    scrollToCatalogHeader();
   };
 
-  // Reset all filters
+  // Reset all filters and re-align
   const handleResetFilters = () => {
     setSelectedCategory("all");
     setSelectedTech(null);
     setSearchQuery("");
+    requestAnimationFrame(() => {
+      scrollToCatalogHeader();
+    });
   };
 
-  const isDefaultView = selectedCategory === "all" && !selectedTech && !searchQuery;
+  // Active categories to display in the grouped view
+  const visibleCategories = useMemo(() => {
+    if (selectedCategory === "all") {
+      return CATEGORIES.filter((c) => c.id !== "all");
+    }
+    return CATEGORIES.filter((c) => c.id === selectedCategory);
+  }, [selectedCategory]);
 
   return (
     <div className="flex min-h-screen flex-col bg-[#07080b]">
@@ -141,7 +169,7 @@ export default function HomePage() {
 
       <main className="flex-1">
         {/* ========================================================
-            SEGMENT 01: Hero Viewport (Above the Fold)
+            SEGMENT 01: Hero Viewport (Full Screen Entrance)
            ======================================================== */}
         <Hero
           onScrollToSpotlight={scrollToSpotlight}
@@ -150,21 +178,22 @@ export default function HomePage() {
         />
 
         {/* ========================================================
-            SEGMENT 02: Flagship Spotlight Stage
+            SEGMENT 02: Flagship Spotlight Stage (Full Viewport Focus)
            ======================================================== */}
-        {!searchQuery && (
-          <SpotlightShowcase
-            featuredProjects={featuredProjects}
-            onOpenDetails={(p) => setActiveProject(p)}
-            onScrollToCatalog={scrollToCatalog}
-            language={language}
-          />
-        )}
+        <SpotlightShowcase
+          featuredProjects={featuredProjects}
+          onOpenDetails={(p) => setActiveProject(p)}
+          onScrollToCatalog={scrollToCatalog}
+          language={language}
+        />
 
         {/* ========================================================
             SEGMENT 03: Categorized Product Catalog
            ======================================================== */}
-        <section id="katalog" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20">
+        <section
+          id="katalog"
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20 min-h-[calc(100vh-4rem)]"
+        >
           {/* Main Title & Personal Motto */}
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/5 pb-6 mb-8 gap-6">
             <div>
@@ -213,7 +242,11 @@ export default function HomePage() {
           {/* Filter Status Bar */}
           <div className="mt-7 flex items-center justify-between text-xs text-zinc-400">
             <div>
-              {t.showingCount(filteredProjects.length, projects.length, selectedCategory !== "all" || !!selectedTech || !!searchQuery)}
+              {t.showingCount(
+                filteredProjects.length,
+                projects.length,
+                selectedCategory !== "all" || !!selectedTech || !!searchQuery
+              )}
             </div>
 
             {(selectedCategory !== "all" || selectedTech || searchQuery) && (
@@ -227,17 +260,16 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* Directory Cards Display */}
-          {isDefaultView ? (
-            /* Segmented by Category with Pixel-Perfect Equal Heights */
+          {/* Consistent Segmented Category Views */}
+          {filteredProjects.length > 0 ? (
             <div className="mt-12 space-y-16">
-              {CATEGORIES.filter((c) => c.id !== "all").map((cat) => {
-                const catProjects = projects.filter((p) => p.category === cat.id);
+              {visibleCategories.map((cat) => {
+                const catProjects = filteredProjects.filter((p) => p.category === cat.id);
                 if (catProjects.length === 0) return null;
 
                 return (
                   <div key={cat.id} className="space-y-6">
-                    {/* Sub-Header per Category */}
+                    {/* Category Header */}
                     <div className="flex items-center justify-between border-b border-white/5 pb-3">
                       <div className="flex items-center gap-2.5">
                         <h4 className="text-base font-semibold text-white">
@@ -248,13 +280,15 @@ export default function HomePage() {
                         </span>
                       </div>
 
-                      <button
-                        onClick={() => handleSelectCategory(cat.id)}
-                        className="flex items-center gap-1 text-xs text-[#C76C6A] hover:underline"
-                      >
-                        <span>{t.viewCategoryOnly(cat.label)}</span>
-                        <ChevronRight className="h-3.5 w-3.5" />
-                      </button>
+                      {selectedCategory === "all" && (
+                        <button
+                          onClick={() => handleSelectCategory(cat.id)}
+                          className="flex items-center gap-1 text-xs text-[#C76C6A] hover:underline"
+                        >
+                          <span>{t.viewCategoryOnly(cat.label)}</span>
+                          <ChevronRight className="h-3.5 w-3.5" />
+                        </button>
+                      )}
                     </div>
 
                     {/* Equal-Height Cards Grid */}
@@ -270,17 +304,6 @@ export default function HomePage() {
                   </div>
                 );
               })}
-            </div>
-          ) : filteredProjects.length > 0 ? (
-            /* Filtered View with Equal-Height Cards */
-            <div className="mt-10 grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredProjects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  onOpenDetails={(p) => setActiveProject(p)}
-                />
-              ))}
             </div>
           ) : (
             /* Empty Search State */
