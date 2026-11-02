@@ -11,12 +11,14 @@ import {
   Layers,
   ArrowRight,
 } from "lucide-react";
+import { Language, DICTIONARY } from "@/data/i18n";
 
 interface CommandPaletteProps {
   isOpen: boolean;
   onClose: () => void;
   projects: Project[];
   onSelectProject: (project: Project) => void;
+  language?: Language;
 }
 
 export const CommandPalette: React.FC<CommandPaletteProps> = ({
@@ -24,8 +26,10 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onClose,
   projects,
   onSelectProject,
+  language = "en",
 }) => {
   const [query, setQuery] = useState("");
+  const t = DICTIONARY[language].commandPalette;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -75,7 +79,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Tippe zur Schnellsuche (z.B. Extension, React, Manifest V3)..."
+            placeholder={t.placeholder}
             className="ml-3 w-full bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none"
           />
           <kbd className="rounded border border-white/10 bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-400">
@@ -87,12 +91,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         <div className="max-h-80 overflow-y-auto p-2">
           {filtered.length === 0 ? (
             <div className="py-8 text-center text-xs text-zinc-500">
-              Kein Projekt passend zu &quot;{query}&quot; gefunden.
+              {t.noResults(query)}
             </div>
           ) : (
             <div className="space-y-1">
               <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-zinc-500">
-                Produkte ({filtered.length})
+                {t.productsCount(filtered.length)}
               </div>
               {filtered.map((proj) => (
                 <button

@@ -11,19 +11,24 @@ import {
   Coffee,
 } from "lucide-react";
 import { ChromeIcon, GithubIcon } from "@/components/BrandIcons";
+import { Language, DICTIONARY } from "@/data/i18n";
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
   onOpenSponsor?: () => void;
+  language: Language;
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({
   project,
   onClose,
   onOpenSponsor,
+  language,
 }) => {
   const [activeTab, setActiveTab] = useState<"overview" | "sandbox">("overview");
+  const t = DICTIONARY[language].modal;
+  const tCat = DICTIONARY[language].categories;
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -50,7 +55,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
           <div>
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-md border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs font-mono tracking-wide text-zinc-300 uppercase">
-                {project.categoryLabel}
+                {tCat[project.category] || project.categoryLabel}
               </span>
               {project.badge && (
                 <span className="rounded-md border border-brand-copper/30 bg-brand-copper/10 px-2.5 py-0.5 text-xs font-medium text-brand-copperLight">
@@ -59,7 +64,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               )}
               <span className="flex items-center gap-1.5 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-xs text-emerald-400">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                {project.statusLabel || "Live & Aktiv"}
+                {project.statusLabel || t.statusLive}
               </span>
             </div>
 
@@ -90,7 +95,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   : "border-transparent text-zinc-400 hover:text-zinc-200"
               }`}
             >
-              Architektur & Details
+              {t.tabOverview}
             </button>
             <button
               onClick={() => setActiveTab("sandbox")}
@@ -101,7 +106,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               }`}
             >
               <Play className="h-3 w-3 text-emerald-400" />
-              <span>Live In-Hub Sandbox</span>
+              <span>{t.tabSandbox}</span>
             </button>
           </div>
         )}
@@ -110,30 +115,30 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className="overflow-y-auto p-5 sm:p-6 space-y-6">
           {activeTab === "overview" ? (
             <>
-              {/* Problemstellung */}
+              {/* Problem Statement */}
               <div className="rounded-xl border border-red-500/20 bg-red-950/10 p-4">
                 <div className="text-xs font-mono uppercase tracking-wider text-red-300 font-semibold">
-                  1. Problemstellung & Motivation:
+                  {t.problemTitle}
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-300">
                   {project.problemStatement}
                 </p>
               </div>
 
-              {/* Technische Umsetzung */}
+              {/* Technical Solution */}
               <div className="rounded-xl border border-cyan-500/20 bg-cyan-950/10 p-4">
                 <div className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-semibold">
-                  2. Technische Lösung & Methodik:
+                  {t.solutionTitle}
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-300">
                   {project.technicalSolution}
                 </p>
               </div>
 
-              {/* Architektur Highlights */}
+              {/* Architecture Highlights */}
               <div>
                 <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
-                  Architektur-Highlights & Best Practices:
+                  {t.archTitle}
                 </h4>
                 <div className="mt-3 grid gap-2.5">
                   {project.architectureHighlights.map((highlight, index) => (
@@ -151,7 +156,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               {/* Tech Stack */}
               <div>
                 <h4 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold">
-                  Eingesetzte Technologien & APIs:
+                  {t.techTitle}
                 </h4>
                 <div className="mt-2.5 flex flex-wrap gap-2">
                   {project.techStack.map((tech) => (
@@ -169,9 +174,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               <div className="flex flex-col sm:flex-row items-center justify-between gap-3 rounded-xl border border-brand-copper/30 bg-brand-copper/10 p-4 text-xs">
                 <div className="flex items-center gap-2.5 text-zinc-300">
                   <Coffee className="h-4 w-4 text-brand-copper shrink-0" />
-                  <span>
-                    Gefällt dir dieses Tool? Unterstütze die unabhängige Weiterentwicklung auf Buy Me a Coffee.
-                  </span>
+                  <span>{t.supportPrompt}</span>
                 </div>
                 <a
                   href="https://buymeacoffee.com/mellowsolutions"
@@ -179,7 +182,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   rel="noopener noreferrer"
                   className="rounded-lg border border-brand-copper/50 bg-brand-copper px-3 py-1.5 text-xs font-semibold text-white whitespace-nowrap shadow-glow-copper/20 hover:brightness-110"
                 >
-                  Kaffee spendieren
+                  {t.supportBtn}
                 </a>
               </div>
             </>
@@ -187,7 +190,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             /* Live Sandbox Preview Tab */
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs text-zinc-400">
-                <span>Interaktiver Testlauf im Hub Sandbox-Frame</span>
+                <span>{t.sandboxTitle}</span>
                 {project.sandboxPreview?.embedUrl && (
                   <a
                     href={project.sandboxPreview.embedUrl}
@@ -195,7 +198,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                     rel="noopener noreferrer"
                     className="flex items-center gap-1 text-cyan-400 hover:underline"
                   >
-                    <span>In neuem Tab öffnen</span>
+                    <span>{t.openInNewTab}</span>
                     <Maximize2 className="h-3 w-3" />
                   </a>
                 )}
@@ -210,7 +213,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   />
                 ) : (
                   <div className="flex h-full items-center justify-center text-xs text-zinc-500">
-                    Keine Einbettungs-URL hinterlegt.
+                    {t.noEmbedUrl}
                   </div>
                 )}
               </div>
@@ -229,7 +232,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 className="flex items-center gap-1.5 rounded-xl border border-cyan-500/40 bg-cyan-950/40 px-3.5 py-2 text-xs font-medium text-cyan-300 shadow-glow-cyan/20 transition-all hover:bg-cyan-900/50"
               >
                 <ChromeIcon className="h-4 w-4" />
-                <span>Chrome Web Store</span>
+                <span>{t.chromeStore}</span>
               </a>
             )}
 
@@ -241,7 +244,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/80 px-3.5 py-2 text-xs font-medium text-white transition-all hover:border-cyan-500/40 hover:bg-zinc-800"
               >
                 <ExternalLink className="h-4 w-4" />
-                <span>Live Demo / GitHub Page</span>
+                <span>{t.liveDemo}</span>
               </a>
             )}
 
@@ -253,7 +256,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/80 px-3.5 py-2 text-xs font-medium text-zinc-300 transition-all hover:border-white/20 hover:text-white"
               >
                 <GithubIcon className="h-4 w-4" />
-                <span>Source Code</span>
+                <span>{t.sourceCode}</span>
               </a>
             )}
           </div>
@@ -262,7 +265,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             onClick={onClose}
             className="rounded-xl border border-white/10 bg-zinc-900/60 px-4 py-2 text-xs text-zinc-300 hover:bg-zinc-800 hover:text-white"
           >
-            Schließen
+            {t.close}
           </button>
         </div>
       </div>

@@ -13,6 +13,7 @@ import {
   X,
   Boxes,
 } from "lucide-react";
+import { Language, DICTIONARY } from "@/data/i18n";
 
 interface CategoryFilterProps {
   categories: CategoryMeta[];
@@ -22,6 +23,7 @@ interface CategoryFilterProps {
   selectedTech: string | null;
   onSelectTech: (tech: string | null) => void;
   categoryCounts: Record<string, number>;
+  language: Language;
 }
 
 const ICONS_MAP: Record<string, React.ReactNode> = {
@@ -41,7 +43,11 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   selectedTech,
   onSelectTech,
   categoryCounts,
+  language,
 }) => {
+  const t = DICTIONARY[language].catalog;
+  const tCat = DICTIONARY[language].categories;
+
   return (
     <div className="space-y-4">
       {/* Category Tabs Bar */}
@@ -49,6 +55,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat.id;
           const count = categoryCounts[cat.id] ?? 0;
+          const categoryName = tCat[cat.id as keyof typeof tCat] || cat.label;
 
           return (
             <button
@@ -69,7 +76,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               >
                 {ICONS_MAP[cat.iconName] || <Boxes className="h-4 w-4" />}
               </span>
-              <span>{cat.label}</span>
+              <span>{categoryName}</span>
               <span
                 className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono ${
                   isSelected
@@ -90,7 +97,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
           <div className="flex items-center gap-1.5 text-xs text-zinc-400 mr-2">
             <Filter className="h-3 w-3 text-cyan-400" />
             <span className="text-[11px] uppercase tracking-wider font-mono">
-              Technologie:
+              {t.techFilter}
             </span>
           </div>
 
@@ -117,7 +124,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               onClick={() => onSelectTech(null)}
               className="text-[11px] text-zinc-400 hover:text-[#C76C6A] underline underline-offset-2 ml-1"
             >
-              Filter aufheben
+              {t.clearFilter}
             </button>
           )}
         </div>

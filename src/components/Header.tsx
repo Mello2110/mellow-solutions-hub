@@ -44,16 +44,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Navigation & Action Area */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Language Switcher [EN | DE] */}
-          <button
-            onClick={onToggleLanguage}
-            className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/60 px-2.5 py-1.5 text-xs font-mono font-medium text-zinc-300 transition-colors hover:border-white/20 hover:text-white"
-            title="Switch Language (English / Deutsch)"
-          >
-            <Globe className="h-3.5 w-3.5 text-zinc-400" />
-            <span className="uppercase">{language}</span>
-          </button>
-
           {/* Command Palette Trigger */}
           <button
             onClick={onOpenCommandPalette}
@@ -87,6 +77,16 @@ export const Header: React.FC<HeaderProps> = ({
             <GithubIcon className="h-4 w-4" />
             <span className="hidden lg:inline">{t.github}</span>
           </a>
+
+          {/* Language Switcher [EN | DE] - Placed on the very far right */}
+          <button
+            onClick={onToggleLanguage}
+            className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/60 px-2.5 py-1.5 text-xs font-mono font-medium text-zinc-300 transition-colors hover:border-white/20 hover:text-white"
+            title="Switch Language (English / Deutsch)"
+          >
+            <Globe className="h-3.5 w-3.5 text-zinc-400" />
+            <span className="uppercase">{language}</span>
+          </button>
         </div>
       </div>
     </header>

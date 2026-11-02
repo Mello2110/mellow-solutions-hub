@@ -62,6 +62,37 @@ export interface Translations {
     disclaimerP1: string;
     disclaimerP2: string;
   };
+  categories: {
+    all: string;
+    extension: string;
+    webapp: string;
+    tool: string;
+    automation: string;
+    other: string;
+  };
+  modal: {
+    tabOverview: string;
+    tabSandbox: string;
+    statusLive: string;
+    problemTitle: string;
+    solutionTitle: string;
+    archTitle: string;
+    techTitle: string;
+    supportPrompt: string;
+    supportBtn: string;
+    sandboxTitle: string;
+    openInNewTab: string;
+    noEmbedUrl: string;
+    chromeStore: string;
+    liveDemo: string;
+    sourceCode: string;
+    close: string;
+  };
+  commandPalette: {
+    placeholder: string;
+    noResults: (query: string) => string;
+    productsCount: (count: number) => string;
+  };
 }
 
 export const DICTIONARY: Record<Language, Translations> = {
@@ -136,6 +167,37 @@ export const DICTIONARY: Record<Language, Translations> = {
       disclaimerP2:
         "Unless explicitly stated otherwise, all tools and services are provided 'as is' without warranties of any kind. Use of the software is at your own discretion and responsibility. No commercial service-level agreements or guarantees of availability are implied.",
     },
+    categories: {
+      all: "All Products",
+      extension: "Extensions",
+      webapp: "Web Apps",
+      tool: "HTML Tools",
+      automation: "Automation",
+      other: "Other & Utilities",
+    },
+    modal: {
+      tabOverview: "Architecture & Details",
+      tabSandbox: "Live In-Hub Sandbox",
+      statusLive: "Live & Active",
+      problemTitle: "1. Problem & Motivation:",
+      solutionTitle: "2. Technical Solution & Methodology:",
+      archTitle: "Architecture Highlights & Best Practices:",
+      techTitle: "Technologies & APIs Used:",
+      supportPrompt: "Like this tool? Support independent development on Buy Me a Coffee.",
+      supportBtn: "Buy me a coffee",
+      sandboxTitle: "Interactive test run in Hub Sandbox frame",
+      openInNewTab: "Open in new tab",
+      noEmbedUrl: "No live embed URL available.",
+      chromeStore: "Chrome Web Store",
+      liveDemo: "Live Demo / Web App",
+      sourceCode: "Source Code",
+      close: "Close",
+    },
+    commandPalette: {
+      placeholder: "Type to search (e.g. Extension, React, Manifest V3)...",
+      noResults: (query: string) => `No projects matching "${query}" found.`,
+      productsCount: (count: number) => `Products (${count})`,
+    },
   },
   de: {
     nav: {
@@ -207,6 +269,37 @@ export const DICTIONARY: Record<Language, Translations> = {
         "Mellow Solutions dient als persönliches Entwickler-Portfolio und Projekt-Showcase für praxiserprobte Webapplikationen, Chrome-Extensions und Hilfswerkzeuge. Sämtliche Tools werden unentgeltlich und im Rahmen unabhängiger Entwicklung aus Eigenbedarf und Freude am Coden bereitgestellt.",
       disclaimerP2:
         "Sofern nicht ausdrücklich anders ausgewiesen, erfolgt die Bereitstellung der Software 'as is' ohne gewerbliche Gewährleistung oder garantierte Verfügbarkeit. Die Nutzung erfolgt eigenverantwortlich und auf eigenes Risiko.",
+    },
+    categories: {
+      all: "Alle Produkte",
+      extension: "Extensions",
+      webapp: "Web Apps",
+      tool: "HTML Tools",
+      automation: "Automatisierung",
+      other: "Sonstige & Werkzeuge",
+    },
+    modal: {
+      tabOverview: "Architektur & Details",
+      tabSandbox: "Live In-Hub Sandbox",
+      statusLive: "Live & Aktiv",
+      problemTitle: "1. Problemstellung & Motivation:",
+      solutionTitle: "2. Technische Lösung & Methodik:",
+      archTitle: "Architektur-Highlights & Best Practices:",
+      techTitle: "Eingesetzte Technologien & APIs:",
+      supportPrompt: "Gefällt dir dieses Tool? Unterstütze die unabhängige Weiterentwicklung auf Buy Me a Coffee.",
+      supportBtn: "Kaffee spendieren",
+      sandboxTitle: "Interaktiver Testlauf im Hub Sandbox-Frame",
+      openInNewTab: "In neuem Tab öffnen",
+      noEmbedUrl: "Keine Einbettungs-URL hinterlegt.",
+      chromeStore: "Chrome Web Store",
+      liveDemo: "Live Demo / Web App",
+      sourceCode: "Source Code",
+      close: "Schließen",
+    },
+    commandPalette: {
+      placeholder: "Tippe zur Schnellsuche (z.B. Extension, React, Manifest V3)...",
+      noResults: (query: string) => `Kein Projekt passend zu "${query}" gefunden.`,
+      productsCount: (count: number) => `Produkte (${count})`,
     },
   },
 };

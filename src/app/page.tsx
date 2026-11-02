@@ -254,6 +254,7 @@ export default function HomePage() {
             selectedTech={selectedTech}
             onSelectTech={handleSelectTech}
             categoryCounts={categoryCounts}
+            language={language}
           />
 
           {/* Filter Status Bar */}
@@ -290,7 +291,7 @@ export default function HomePage() {
                     <div className="flex items-center justify-between border-b border-white/5 pb-3">
                       <div className="flex items-center gap-2.5">
                         <h4 className="text-base font-semibold text-white">
-                          {cat.label}
+                          {DICTIONARY[language].categories[cat.id] || cat.label}
                         </h4>
                         <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-mono text-zinc-400">
                           {catProjects.length}
@@ -302,7 +303,7 @@ export default function HomePage() {
                           onClick={() => handleSelectCategory(cat.id)}
                           className="flex items-center gap-1 text-xs text-[#C76C6A] hover:underline"
                         >
-                          <span>{t.viewCategoryOnly(cat.label)}</span>
+                          <span>{t.viewCategoryOnly(DICTIONARY[language].categories[cat.id] || cat.label)}</span>
                           <ChevronRight className="h-3.5 w-3.5" />
                         </button>
                       )}
@@ -315,6 +316,7 @@ export default function HomePage() {
                           key={project.id}
                           project={project}
                           onOpenDetails={(p) => setActiveProject(p)}
+                          language={language}
                         />
                       ))}
                     </div>
@@ -351,12 +353,14 @@ export default function HomePage() {
           setActiveProject(null);
           setIsSponsorModalOpen(true);
         }}
+        language={language}
       />
 
       {/* Support / Coffee Modal */}
       <SponsorModal
         isOpen={isSponsorModalOpen}
         onClose={() => setIsSponsorModalOpen(false)}
+        language={language}
       />
 
       {/* Command Palette (Ctrl+K) */}
@@ -365,6 +369,7 @@ export default function HomePage() {
         onClose={() => setIsCommandPaletteOpen(false)}
         projects={projects}
         onSelectProject={(p) => setActiveProject(p)}
+        language={language}
       />
 
       {/* Footer with Portfolio Notice / Disclaimer */}

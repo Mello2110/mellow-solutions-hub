@@ -52,7 +52,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
               </span>
               <span className="text-zinc-600">&bull;</span>
               <span className="rounded-lg border border-sky-500/25 bg-sky-950/35 px-2.5 py-1 text-xs font-mono text-sky-300">
-                {current.categoryLabel}
+                {DICTIONARY[language].categories[current.category] || current.categoryLabel}
               </span>
               {current.badge && (
                 <span className="rounded-lg border border-[#C76C6A]/30 bg-[#C76C6A]/15 px-2.5 py-1 text-xs font-mono text-white">
