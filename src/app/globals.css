@@ -7,11 +7,16 @@
   --background: #07080b;
 }
 
+html,
 body {
   color: var(--foreground);
   background-color: var(--background);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  touch-action: pan-y;
   selection-background-color: #00f0ff;
   selection-color: #000;
 }

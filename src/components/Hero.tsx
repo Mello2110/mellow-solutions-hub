@@ -21,7 +21,7 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section
       id="hero"
-      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+      className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-6 sm:py-10"
     >
       {/* Center Harmonized Content Block */}
       <div className="my-auto mx-auto max-w-4xl text-center flex flex-col items-center px-4">
