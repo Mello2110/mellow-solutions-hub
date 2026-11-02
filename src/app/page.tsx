@@ -98,26 +98,24 @@ export default function HomePage() {
     });
   }, [projects, selectedCategory, selectedTech, searchQuery]);
 
-  // Deterministic, fixed-anchor scroll to Catalog header
-  const scrollToCatalogHeader = () => {
+  // Fixed Category Selection: Instant in-place filter when already at catalog, smooth scroll only if far above
+  const handleSelectCategory = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+
     const catalogEl = document.getElementById("katalog");
-    if (catalogEl) {
-      const headerHeight = 70; // 64px header + buffer
-      const targetY = catalogEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+    if (!catalogEl) return;
+
+    const headerHeight = 70;
+    const targetY = catalogEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+    const currentY = window.scrollY;
+
+    // Only scroll if the user is significantly above the catalog (e.g. up in hero or spotlight)
+    if (currentY < targetY - 150) {
       window.scrollTo({
         top: targetY,
         behavior: "smooth",
       });
     }
-  };
-
-  // Fixed Category Selection with guaranteed stable scroll positioning
-  const handleSelectCategory = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-    // Align to the catalog header cleanly
-    requestAnimationFrame(() => {
-      scrollToCatalogHeader();
-    });
   };
 
   // Smooth scroll from Hero to Spotlight
@@ -135,17 +133,22 @@ export default function HomePage() {
 
   // Smooth scroll from Spotlight to Catalog
   const scrollToCatalog = () => {
-    scrollToCatalogHeader();
+    const catalogEl = document.getElementById("katalog");
+    if (catalogEl) {
+      const headerHeight = 70;
+      const targetY = catalogEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+      window.scrollTo({
+        top: targetY,
+        behavior: "smooth",
+      });
+    }
   };
 
-  // Reset all filters and re-align
+  // Reset all filters without unnecessary jumps
   const handleResetFilters = () => {
     setSelectedCategory("all");
     setSelectedTech(null);
     setSearchQuery("");
-    requestAnimationFrame(() => {
-      scrollToCatalogHeader();
-    });
   };
 
   // Active categories to display in the grouped view

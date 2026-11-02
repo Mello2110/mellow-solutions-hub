@@ -7,10 +7,6 @@
   --background: #07080b;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   color: var(--foreground);
   background-color: var(--background);
