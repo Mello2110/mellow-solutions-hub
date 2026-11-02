@@ -37,11 +37,11 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
       className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col justify-between py-12 sm:py-16 scroll-mt-16"
     >
       <div className="my-auto w-full">
-        {/* Main Spotlight Card Container: Subtle, deep dark navy with minimal gradient */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#080b14] to-[#06080e] p-7 sm:p-9 lg:p-11 shadow-2xl backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]">
-          {/* Subtle Deep Navy Ambient Glow */}
-          <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-blue-950/20 blur-3xl" />
-          <div className="pointer-events-none absolute -right-20 -bottom-20 h-72 w-72 rounded-full bg-indigo-950/15 blur-3xl" />
+        {/* Main Spotlight Card Container: Translucent dark slate-grey with subtle cool-blue undertone */}
+        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#0b0e17]/65 via-[#08090f]/75 to-[#07080c]/80 p-7 sm:p-9 lg:p-11 shadow-2xl backdrop-blur-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]">
+          {/* Faint Cool-Grey/Blue Ambient Whisper */}
+          <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-slate-800/10 blur-3xl" />
+          <div className="pointer-events-none absolute -right-20 -bottom-20 h-72 w-72 rounded-full bg-blue-950/15 blur-3xl" />
 
           {/* Top Bar: Category Pill & Project Switcher */}
           <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-5">
