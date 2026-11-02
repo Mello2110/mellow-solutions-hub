@@ -98,31 +98,32 @@ export default function HomePage() {
     });
   }, [projects, selectedCategory, selectedTech, searchQuery]);
 
-  // Fixed Category Selection: Instant in-place filter when already at catalog, smooth scroll only if far above
-  const handleSelectCategory = (categoryId: string) => {
-    setSelectedCategory(categoryId);
-
+  // Precise pinning to Catalog header with zero jitter
+  const pinToCatalog = (behavior: ScrollBehavior = "instant") => {
     const catalogEl = document.getElementById("katalog");
     if (!catalogEl) return;
-
-    const headerHeight = 70;
+    const headerHeight = 64; // height of sticky header
     const targetY = catalogEl.getBoundingClientRect().top + window.scrollY - headerHeight;
-    const currentY = window.scrollY;
+    window.scrollTo({
+      top: targetY,
+      behavior: behavior,
+    });
+  };
 
-    // Only scroll if the user is significantly above the catalog (e.g. up in hero or spotlight)
-    if (currentY < targetY - 150) {
-      window.scrollTo({
-        top: targetY,
-        behavior: "smooth",
-      });
-    }
+  // Fixed Category Selection: Update category and instantly pin to exact catalog top
+  const handleSelectCategory = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    // Pin immediately so browser never clamps into spotlight
+    requestAnimationFrame(() => {
+      pinToCatalog("instant");
+    });
   };
 
   // Smooth scroll from Hero to Spotlight
   const scrollToSpotlight = () => {
     const el = document.getElementById("spotlight");
     if (el) {
-      const headerHeight = 70;
+      const headerHeight = 64;
       const targetY = el.getBoundingClientRect().top + window.scrollY - headerHeight;
       window.scrollTo({
         top: targetY,
@@ -133,22 +134,17 @@ export default function HomePage() {
 
   // Smooth scroll from Spotlight to Catalog
   const scrollToCatalog = () => {
-    const catalogEl = document.getElementById("katalog");
-    if (catalogEl) {
-      const headerHeight = 70;
-      const targetY = catalogEl.getBoundingClientRect().top + window.scrollY - headerHeight;
-      window.scrollTo({
-        top: targetY,
-        behavior: "smooth",
-      });
-    }
+    pinToCatalog("smooth");
   };
 
-  // Reset all filters without unnecessary jumps
+  // Reset all filters
   const handleResetFilters = () => {
     setSelectedCategory("all");
     setSelectedTech(null);
     setSearchQuery("");
+    requestAnimationFrame(() => {
+      pinToCatalog("instant");
+    });
   };
 
   // Active categories to display in the grouped view
@@ -192,10 +188,12 @@ export default function HomePage() {
 
         {/* ========================================================
             SEGMENT 03: Categorized Product Catalog
+            min-h-[120vh] guarantees the browser NEVER forces scroll
+            upwards into Spotlight even if a category has only 1 card!
            ======================================================== */}
         <section
           id="katalog"
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-20 min-h-[calc(100vh-4rem)]"
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-16 min-h-[120vh] pb-40"
         >
           {/* Main Title & Personal Motto */}
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/5 pb-6 mb-8 gap-6">
