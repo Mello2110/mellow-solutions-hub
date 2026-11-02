@@ -182,7 +182,7 @@ export default function HomePage() {
         onOpenSponsor={() => setIsSponsorModalOpen(true)}
       />
 
-      <main className="flex-1">
+      <main className="flex-1 pt-16">
         {/* ========================================================
             SEGMENT 01: Hero Viewport (Full Screen Entrance)
            ======================================================== */}

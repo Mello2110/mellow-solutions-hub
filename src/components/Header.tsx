@@ -26,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({
   const t = DICTIONARY[language].nav;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/[0.07] bg-[#07080b]/90 backdrop-blur-xl">
+    <header className="fixed top-0 inset-x-0 z-40 w-full border-b border-white/[0.07] bg-[#07080b]/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo & Title (Clickable to scroll to top) */}
         <div className="flex items-center gap-3">

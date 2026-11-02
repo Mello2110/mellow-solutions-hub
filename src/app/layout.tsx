@@ -51,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" className="dark">
-      <body className="min-h-screen bg-[#07080b] text-zinc-100 antialiased tech-grid-bg relative selection:bg-cyan-400 selection:text-black overflow-x-hidden">
+      <body className="min-h-screen bg-[#07080b] text-zinc-100 antialiased tech-grid-bg relative selection:bg-cyan-400 selection:text-black">
         {/* Tasteful Ambient Backlights: Strictly clipped inside viewport to prevent any horizontal scroll on mobile */}
         <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
           <div className="glow-ambient w-[600px] h-[600px] bg-cyan-500/10 -top-40 -left-40" />
@@ -59,7 +59,7 @@ export default function RootLayout({
           <div className="glow-ambient w-[500px] h-[500px] bg-indigo-600/10 bottom-20 left-10" />
         </div>
 
-        <div className="relative z-10 flex min-h-screen flex-col overflow-x-hidden">
+        <div className="relative z-10 flex min-h-screen flex-col">
           {children}
         </div>
       </body>

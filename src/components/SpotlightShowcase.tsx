@@ -34,7 +34,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
   return (
     <section
       id="spotlight"
-      className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[calc(100dvh-4rem)] flex flex-col justify-between py-8 sm:py-14 scroll-mt-16"
+      className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[calc(100dvh-4rem)] flex flex-col justify-between py-8 sm:py-12 scroll-mt-16"
     >
       <div className="my-auto w-full">
         {/* Main Spotlight Card Container: Translucent dark slate-grey with subtle cool-blue undertone */}
