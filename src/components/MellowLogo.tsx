@@ -1,7 +1,8 @@
 import React from "react";
+import Image from "next/image";
 
 interface MellowLogoProps {
-  variant?: "compact" | "full" | "hero";
+  variant?: "compact" | "full" | "hero" | "appIcon" | "lockup";
   className?: string;
   size?: number;
 }
@@ -11,66 +12,82 @@ export const MellowLogo: React.FC<MellowLogoProps> = ({
   className = "",
   size,
 }) => {
-  const iconSize = size || (variant === "hero" ? 56 : variant === "compact" ? 36 : 40);
+  if (variant === "hero") {
+    const width = size || 260;
+    const height = Math.round(width * (185 / 290));
+
+    return (
+      <div className={`relative flex flex-col items-center justify-center ${className}`}>
+        {/* Soft Ambient Radial Backlight in Copper & Cyan */}
+        <div
+          className="pointer-events-none absolute -inset-8 rounded-full blur-3xl opacity-40"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(199,108,106,0.35) 0%, rgba(0,240,255,0.15) 50%, transparent 75%)",
+          }}
+        />
+
+        {/* 3D Chamfered Hero Monogram from Concept Sheet */}
+        <div className="relative z-10 transition-transform duration-500 hover:scale-[1.03]">
+          <Image
+            src="/assets/mellow-hero-3d-clean.png"
+            alt="Mellow Solutions Hero Monogram"
+            width={width}
+            height={height}
+            priority
+            className="drop-shadow-[0_12px_32px_rgba(0,0,0,0.8)] object-contain"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (variant === "appIcon") {
+    const iconSize = size || 56;
+    return (
+      <div
+        className={`relative shrink-0 overflow-hidden rounded-2xl border border-white/10 shadow-lg ${className}`}
+        style={{ width: iconSize, height: iconSize }}
+      >
+        <Image
+          src="/assets/mellow-squircle-icon.png"
+          alt="Mellow Solutions App Icon"
+          width={iconSize}
+          height={iconSize}
+          className="h-full w-full object-cover"
+        />
+      </div>
+    );
+  }
+
+  // Header / Compact Variant
+  const iconSize = size || 38;
 
   return (
     <div className={`flex items-center gap-3.5 ${className}`}>
-      {/* Adult, Minimalist, Architectural "M S" Monogram */}
+      {/* App Icon Monogram with Live Status Dot */}
       <div
-        className="relative shrink-0 flex items-center justify-center rounded-xl border border-white/10 bg-[#0d0e14] transition-colors hover:border-white/20"
+        className="relative shrink-0 overflow-hidden rounded-xl border border-white/10 bg-[#0c0d14] shadow-sm transition-colors hover:border-white/25"
         style={{ width: iconSize, height: iconSize }}
       >
-        <svg
-          viewBox="0 0 40 40"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-3/5 w-3/5"
-        >
-          {/* Architectural Minimalist "M" */}
-          <path
-            d="M8 27V13L15 22L22 13V27"
-            stroke="#f4f4f6"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* Architectural Minimalist "S" in understated Warm Copper #C76C6A */}
-          <path
-            d="M32 15C32 13.5 30.5 13 28.5 13C26.5 13 25 14 25 16C25 19 32 19.5 32 23.5C32 26 30 27 28 27C25.5 27 24.5 25.5 24.5 24"
-            stroke="#C76C6A"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-
-          {/* Single Precision Micro-Dot */}
-          <circle cx="32" cy="27" r="1.2" fill="#00f0ff" />
-        </svg>
-
-        {/* Status dot in compact header mode */}
-        {variant === "compact" && (
-          <span className="absolute -bottom-0.5 -right-0.5 flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-        )}
+        <Image
+          src="/assets/mellow-squircle-icon.png"
+          alt="Mellow Solutions Icon"
+          width={iconSize}
+          height={iconSize}
+          className="h-full w-full object-cover"
+        />
+        <span className="absolute -bottom-0.5 -right-0.5 flex h-2 w-2 z-20">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500 border border-[#08090d]" />
+        </span>
       </div>
 
-      {/* Typography: Swiss/Modernist Inter, No Playfulness */}
+      {/* Typography: Exact M E L L O W   S O L U T I O N S Letter-Spacing */}
       <div className="flex flex-col text-left">
-        <span
-          className={`font-semibold tracking-[0.22em] text-zinc-100 uppercase ${
-            variant === "hero" ? "text-sm sm:text-base" : "text-xs tracking-[0.20em]"
-          }`}
-        >
+        <span className="text-[12px] sm:text-[13px] font-semibold tracking-[0.24em] text-zinc-100 uppercase">
           Mellow Solutions
         </span>
-        {variant === "hero" && (
-          <span className="font-mono text-[10px] tracking-[0.16em] text-zinc-400 uppercase mt-0.5">
-            Engineering &bull; Software Lab
-          </span>
-        )}
       </div>
     </div>
   );

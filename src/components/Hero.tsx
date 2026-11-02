@@ -19,40 +19,41 @@ export const Hero: React.FC<HeroProps> = ({
   const t = DICTIONARY[language].hero;
 
   return (
-    <section id="hero" className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-      {/* Center Hero Content */}
-      <div className="my-auto mx-auto max-w-4xl text-center">
-        {/* Studio Logo */}
-        <div className="flex justify-center mb-8">
-          <MellowLogo variant="hero" />
+    <section
+      id="hero"
+      className="relative flex min-h-[calc(100vh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-10 sm:py-14"
+    >
+      {/* Center Unified Content Block */}
+      <div className="my-auto mx-auto max-w-3xl text-center flex flex-col items-center">
+        {/* The New 3D Hero Monogram */}
+        <div className="mb-7">
+          <MellowLogo variant="hero" size={270} />
         </div>
 
-        {/* Motto Pill */}
-        <div className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-[#0d0f18]/90 px-4 py-1.5 text-xs text-zinc-300 backdrop-blur-md mb-6 shadow-sm">
-          <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-300">
-            {t.studioTag}
-          </span>
-          <span className="text-zinc-600">&bull;</span>
-          <span className="font-mono text-[11px] text-[#C76C6A] font-medium">
-            {t.activeProjects(totalProjects)}
-          </span>
+        {/* Cohesive Typography Block */}
+        <div className="space-y-3 max-w-2xl">
+          {/* Main Headline */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
+            {t.title}
+          </h1>
+
+          {/* Sub-headline: Solutions for Daily Struggles and Business Procedures */}
+          <p className="text-base sm:text-xl font-medium text-[#C76C6A] tracking-normal">
+            {t.subtitle}
+          </p>
+
+          {/* Clear, understated description */}
+          <p className="text-xs sm:text-sm text-zinc-400 max-w-xl mx-auto leading-relaxed pt-1">
+            {t.description}
+          </p>
         </div>
 
-        {/* Main Title */}
-        <h1 className="text-3xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl max-w-4xl">
-          {t.titleStart}
-          <span className="bg-gradient-to-r from-white via-zinc-100 to-[#C76C6A] bg-clip-text text-transparent">
-            {t.titleHighlight}
-          </span>
-        </h1>
-
-        {/* Albert Einstein Quote */}
-        <div className="mt-7 mx-auto max-w-2xl">
+        {/* Albert Einstein Quote Block */}
+        <div className="mt-8 pt-6 border-t border-white/5 max-w-lg mx-auto">
           <blockquote className="text-sm sm:text-base italic text-zinc-300 font-serif leading-relaxed">
             {t.quote}
           </blockquote>
-          <cite className="block mt-2 font-mono text-xs text-zinc-500 not-italic uppercase tracking-wider">
+          <cite className="block mt-2 font-mono text-[11px] text-zinc-400 not-italic uppercase tracking-widest">
             &mdash; {t.quoteAuthor}
           </cite>
         </div>

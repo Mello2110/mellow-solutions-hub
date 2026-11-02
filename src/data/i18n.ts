@@ -9,10 +9,9 @@ export interface Translations {
     github: string;
   };
   hero: {
-    studioTag: string;
-    activeProjects: (count: number) => string;
-    titleStart: string;
-    titleHighlight: string;
+    title: string;
+    subtitle: string;
+    description: string;
     quote: string;
     quoteAuthor: string;
     scrollPrompt: string;
@@ -71,10 +70,10 @@ export const DICTIONARY: Record<Language, Translations> = {
       github: "GitHub",
     },
     hero: {
-      studioTag: "Solutions for Daily Struggles & Business Procedures",
-      activeProjects: (count) => `${count} Active Tools & Extensions`,
-      titleStart: "Crafted with Precision & ",
-      titleHighlight: "Purpose.",
+      title: "Crafted with Precision & Purpose.",
+      subtitle: "Solutions for Daily Struggles and Business Procedures.",
+      description:
+        "Independent browser extensions, web applications, and developer utilities. Ad-free, privacy-first, and built for lasting utility.",
       quote: "“Everything should be made as simple as possible, but not simpler.”",
       quoteAuthor: "Albert Einstein",
       scrollPrompt: "Explore Featured Flagship",
@@ -95,7 +94,7 @@ export const DICTIONARY: Record<Language, Translations> = {
     catalog: {
       title: "Product Directory & Toolbox",
       subtitle:
-        "Apps, Tools and Extensions crafted with love to make life smoother. Everything is ad-free and built for reliable utility.",
+        "Apps, Tools and Extensions crafted with Love to make my Life easier. Maybe you find something useful here too - I'd love to share.",
       searchPlaceholder: "Search projects or tech (e.g. Manifest V3)...",
       clearSearch: "Clear",
       techFilter: "Technology:",
@@ -137,10 +136,10 @@ export const DICTIONARY: Record<Language, Translations> = {
       github: "GitHub",
     },
     hero: {
-      studioTag: "Lösungen für alltägliche Herausforderungen & Prozesse",
-      activeProjects: (count) => `${count} Aktive Werkzeuge & Extensions`,
-      titleStart: "Pragmatische Software & ",
-      titleHighlight: "Precision Tools.",
+      title: "Präzision & Zweckmäßigkeit.",
+      subtitle: "Lösungen für alltägliche Herausforderungen und Geschäftsprozesse.",
+      description:
+        "Unabhängige Chrome-Extensions, Webanwendungen und Entwickler-Tools. Werbefrei, datenschutzorientiert und auf echten Nutzen ausgelegt.",
       quote: "„Alles sollte so einfach wie möglich gemacht werden, aber nicht einfacher.“",
       quoteAuthor: "Albert Einstein",
       scrollPrompt: "Flaggschiff erkunden",
@@ -161,7 +160,7 @@ export const DICTIONARY: Record<Language, Translations> = {
     catalog: {
       title: "Verzeichnis & Werkzeuge",
       subtitle:
-        "Apps, Tools und Extensions mit Liebe gebaut, um das Leben einfacher zu machen. Vollkommen werbefrei und lösungsorientiert.",
+        "Apps, Tools und Extensions mit Liebe gebaut, um das Leben einfacher zu machen. Vielleicht findest du hier etwas Nützliches – ich teile es gerne.",
       searchPlaceholder: "Projekt oder Technologie suchen...",
       clearSearch: "Löschen",
       techFilter: "Technologie:",
