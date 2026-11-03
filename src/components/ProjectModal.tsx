@@ -259,9 +259,9 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 href={project.links.chromeWebStore}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 rounded-xl border border-cyan-500/40 bg-cyan-950/40 px-3.5 py-2 text-xs font-medium text-cyan-300 shadow-glow-cyan/20 transition-all hover:bg-cyan-900/50"
+                className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/80 px-3.5 py-2 text-xs font-medium text-white transition-all hover:border-white/20 hover:bg-zinc-800"
               >
-                <ChromeIcon className="h-4 w-4" />
+                <ChromeIcon className="h-4 w-4 text-sky-400" />
                 <span>{t.chromeStore}</span>
               </a>
             )}
