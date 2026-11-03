@@ -145,6 +145,7 @@ export const INITIAL_PROJECTS: Project[] = [
       "Zero-Telemetry Architecture with 100% Client-Side Privacy"
     ],
     "links": {
+      "chromeWebStore": "https://chromewebstore.google.com/detail/lazyshorts/hjmljblglniihpkakmmckapbllfjhmbi?authuser=0&hl=de",
       "githubUrl": "https://github.com/Mello2110/LazyShorts"
     },
     "stats": {
@@ -180,6 +181,7 @@ export const INITIAL_PROJECTS: Project[] = [
       "Proportional 60-30-10 palette clustering with instant CSS Variables & Tailwind configuration export"
     ],
     "links": {
+      "chromeWebStore": "https://chromewebstore.google.com/detail/colorcheck/imikgfjdmlolmahfaigjmdlkhjpobhpe?authuser=0&hl=de",
       "githubUrl": "https://github.com/Mello2110/ColorCheck"
     },
     "stats": {

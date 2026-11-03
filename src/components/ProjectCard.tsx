@@ -130,9 +130,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               title="Chrome Web Store"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-zinc-400 transition-colors hover:border-cyan-500/40 hover:bg-cyan-950/30 hover:text-cyan-300"
+              className="flex items-center gap-1.5 rounded-lg border border-sky-500/30 bg-sky-950/40 px-2.5 py-1.5 text-[11px] font-medium text-sky-300 transition-colors hover:border-sky-400 hover:bg-sky-900/60 hover:text-white"
             >
-              <ChromeIcon className="h-3.5 w-3.5" />
+              <ChromeIcon className="h-3.5 w-3.5 text-sky-400" />
+              <span>Web Store</span>
             </a>
           )}
 

@@ -115,6 +115,36 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
         <div className="overflow-y-auto p-5 sm:p-6 space-y-6">
           {activeTab === "overview" ? (
             <>
+              {/* Chrome Web Store Highlight Banner */}
+              {project.links.chromeWebStore && (
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5 rounded-xl border border-sky-500/30 bg-gradient-to-r from-sky-950/40 via-zinc-900/70 to-zinc-900/40 p-4 shadow-lg shadow-sky-950/20">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-sky-500/40 bg-sky-950/80 text-sky-400 shadow-glow-cyan/20">
+                      <ChromeIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold text-white">
+                        {language === "de" ? "Google Chrome Web Store" : "Google Chrome Web Store"}
+                      </div>
+                      <div className="text-[11px] text-zinc-400">
+                        {language === "de"
+                          ? "Offiziell im Chrome Web Store verfügbar & verifiziert"
+                          : "Officially published & verified on the Chrome Web Store"}
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href={project.links.chromeWebStore}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-lg border border-sky-400/50 bg-sky-500 px-4 py-2 text-xs font-semibold text-zinc-950 shadow-glow-cyan/30 transition-all hover:bg-sky-400 hover:shadow-glow-cyan/50 whitespace-nowrap"
+                  >
+                    <span>{language === "de" ? "Im Web Store öffnen" : "Open in Web Store"}</span>
+                    <ExternalLink className="h-3.5 w-3.5 text-zinc-950" />
+                  </a>
+                </div>
+              )}
+
               {/* Problem Statement */}
               <div className="rounded-xl border border-red-500/20 bg-red-950/10 p-4">
                 <div className="text-xs font-mono uppercase tracking-wider text-red-300 font-semibold">
