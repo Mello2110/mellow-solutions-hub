@@ -95,7 +95,7 @@ export const MellowLogo: React.FC<MellowLogoProps> = ({
   const logoWidth = Math.round(logoHeight * (317 / 161));
 
   return (
-    <div className={`flex items-center gap-3 ${className}`}>
+    <div className={`flex items-center gap-2 sm:gap-3 ${className}`}>
       {/* Authentic MellowSolutionsLogoWeißOBG Mark */}
       <div className="relative shrink-0 flex items-center justify-center">
         <Image
@@ -104,13 +104,13 @@ export const MellowLogo: React.FC<MellowLogoProps> = ({
           width={logoWidth}
           height={logoHeight}
           priority
-          className="h-[24px] sm:h-[26px] w-auto object-contain transition-transform group-hover:scale-105"
+          className="h-[22px] sm:h-[26px] w-auto object-contain transition-transform group-hover:scale-105"
         />
       </div>
 
       {/* Header Typography: Clean & Spaced */}
       <div className="flex flex-col text-left">
-        <span className="text-[12px] sm:text-[13px] font-semibold tracking-[0.24em] text-zinc-100 uppercase transition-colors group-hover:text-white select-none">
+        <span className="whitespace-nowrap text-[11px] sm:text-[13px] font-semibold tracking-[0.14em] sm:tracking-[0.24em] text-zinc-100 uppercase transition-colors group-hover:text-white select-none">
           Mellow Solutions
         </span>
       </div>

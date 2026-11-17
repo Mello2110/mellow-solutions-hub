@@ -27,7 +27,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const tModal = DICTIONARY[language].modal;
 
   return (
-    <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f17]/90 p-6 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#C76C6A]/50 hover:shadow-card-subtle hover:shadow-glow-copper/15">
+    <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f17]/90 p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 sm:hover:-translate-y-1 hover:border-[#C76C6A]/50 hover:shadow-card-subtle hover:shadow-glow-copper/15">
       {/* Top Ambient Glow on Hover */}
       <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#C76C6A]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#C76C6A]/20" />
 

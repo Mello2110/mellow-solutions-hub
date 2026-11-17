@@ -21,12 +21,12 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <section
       id="hero"
-      className="relative flex min-h-[calc(100dvh-4rem)] flex-col justify-between px-4 sm:px-6 lg:px-8 py-8 sm:py-12"
+      className="relative flex min-h-[calc(100dvh-3.5rem-env(safe-area-inset-top))] sm:min-h-[calc(100dvh-4rem-env(safe-area-inset-top))] flex-col justify-between gap-8 sm:gap-10 px-4 sm:px-6 lg:px-8 py-6 sm:py-12"
     >
       {/* Center Harmonized Content Block */}
-      <div className="my-auto mx-auto max-w-4xl text-center flex flex-col items-center px-4">
+      <div className="my-auto mx-auto max-w-4xl text-center flex flex-col items-center px-1 sm:px-4">
         {/* Clean 2D Typographic Lockup (Timeless & Minimalist) */}
-        <div className="mb-7 sm:mb-9 flex justify-center">
+        <div className="mb-6 sm:mb-9 flex justify-center">
           <MellowLogo variant="hero" size={440} />
         </div>
 
@@ -45,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
 
         {/* Albert Einstein Guiding Philosophy Block */}
-        <div className="mt-8 sm:mt-9 pt-6 border-t border-white/[0.08] max-w-sm mx-auto">
+        <div className="mt-7 sm:mt-9 pt-5 sm:pt-6 border-t border-white/[0.08] max-w-sm mx-auto">
           <blockquote className="text-xs sm:text-sm italic text-zinc-300 font-serif leading-relaxed">
             {t.quote}
           </blockquote>
@@ -56,7 +56,7 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* Unified Single Scroll-Down Button at the bottom of the segment */}
-      <div className="mx-auto flex flex-col items-center pb-4 text-zinc-500">
+      <div className="mx-auto flex shrink-0 flex-col items-center pt-2 pb-2 sm:pb-4 text-zinc-500">
         <button
           onClick={onScrollToSpotlight}
           className="group flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/60 px-5 py-2.5 text-xs font-medium text-zinc-300 shadow-sm transition-all hover:border-white/25 hover:bg-zinc-800 hover:text-white"

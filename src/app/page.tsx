@@ -98,11 +98,16 @@ export default function HomePage() {
     });
   }, [projects, selectedCategory, selectedTech, searchQuery]);
 
+  const getHeaderHeight = () => {
+    if (typeof document === "undefined") return 64;
+    return document.querySelector("header")?.getBoundingClientRect().height ?? 64;
+  };
+
   // Precise pinning to Catalog header with zero jitter
   const pinToCatalog = (behavior: ScrollBehavior = "instant") => {
     const catalogEl = document.getElementById("katalog");
     if (!catalogEl) return;
-    const headerHeight = 64; // height of sticky header
+    const headerHeight = getHeaderHeight();
     const targetY = catalogEl.getBoundingClientRect().top + window.scrollY - headerHeight;
     window.scrollTo({
       top: targetY,
@@ -138,7 +143,7 @@ export default function HomePage() {
   const scrollToSpotlight = () => {
     const el = document.getElementById("spotlight");
     if (el) {
-      const headerHeight = 64;
+      const headerHeight = getHeaderHeight();
       const targetY = el.getBoundingClientRect().top + window.scrollY - headerHeight;
       window.scrollTo({
         top: targetY,
@@ -182,7 +187,7 @@ export default function HomePage() {
         onOpenSponsor={() => setIsSponsorModalOpen(true)}
       />
 
-      <main className="flex-1 pt-16">
+      <main className="flex-1 pt-[calc(3.5rem+env(safe-area-inset-top))] sm:pt-[calc(4rem+env(safe-area-inset-top))]">
         {/* ========================================================
             SEGMENT 01: Hero Viewport (Full Screen Entrance)
            ======================================================== */}
@@ -209,7 +214,7 @@ export default function HomePage() {
            ======================================================== */}
         <section
           id="katalog"
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 scroll-mt-16 min-h-[140vh] pb-52"
+          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20 scroll-mt-[calc(3.5rem+env(safe-area-inset-top))] sm:scroll-mt-[calc(4rem+env(safe-area-inset-top))] min-h-[100dvh] sm:min-h-[140vh] pb-24 sm:pb-52"
         >
           {/* Main Title & Personal Motto */}
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/5 pb-6 mb-8 gap-6">

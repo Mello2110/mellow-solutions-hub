@@ -93,8 +93,8 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
 
       {/* Tech Stack Chips Filter */}
       {availableTechStacks.length > 0 && (
-        <div className="flex flex-wrap items-center gap-1.5 pt-1">
-          <div className="flex items-center gap-1.5 text-xs text-zinc-400 mr-2">
+        <div className="flex items-center gap-1.5 overflow-x-auto pt-1 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
+          <div className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-400 mr-2">
             <Filter className="h-3 w-3 text-cyan-400" />
             <span className="text-[11px] uppercase tracking-wider font-mono">
               {t.techFilter}
@@ -107,7 +107,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               <button
                 key={tech}
                 onClick={() => onSelectTech(isSelected ? null : tech)}
-                className={`flex items-center gap-1 rounded-lg border px-2.5 py-1 text-[11px] font-mono transition-all ${
+                className={`flex shrink-0 items-center gap-1 rounded-lg border px-2.5 py-1 text-[11px] font-mono transition-all ${
                   isSelected
                     ? "border-cyan-500/60 bg-cyan-950/50 text-cyan-300 shadow-glow-cyan/20"
                     : "border-white/5 bg-zinc-900/40 text-zinc-400 hover:border-white/20 hover:text-zinc-300"
@@ -122,7 +122,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
           {selectedTech && (
             <button
               onClick={() => onSelectTech(null)}
-              className="text-[11px] text-zinc-400 hover:text-[#C76C6A] underline underline-offset-2 ml-1"
+              className="shrink-0 text-[11px] text-zinc-400 hover:text-[#C76C6A] underline underline-offset-2 ml-1"
             >
               {t.clearFilter}
             </button>

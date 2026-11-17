@@ -28,7 +28,7 @@ export const SponsorModal: React.FC<SponsorModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] sm:p-6">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
@@ -36,7 +36,7 @@ export const SponsorModal: React.FC<SponsorModalProps> = ({
       />
 
       {/* Modal Dialog */}
-      <div className="relative z-10 w-full max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] p-6 shadow-2xl shadow-brand-copperGlow">
+      <div className="relative z-10 max-h-[88dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-[#0c0e15] p-5 sm:p-6 shadow-2xl shadow-brand-copperGlow">
         {/* Header Ambient Glow */}
         <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-brand-copper/20 blur-3xl" />
 

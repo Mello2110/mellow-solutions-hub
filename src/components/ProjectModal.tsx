@@ -41,7 +41,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-6 lg:p-8">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity"
@@ -49,7 +49,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       />
 
       {/* Modal Dialog Box */}
-      <div className="relative z-10 flex max-h-[90vh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] shadow-2xl shadow-cyan-950/40">
+      <div className="relative z-10 flex max-h-[88dvh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] shadow-2xl shadow-cyan-950/40">
         {/* Header */}
         <div className="flex items-start justify-between border-b border-white/10 bg-[#10121c]/80 p-5 sm:p-6 backdrop-blur-xl">
           <div>
@@ -233,7 +233,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                   </a>
                 )}
               </div>
-              <div className="relative h-[450px] w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
+              <div className="relative h-[55dvh] sm:h-[450px] w-full overflow-hidden rounded-xl border border-white/10 bg-zinc-950">
                 {project.sandboxPreview?.embedUrl ? (
                   <iframe
                     src={project.sandboxPreview.embedUrl}

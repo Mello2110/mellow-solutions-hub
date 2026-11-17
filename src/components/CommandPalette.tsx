@@ -62,7 +62,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   });
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 p-4 sm:p-6">
+    <div className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-[calc(4.5rem+env(safe-area-inset-top))] sm:p-6 sm:pt-20">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/80 backdrop-blur-md"
@@ -82,13 +82,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
             placeholder={t.placeholder}
             className="ml-3 w-full bg-transparent text-sm text-white placeholder-zinc-500 focus:outline-none"
           />
-          <kbd className="rounded border border-white/10 bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-400">
+          <kbd className="hidden sm:inline-block rounded border border-white/10 bg-zinc-800 px-2 py-0.5 text-[10px] font-mono text-zinc-400">
             ESC
           </kbd>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="sm:hidden rounded-lg border border-white/10 bg-zinc-800/80 p-1.5 text-zinc-400 hover:text-white"
+          >
+            <X className="h-4 w-4" />
+          </button>
         </div>
 
         {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-2">
+        <div className="max-h-[55dvh] sm:max-h-80 overflow-y-auto p-2">
           {filtered.length === 0 ? (
             <div className="py-8 text-center text-xs text-zinc-500">
               {t.noResults(query)}
