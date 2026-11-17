@@ -1,14 +1,13 @@
 "use client";
 
 import React from "react";
-import { Search, Coffee, Globe } from "lucide-react";
+import { Search, Globe } from "lucide-react";
 import { GithubIcon } from "@/components/BrandIcons";
 import { MellowLogo } from "@/components/MellowLogo";
 import { Language, DICTIONARY } from "@/data/i18n";
 
 interface HeaderProps {
   onOpenCommandPalette: () => void;
-  onOpenSponsor: () => void;
   projectCount: number;
   language: Language;
   onToggleLanguage: () => void;
@@ -17,7 +16,6 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenCommandPalette,
-  onOpenSponsor,
   projectCount,
   language,
   onToggleLanguage,
@@ -55,17 +53,6 @@ export const Header: React.FC<HeaderProps> = ({
             <kbd className="hidden rounded border border-white/10 bg-zinc-800/90 px-1.5 py-0.5 text-[10px] font-mono text-zinc-300 group-hover:border-cyan-500/30 sm:inline-block">
               {t.ctrlK}
             </kbd>
-          </button>
-
-          {/* Buy Me a Coffee / Support Pill */}
-          <button
-            onClick={onOpenSponsor}
-            aria-label={t.support}
-            className="flex h-9 sm:h-auto items-center gap-1.5 rounded-xl border border-[#C76C6A]/40 bg-[#C76C6A]/15 px-2.5 sm:px-3 py-1.5 text-xs font-medium text-white shadow-glow-copper/10 transition-all hover:border-[#C76C6A] hover:bg-[#C76C6A]/25"
-            title="Support Mellow Solutions on Buy Me a Coffee"
-          >
-            <Coffee className="h-3.5 w-3.5 text-[#C76C6A]" />
-            <span className="hidden md:inline">{t.support}</span>
           </button>
 
           {/* GitHub Account Link */}

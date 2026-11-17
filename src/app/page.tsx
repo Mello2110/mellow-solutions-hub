@@ -184,7 +184,6 @@ export default function HomePage() {
         onToggleLanguage={handleToggleLanguage}
         onScrollToTop={scrollToTop}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
-        onOpenSponsor={() => setIsSponsorModalOpen(true)}
       />
 
       <main className="flex-1 pt-[calc(3.5rem+env(safe-area-inset-top))] sm:pt-[calc(4rem+env(safe-area-inset-top))]">
