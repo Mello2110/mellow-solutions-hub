@@ -3,6 +3,8 @@ export type Language = "en" | "de";
 export interface Translations {
   nav: {
     productsCount: (count: number) => string;
+    hub: string;
+    solutions: string;
     searchPlaceholder: string;
     ctrlK: string;
     support: string;
@@ -73,6 +75,8 @@ export interface Translations {
   modal: {
     tabOverview: string;
     tabSandbox: string;
+    tabScreenshots: string;
+    openDirectPage: string;
     statusLive: string;
     problemTitle: string;
     solutionTitle: string;
@@ -88,10 +92,33 @@ export interface Translations {
     sourceCode: string;
     close: string;
   };
+  solutions: {
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    backToHub: string;
+    roleLabel: string;
+    stepGoal: string;
+    stepChallenges: string;
+    stepSolution: string;
+    outcomeLabel: string;
+    previewButton: string;
+    previewUnavailable: string;
+    featuredBadge: string;
+    contactTitle: string;
+    contactBody: string;
+    contactPlaceholder: string;
+  };
+  projectPage: {
+    backToHub: string;
+    previewHeading: string;
+    screenshotsHeading: string;
+  };
   commandPalette: {
     placeholder: string;
     noResults: (query: string) => string;
     productsCount: (count: number) => string;
+    footerHint: string;
   };
 }
 
@@ -99,25 +126,27 @@ export const DICTIONARY: Record<Language, Translations> = {
   en: {
     nav: {
       productsCount: (count) => `${count} PRODUCTS`,
+      hub: "Hub",
+      solutions: "Client Solutions",
       searchPlaceholder: "Search...",
       ctrlK: "Ctrl K",
       support: "Support",
       github: "GitHub",
     },
     hero: {
-      title: "Crafted with Precision & Purpose",
+      title: "Precision & Purpose",
       subtitle: "Solutions for Daily Struggles and Business Procedures.",
       description:
-        "Independent browser extensions, web applications, and developer utilities. Free to use, built to help, and crafted for lasting utility.",
+        "Independent browser extensions, web applications, and developer utilities. Free to use, built to remove friction, and maintained for lasting utility.",
       quote: "“Everything should be made as simple as possible, but not simpler.”",
       quoteAuthor: "Albert Einstein",
       scrollPrompt: "Explore Featured Flagship",
     },
     spotlight: {
       flagshipBadge: "Featured Flagship",
-      problemTitle: "The Core Problem:",
-      solutionTitle: "The Mellow Solution:",
-      techTitle: "Technologies:",
+      problemTitle: "The Core Problem",
+      solutionTitle: "Mellow Solution",
+      techTitle: "Stack",
       archTitle: "Architecture & Metrics",
       users: "Users",
       rating: "Rating",
@@ -129,10 +158,10 @@ export const DICTIONARY: Record<Language, Translations> = {
     catalog: {
       title: "Product Directory & Toolbox",
       subtitle:
-        "Apps, Tools and Extensions crafted with Love to make my Life easier. Maybe you find something useful here too - I'd love to share.",
+        "Apps, tools, and extensions built to simplify daily workflows — shared openly in case they save you time too.",
       searchPlaceholder: "Search projects or tech (e.g. Manifest V3)...",
       clearSearch: "Clear",
-      techFilter: "Technology:",
+      techFilter: "Technology",
       clearFilter: "Clear filter",
       showingCount: (shown, total, filtered) =>
         `Showing ${shown} of ${total} products ${filtered ? "(filtered)" : ""}`,
@@ -140,7 +169,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       emptyTitle: "No matching products found",
       emptySubtitle: "Try adjusting your search query or reset the active filters.",
       resetFilters: "Reset all filters",
-      problem: "Focus / Problem:",
+      problem: "Problem",
       details: "Architecture & Details",
     },
     sponsor: {
@@ -158,7 +187,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       copied: "Link copied to clipboard!",
     },
     footer: {
-      tagline: "Software crafted with love &bull; Free to use &bull; Built to help",
+      tagline: "Independent software &bull; Free to use &bull; Built for daily utility",
       supportBtn: "Buy me a coffee",
       disclaimerBadge: "Portfolio & Non-Commercial Notice",
       disclaimerTitle: "Personal Developer Showcase & Free Utilities",
@@ -178,11 +207,13 @@ export const DICTIONARY: Record<Language, Translations> = {
     modal: {
       tabOverview: "Architecture & Details",
       tabSandbox: "Live In-Hub Sandbox",
+      tabScreenshots: "Screenshots",
+      openDirectPage: "Direct Case Study URL",
       statusLive: "Live & Active",
-      problemTitle: "1. Problem & Motivation:",
-      solutionTitle: "2. Technical Solution & Methodology:",
-      archTitle: "Architecture Highlights & Best Practices:",
-      techTitle: "Technologies & APIs Used:",
+      problemTitle: "1. Problem & Motivation",
+      solutionTitle: "2. Technical Solution & Methodology",
+      archTitle: "Architecture Highlights",
+      techTitle: "Technologies & APIs",
       supportPrompt: "Like this tool? Support independent development on Buy Me a Coffee.",
       supportBtn: "Buy me a coffee",
       sandboxTitle: "Interactive test run in Hub Sandbox frame",
@@ -193,34 +224,62 @@ export const DICTIONARY: Record<Language, Translations> = {
       sourceCode: "Source Code",
       close: "Close",
     },
+    solutions: {
+      eyebrow: "Client Work & Process",
+      title: "Client Solutions",
+      subtitle:
+        "Selected commissions and custom solutions — structured transparently from initial client goal and technical constraints to the shipped implementation.",
+      backToHub: "Back to Hub",
+      roleLabel: "Role",
+      stepGoal: "01 · Client Goal & Brief",
+      stepChallenges: "02 · Technical & Project Challenges",
+      stepSolution: "03 · Approach & Solution",
+      outcomeLabel: "Outcome",
+      previewButton: "Open Interactive Preview",
+      previewUnavailable: "Preview / Sandbox available per project",
+      featuredBadge: "Also in Hub Spotlight",
+      contactTitle: "Inquiries & Applications",
+      contactBody:
+        "Interested in working together or reviewing code for a technical role? Direct business contact channels are being set up.",
+      contactPlaceholder:
+        "Dedicated business email & LinkedIn profile will follow shortly — currently reachable via GitHub (@Mello2110).",
+    },
+    projectPage: {
+      backToHub: "Back to Product Directory",
+      previewHeading: "Interactive Sandbox Preview",
+      screenshotsHeading: "Screenshots",
+    },
     commandPalette: {
       placeholder: "Type to search (e.g. Extension, React, Manifest V3)...",
       noResults: (query: string) => `No projects matching "${query}" found.`,
       productsCount: (count: number) => `Products (${count})`,
+      footerHint: "Press [ESC] to close",
     },
   },
   de: {
     nav: {
       productsCount: (count) => `${count} PRODUKTE`,
+      hub: "Hub",
+      solutions: "Lösungen für Klienten",
       searchPlaceholder: "Suche...",
       ctrlK: "Strg K",
       support: "Support",
       github: "GitHub",
     },
     hero: {
-      title: "Mit Präzision & Zweckmäßigkeit gefertigt",
+      title: "Präzision & Klarheit",
       subtitle: "Lösungen für alltägliche Herausforderungen und Geschäftsprozesse.",
       description:
-        "Unabhängige Chrome-Extensions, Webanwendungen und Entwickler-Tools. Kostenlos nutzbar, darauf ausgelegt Menschen zu helfen und Hürden nachhaltig zu überwinden.",
+        "Unabhängige Chrome-Extensions, Webanwendungen und Entwickler-Tools. Kostenlos nutzbar, entwickelt um Hürden im Alltag nachhaltig abzubauen.",
       quote: "„Alles sollte so einfach wie möglich gemacht werden, aber nicht einfacher.“",
       quoteAuthor: "Albert Einstein",
       scrollPrompt: "Flaggschiff erkunden",
     },
     spotlight: {
       flagshipBadge: "Flaggschiff Spotlight",
-      problemTitle: "Das Ausgangsproblem:",
-      solutionTitle: "Der Mellow Lösungsansatz:",
-      techTitle: "Technologien:",
+      problemTitle: "Ausgangsproblem",
+      solutionTitle: "Lösungsansatz",
+      techTitle: "Stack",
       archTitle: "Architektur & Kennzahlen",
       users: "Nutzer",
       rating: "Bewertung",
@@ -232,10 +291,10 @@ export const DICTIONARY: Record<Language, Translations> = {
     catalog: {
       title: "Verzeichnis & Werkzeuge",
       subtitle:
-        "Apps, Tools und Extensions mit Liebe gebaut, um das Leben einfacher zu machen. Vielleicht findest du hier etwas Nützliches – ich teile es gerne.",
+        "Apps, Tools und Extensions aus dem eigenen Alltag — offen geteilt, falls sie dir ebenfalls Arbeit abnehmen.",
       searchPlaceholder: "Projekt oder Technologie suchen...",
       clearSearch: "Löschen",
-      techFilter: "Technologie:",
+      techFilter: "Technologie",
       clearFilter: "Filter aufheben",
       showingCount: (shown, total, filtered) =>
         `Zeige ${shown} von ${total} Produkten ${filtered ? "(gefiltert)" : ""}`,
@@ -243,7 +302,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       emptyTitle: "Keine passenden Produkte gefunden",
       emptySubtitle: "Passe deinen Suchbegriff an oder setze die Filter zurück.",
       resetFilters: "Alle Filter zurücksetzen",
-      problem: "Fokus / Problemstellung:",
+      problem: "Problemstellung",
       details: "Architektur & Details",
     },
     sponsor: {
@@ -261,7 +320,7 @@ export const DICTIONARY: Record<Language, Translations> = {
       copied: "Link in die Zwischenablage kopiert!",
     },
     footer: {
-      tagline: "Software mit Liebe gebaut &bull; Kostenlos nutzbar &bull; Entwickelt, um zu helfen",
+      tagline: "Unabhängige Software &bull; Kostenlos nutzbar &bull; Für den Alltag gebaut",
       supportBtn: "Kaffee spendieren",
       disclaimerBadge: "Portfolio & Haftungsausschluss",
       disclaimerTitle: "Persönliches Entwickler-Portfolio & Werkzeuge",
@@ -281,11 +340,13 @@ export const DICTIONARY: Record<Language, Translations> = {
     modal: {
       tabOverview: "Architektur & Details",
       tabSandbox: "Live In-Hub Sandbox",
+      tabScreenshots: "Screenshots",
+      openDirectPage: "Direkte Case-Study-URL",
       statusLive: "Live & Aktiv",
-      problemTitle: "1. Problemstellung & Motivation:",
-      solutionTitle: "2. Technische Lösung & Methodik:",
-      archTitle: "Architektur-Highlights & Best Practices:",
-      techTitle: "Eingesetzte Technologien & APIs:",
+      problemTitle: "1. Problemstellung & Motivation",
+      solutionTitle: "2. Technische Lösung & Methodik",
+      archTitle: "Architektur-Highlights",
+      techTitle: "Eingesetzte Technologien & APIs",
       supportPrompt: "Gefällt dir dieses Tool? Unterstütze die unabhängige Weiterentwicklung auf Buy Me a Coffee.",
       supportBtn: "Kaffee spendieren",
       sandboxTitle: "Interaktiver Testlauf im Hub Sandbox-Frame",
@@ -296,10 +357,36 @@ export const DICTIONARY: Record<Language, Translations> = {
       sourceCode: "Source Code",
       close: "Schließen",
     },
+    solutions: {
+      eyebrow: "Auftragsprojekte & Prozess",
+      title: "Lösungen für Klienten",
+      subtitle:
+        "Ausgewählte Auftragsarbeiten und individuelle Softwarelösungen – transparent strukturiert vom Zielbild über technische Herausforderungen bis zur umgesetzten Lösung.",
+      backToHub: "Zurück zum Hub",
+      roleLabel: "Rolle",
+      stepGoal: "01 · Zielgabe & Klientenwunsch",
+      stepChallenges: "02 · Sachliche Herausforderungen",
+      stepSolution: "03 · Lösungsweg & Umsetzung",
+      outcomeLabel: "Ergebnis",
+      previewButton: "Vorschau / Sandbox öffnen",
+      previewUnavailable: "Vorschau je nach Projektfreigabe",
+      featuredBadge: "Auch im Hub-Spotlight",
+      contactTitle: "Anfragen & Bewerbungen",
+      contactBody:
+        "Interesse an einer Zusammenarbeit oder detaillierter Einblick für eine Position im IT-Bereich? Die direkten Kontaktkanäle werden aktuell eingerichtet.",
+      contactPlaceholder:
+        "Geschäftliche E-Mail-Adresse & LinkedIn-Profil folgen in Kürze — aktuell erreichbar über GitHub (@Mello2110).",
+    },
+    projectPage: {
+      backToHub: "Zurück zum Produkt-Katalog",
+      previewHeading: "Interaktive Sandbox-Vorschau",
+      screenshotsHeading: "Screenshots",
+    },
     commandPalette: {
       placeholder: "Tippe zur Schnellsuche (z.B. Extension, React, Manifest V3)...",
       noResults: (query: string) => `Kein Projekt passend zu "${query}" gefunden.`,
       productsCount: (count: number) => `Produkte (${count})`,
+      footerHint: "Drücke [ESC] zum Schließen",
     },
   },
 };

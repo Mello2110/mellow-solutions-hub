@@ -46,7 +46,7 @@ export const Hero: React.FC<HeroProps> = ({
 
         {/* Albert Einstein Guiding Philosophy Block */}
         <div className="mt-7 sm:mt-9 pt-5 sm:pt-6 border-t border-white/[0.08] max-w-sm mx-auto">
-          <blockquote className="text-xs sm:text-sm italic text-zinc-300 font-serif leading-relaxed">
+          <blockquote className="text-xs sm:text-sm italic text-zinc-300 leading-relaxed">
             {t.quote}
           </blockquote>
           <cite className="block mt-2 font-mono text-[10px] text-[#C76C6A] not-italic uppercase tracking-widest">

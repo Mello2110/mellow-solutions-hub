@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { Project } from "@/types/project";
 import {
   X,
@@ -9,6 +10,8 @@ import {
   Play,
   Maximize2,
   Coffee,
+  Image as ImageIcon,
+  ArrowUpRight,
 } from "lucide-react";
 import { ChromeIcon, GithubIcon } from "@/components/BrandIcons";
 import { Language, DICTIONARY } from "@/data/i18n";
@@ -26,9 +29,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   onOpenSponsor,
   language,
 }) => {
-  const [activeTab, setActiveTab] = useState<"overview" | "sandbox">("overview");
+  const [activeTab, setActiveTab] = useState<"overview" | "sandbox" | "screenshots">("overview");
   const t = DICTIONARY[language].modal;
   const tCat = DICTIONARY[language].categories;
+
+  useEffect(() => {
+    setActiveTab("overview");
+  }, [project?.id]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -49,7 +56,12 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
       />
 
       {/* Modal Dialog Box */}
-      <div className="relative z-10 flex max-h-[88dvh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] shadow-2xl shadow-cyan-950/40">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        className="relative z-10 flex max-h-[88dvh] w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] shadow-2xl shadow-cyan-950/40"
+      >
         {/* Header */}
         <div className="flex items-start justify-between border-b border-white/10 bg-[#10121c]/80 p-5 sm:p-6 backdrop-blur-xl">
           <div>
@@ -68,7 +80,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               </span>
             </div>
 
-            <h2 className="mt-2 text-xl font-bold text-white sm:text-2xl">
+            <h2 id="project-modal-title" className="mt-2 text-xl font-bold text-white sm:text-2xl">
               {project.title}
             </h2>
             <p className="mt-1 text-xs text-zinc-400 sm:text-sm">
@@ -78,18 +90,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
 
           <button
             onClick={onClose}
+            aria-label={t.close}
             className="rounded-xl border border-white/10 bg-zinc-900/60 p-2 text-zinc-400 hover:border-white/20 hover:text-white"
           >
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        {/* Navigation Tabs (Overview vs Live Sandbox) */}
-        {project.sandboxPreview?.enabled && (
-          <div className="flex border-b border-white/10 bg-zinc-950/40 px-6">
+        {/* Navigation Tabs (Overview vs Live Sandbox vs Screenshots) */}
+        {(project.sandboxPreview?.enabled || (project.screenshots && project.screenshots.length > 0)) && (
+          <div className="flex border-b border-white/10 bg-zinc-950/40 px-6 overflow-x-auto">
             <button
               onClick={() => setActiveTab("overview")}
-              className={`border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
+              className={`whitespace-nowrap border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
                 activeTab === "overview"
                   ? "border-brand-copper text-brand-copperLight"
                   : "border-transparent text-zinc-400 hover:text-zinc-200"
@@ -97,17 +110,32 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             >
               {t.tabOverview}
             </button>
-            <button
-              onClick={() => setActiveTab("sandbox")}
-              className={`flex items-center gap-1.5 border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
-                activeTab === "sandbox"
-                  ? "border-brand-copper text-brand-copperLight"
-                  : "border-transparent text-zinc-400 hover:text-zinc-200"
-              }`}
-            >
-              <Play className="h-3 w-3 text-emerald-400" />
-              <span>{t.tabSandbox}</span>
-            </button>
+            {project.sandboxPreview?.enabled && (
+              <button
+                onClick={() => setActiveTab("sandbox")}
+                className={`whitespace-nowrap flex items-center gap-1.5 border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
+                  activeTab === "sandbox"
+                    ? "border-brand-copper text-brand-copperLight"
+                    : "border-transparent text-zinc-400 hover:text-zinc-200"
+                }`}
+              >
+                <Play className="h-3 w-3 text-emerald-400" />
+                <span>{t.tabSandbox}</span>
+              </button>
+            )}
+            {project.screenshots && project.screenshots.length > 0 && (
+              <button
+                onClick={() => setActiveTab("screenshots")}
+                className={`whitespace-nowrap flex items-center gap-1.5 border-b-2 py-2.5 px-3 text-xs font-medium transition-colors ${
+                  activeTab === "screenshots"
+                    ? "border-brand-copper text-brand-copperLight"
+                    : "border-transparent text-zinc-400 hover:text-zinc-200"
+                }`}
+              >
+                <ImageIcon className="h-3 w-3 text-cyan-400" />
+                <span>{t.tabScreenshots} ({project.screenshots.length})</span>
+              </button>
+            )}
           </div>
         )}
 
@@ -146,8 +174,8 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               )}
 
               {/* Problem Statement */}
-              <div className="rounded-xl border border-red-500/20 bg-red-950/10 p-4">
-                <div className="text-xs font-mono uppercase tracking-wider text-red-300 font-semibold">
+              <div className="border-l border-rose-400/40 pl-4 py-1">
+                <div className="text-xs font-mono uppercase tracking-wider text-rose-300 font-semibold">
                   {t.problemTitle}
                 </div>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-300">
@@ -156,7 +184,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
               </div>
 
               {/* Technical Solution */}
-              <div className="rounded-xl border border-cyan-500/20 bg-cyan-950/10 p-4">
+              <div className="border-l border-cyan-400/40 pl-4 py-1">
                 <div className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-semibold">
                   {t.solutionTitle}
                 </div>
@@ -216,7 +244,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                 </a>
               </div>
             </>
-          ) : (
+          ) : activeTab === "sandbox" ? (
             /* Live Sandbox Preview Tab */
             <div className="space-y-4">
               <div className="flex items-center justify-between text-xs text-zinc-400">
@@ -246,6 +274,25 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
                     {t.noEmbedUrl}
                   </div>
                 )}
+              </div>
+            </div>
+          ) : (
+            /* Screenshots Gallery Tab */
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 gap-4">
+                {(project.screenshots || []).map((src, idx) => (
+                  <div
+                    key={idx}
+                    className="overflow-hidden rounded-xl border border-white/10 bg-zinc-950"
+                  >
+                    <img
+                      src={src}
+                      alt={`${project.title} Screenshot ${idx + 1}`}
+                      className="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -291,12 +338,21 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             )}
           </div>
 
-          <button
-            onClick={onClose}
-            className="rounded-xl border border-white/10 bg-zinc-900/60 px-4 py-2 text-xs text-zinc-300 hover:bg-zinc-800 hover:text-white"
-          >
-            {t.close}
-          </button>
+          <div className="flex items-center gap-2">
+            <Link
+              href={`/projects/${project.id}`}
+              className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-900/60 px-3.5 py-2 text-xs font-medium text-cyan-300 transition-colors hover:border-cyan-500/40 hover:text-white"
+            >
+              <span>{t.openDirectPage}</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+            <button
+              onClick={onClose}
+              className="rounded-xl border border-white/10 bg-zinc-900/60 px-4 py-2 text-xs text-zinc-300 hover:bg-zinc-800 hover:text-white"
+            >
+              {t.close}
+            </button>
+          </div>
         </div>
       </div>
     </div>

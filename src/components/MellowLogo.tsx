@@ -19,9 +19,9 @@ export const MellowLogo: React.FC<MellowLogoProps> = ({
 
     return (
       <div className={`relative flex flex-col items-center justify-center ${className}`}>
-        {/* Soft Ambient Radial Backlight in Warm Copper & Soft White */}
+        {/* Restrained Radial Backlight in Warm Copper & Soft White */}
         <div
-          className="pointer-events-none absolute -inset-8 rounded-full blur-3xl opacity-25"
+          className="pointer-events-none absolute -inset-8 rounded-full blur-3xl opacity-15"
           style={{
             background:
               "radial-gradient(circle, rgba(199,108,106,0.25) 0%, rgba(255,255,255,0.05) 50%, transparent 75%)",
@@ -110,7 +110,7 @@ export const MellowLogo: React.FC<MellowLogoProps> = ({
 
       {/* Header Typography: Clean & Spaced */}
       <div className="flex flex-col text-left">
-        <span className="whitespace-nowrap text-[11px] sm:text-[13px] font-semibold tracking-[0.14em] sm:tracking-[0.24em] text-zinc-100 uppercase transition-colors group-hover:text-white select-none">
+        <span className="whitespace-nowrap text-[10px] sm:text-[13px] font-semibold tracking-[0.08em] sm:tracking-[0.24em] text-zinc-100 uppercase transition-colors group-hover:text-white select-none">
           Mellow Solutions
         </span>
       </div>

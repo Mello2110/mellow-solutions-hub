@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { SpotlightShowcase } from "@/components/SpotlightShowcase";
@@ -26,6 +26,11 @@ export default function HomePage() {
   const [isSponsorModalOpen, setIsSponsorModalOpen] = useState(false);
 
   const t = DICTIONARY[language].catalog;
+
+  // Keep <html lang="..."> synchronized with the active UI language
+  useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
 
   // Toggle Language between English and German
   const handleToggleLanguage = () => {
@@ -218,9 +223,9 @@ export default function HomePage() {
           {/* Main Title & Personal Motto */}
           <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/5 pb-6 mb-8 gap-6">
             <div>
-              <h3 className="text-2xl font-bold text-white tracking-tight sm:text-3xl">
+              <h2 className="text-2xl font-bold text-white tracking-tight sm:text-3xl">
                 {t.title}
-              </h3>
+              </h2>
               <p className="text-xs text-zinc-300 sm:text-sm mt-2 max-w-2xl leading-relaxed">
                 {t.subtitle}
               </p>
@@ -294,10 +299,10 @@ export default function HomePage() {
                     {/* Category Header */}
                     <div className="flex items-center justify-between border-b border-white/5 pb-3">
                       <div className="flex items-center gap-2.5">
-                        <h4 className="text-base font-semibold text-white">
+                        <h3 className="text-base font-semibold text-white">
                           {DICTIONARY[language].categories[cat.id] || cat.label}
-                        </h4>
-                        <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-mono text-zinc-400">
+                        </h3>
+                        <span className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[11px] font-mono tabular-nums text-zinc-300">
                           {catProjects.length}
                         </span>
                       </div>

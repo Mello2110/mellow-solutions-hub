@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import { Project } from "@/types/project";
 import {
   ExternalLink,
@@ -34,18 +35,15 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
   return (
     <section
       id="spotlight"
-      className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[calc(100dvh-4rem)] flex flex-col justify-between py-8 sm:py-12 scroll-mt-16"
+      className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 min-h-[calc(100dvh-3.5rem-env(safe-area-inset-top))] sm:min-h-[calc(100dvh-4rem-env(safe-area-inset-top))] flex flex-col justify-between gap-8 sm:gap-10 py-6 sm:py-12 scroll-mt-[calc(3.5rem+env(safe-area-inset-top))] sm:scroll-mt-[calc(4rem+env(safe-area-inset-top))]"
     >
       <div className="my-auto w-full">
         {/* Main Spotlight Card Container: Translucent dark slate-grey with subtle cool-blue undertone */}
-        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#0b0e17]/65 via-[#08090f]/75 to-[#07080c]/80 p-7 sm:p-9 lg:p-11 shadow-2xl backdrop-blur-2xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]">
-          {/* Faint Cool-Grey/Blue Ambient Whisper */}
-          <div className="pointer-events-none absolute -left-20 -top-20 h-72 w-72 rounded-full bg-slate-800/10 blur-3xl" />
-          <div className="pointer-events-none absolute -right-20 -bottom-20 h-72 w-72 rounded-full bg-blue-950/15 blur-3xl" />
+        <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-b from-[#0b0e17]/75 via-[#08090f]/85 to-[#07080c]/90 p-5 sm:p-9 lg:p-11 shadow-2xl backdrop-blur-xl shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)]">
 
           {/* Top Bar: Category Pill & Project Switcher */}
-          <div className="relative z-10 flex flex-wrap items-center justify-between gap-4 border-b border-white/5 pb-5">
-            <div className="flex items-center gap-2.5">
+          <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 sm:gap-4 border-b border-white/5 pb-4 sm:pb-5">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="flex h-2 w-2 rounded-full bg-[#C76C6A]" />
               <span className="font-mono text-xs font-semibold tracking-wider text-zinc-300 uppercase">
                 {t.flagshipBadge}
@@ -63,12 +61,12 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
 
             {/* Project Switcher if multiple */}
             {featuredProjects.length > 1 && (
-              <div className="flex items-center gap-1.5 rounded-xl border border-white/10 bg-zinc-950 p-1">
+              <div className="flex max-w-full items-center gap-1.5 overflow-x-auto rounded-xl border border-white/10 bg-zinc-950 p-1">
                 {featuredProjects.map((proj, idx) => (
                   <button
                     key={proj.id}
                     onClick={() => setActiveIndex(idx)}
-                    className={`rounded-lg px-3 py-1 text-xs font-medium transition-all ${
+                    className={`whitespace-nowrap rounded-lg px-3 py-1 text-xs font-medium transition-all ${
                       activeIndex === idx
                         ? "border border-sky-500/40 bg-sky-950/40 text-white shadow-sm"
                         : "text-zinc-400 hover:text-zinc-200"
@@ -94,9 +92,9 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                 </p>
               </div>
 
-              {/* Problem & Solution Cards with Clean Internal Highlight Colors */}
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-2xl border border-rose-900/30 bg-rose-950/15 p-5">
+              {/* Problem & Solution Editorial Columns (De-boxed) */}
+              <div className="grid gap-6 sm:grid-cols-2 border-t border-white/[0.07] pt-5">
+                <div>
                   <div className="flex items-center gap-1.5 font-mono text-[10px] text-rose-300 uppercase tracking-wider font-semibold">
                     <span className="h-1.5 w-1.5 rounded-full bg-rose-400" />
                     {t.problemTitle}
@@ -106,7 +104,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-sky-500/30 bg-sky-950/25 p-5">
+                <div>
                   <div className="flex items-center gap-1.5 font-mono text-[10px] text-sky-300 uppercase tracking-wider font-semibold">
                     <span className="h-1.5 w-1.5 rounded-full bg-sky-400" />
                     {t.solutionTitle}
@@ -140,7 +138,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                   <span className="font-mono text-xs font-semibold text-zinc-200 uppercase tracking-wider">
                     {t.archTitle}
                   </span>
-                  <span className="font-mono text-xs text-[#C76C6A] font-medium">
+                  <span className="font-mono text-xs text-[#C76C6A] font-medium tabular-nums">
                     {current.stats?.version || "v1.0.0"}
                   </span>
                 </div>
@@ -188,6 +186,16 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                   <ArrowRight className="h-3.5 w-3.5 text-sky-400 transition-transform group-hover:translate-x-1" />
                 </button>
 
+                {current.clientSolutionId && (
+                  <Link
+                    href={`/solutions#${current.clientSolutionId}`}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-[#C76C6A]/40 bg-[#C76C6A]/10 px-4 py-2 text-xs font-medium text-zinc-100 transition-colors hover:bg-[#C76C6A]/20"
+                  >
+                    <span>{DICTIONARY[language].nav.solutions}</span>
+                    <ArrowRight className="h-3.5 w-3.5 text-[#C76C6A]" />
+                  </Link>
+                )}
+
                 <div className="flex gap-2">
                   {current.links.chromeWebStore && (
                     <a
@@ -216,6 +224,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
                       href={current.links.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`GitHub Repository: ${current.title}`}
                       className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-zinc-900/60 text-zinc-400 transition-colors hover:border-white/20 hover:text-white"
                       title="GitHub Repository"
                     >
@@ -230,7 +239,7 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
       </div>
 
       {/* Unified Single Scroll-Down Button (Identical styling to Hero) */}
-      <div className="mx-auto flex flex-col items-center pb-4 text-zinc-500">
+      <div className="mx-auto flex shrink-0 flex-col items-center pt-2 pb-2 sm:pb-4 text-zinc-500">
         <button
           onClick={onScrollToCatalog}
           className="group flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/60 px-5 py-2.5 text-xs font-medium text-zinc-300 shadow-sm transition-all hover:border-white/25 hover:bg-zinc-800 hover:text-white"

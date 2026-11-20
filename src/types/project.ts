@@ -55,9 +55,40 @@ export const ProjectSchema = z.object({
     })
     .optional(),
   screenshots: z.array(z.string()).optional(),
+  clientSolutionId: z.string().optional(),
 });
 
 export type Project = z.infer<typeof ProjectSchema>;
+
+export const ClientSolutionSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  clientContext: z.string(),
+  role: z.string(),
+  timeframe: z.string(),
+  featuredInHub: z.boolean().default(false),
+  clientGoal: z.string(),
+  challenges: z.array(z.string()),
+  solutionApproach: z.string(),
+  outcome: z.string(),
+  techStack: z.array(z.string()),
+  links: z
+    .object({
+      demoUrl: z.string().url().optional(),
+      githubUrl: z.string().url().optional(),
+    })
+    .optional(),
+  sandboxPreview: z
+    .object({
+      enabled: z.boolean(),
+      embedUrl: z.string().url().optional(),
+      description: z.string().optional(),
+    })
+    .optional(),
+  screenshots: z.array(z.string()).optional(),
+});
+
+export type ClientSolution = z.infer<typeof ClientSolutionSchema>;
 
 export interface CategoryMeta {
   id: ProjectCategory | "all";

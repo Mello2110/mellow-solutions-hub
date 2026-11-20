@@ -70,7 +70,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
       />
 
       {/* Palette Panel */}
-      <div className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] shadow-2xl shadow-cyan-950/40">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={t.placeholder}
+        className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0c0e15] shadow-2xl shadow-cyan-950/40"
+      >
         {/* Search Input Bar */}
         <div className="flex items-center border-b border-white/10 px-4 py-3.5 bg-[#10121b]">
           <Search className="h-5 w-5 text-cyan-400 shrink-0" />
@@ -97,12 +102,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         {/* Results List */}
         <div className="max-h-[55dvh] sm:max-h-80 overflow-y-auto p-2">
           {filtered.length === 0 ? (
-            <div className="py-8 text-center text-xs text-zinc-500">
+            <div className="py-8 text-center text-xs text-zinc-400">
               {t.noResults(query)}
             </div>
           ) : (
             <div className="space-y-1">
-              <div className="px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider text-zinc-500">
+              <div className="px-3 py-1.5 text-[10px] font-mono tabular-nums uppercase tracking-wider text-zinc-400">
                 {t.productsCount(filtered.length)}
               </div>
               {filtered.map((proj) => (
@@ -142,7 +147,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
         {/* Footer Hint */}
         <div className="flex items-center justify-between border-t border-white/5 bg-[#090b11] px-4 py-2 text-[11px] text-zinc-400">
-          <span>Drücke [ESC] zum Schließen</span>
+          <span>{t.footerHint}</span>
           <span className="font-mono">Mellow Solutions Hub</span>
         </div>
       </div>

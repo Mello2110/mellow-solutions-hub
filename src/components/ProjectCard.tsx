@@ -27,10 +27,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   const tModal = DICTIONARY[language].modal;
 
   return (
-    <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f17]/90 p-5 sm:p-6 backdrop-blur-xl transition-all duration-300 sm:hover:-translate-y-1 hover:border-[#C76C6A]/50 hover:shadow-card-subtle hover:shadow-glow-copper/15">
-      {/* Top Ambient Glow on Hover */}
-      <div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#C76C6A]/10 blur-2xl transition-all duration-500 group-hover:scale-150 group-hover:bg-[#C76C6A]/20" />
-
+    <article className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-[#0d0f17]/90 p-5 sm:p-6 transition-all duration-300 sm:hover:-translate-y-0.5 hover:border-[#C76C6A]/50 hover:shadow-card-subtle">
       <div>
         {/* Header: Category Badge + Status */}
         <div className="flex h-6 items-center justify-between gap-2">
@@ -45,12 +42,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
           </div>
 
-          {/* Status Indicator */}
+          {/* Calm Status Indicator */}
           <div className="flex items-center gap-1.5 text-[11px] text-zinc-400">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
-            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
             <span className="text-[10px] text-zinc-400">
               {project.statusLabel || tModal.statusLive}
             </span>
@@ -58,25 +52,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Uniform Title Box */}
-        <div className="mt-3.5 h-12 flex items-center">
+        <div className="mt-4 min-h-[2.75rem] flex items-center">
           <h3 className="text-base font-semibold text-zinc-100 line-clamp-2 leading-snug transition-colors group-hover:text-white">
             {project.title}
           </h3>
         </div>
 
         {/* Uniform Tagline Box */}
-        <div className="mt-1 h-9">
+        <div className="mt-1 min-h-[2.25rem]">
           <p className="text-xs leading-relaxed text-zinc-400 line-clamp-2">
             {project.tagline}
           </p>
         </div>
 
-        {/* Uniform Problem Statement Box */}
-        <div className="mt-4 h-24 rounded-xl border border-white/5 bg-black/40 p-3 flex flex-col justify-between">
+        {/* Editorial Problem Statement (De-boxed) */}
+        <div className="mt-4 border-l border-white/15 pl-3 py-0.5">
           <div className="font-mono text-[10px] text-zinc-400 uppercase tracking-wider">
             {t.problem}
           </div>
-          <p className="text-xs leading-relaxed text-zinc-300 line-clamp-2">
+          <p className="mt-1 text-xs leading-relaxed text-zinc-300 line-clamp-2">
             {project.problemStatement}
           </p>
         </div>
@@ -99,7 +93,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
 
         {/* Metrics/Stats Area */}
-        <div className="mt-2 h-7 flex items-center justify-between border-t border-white/5 pt-2 text-[11px] text-zinc-400">
+        <div className="mt-2 h-7 flex items-center justify-between border-t border-white/5 pt-2 text-[11px] text-zinc-400 tabular-nums">
           <div className="flex items-center gap-3">
             {project.stats?.users && (
               <div className="flex items-center gap-1 text-zinc-300 text-[10px]">
@@ -114,7 +108,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               </div>
             )}
           </div>
-          <div className="font-mono text-[10px] text-zinc-400">
+          <div className="font-mono text-[10px] text-zinc-400 tabular-nums">
             {project.stats?.version || "v1.0"}
           </div>
         </div>
@@ -130,7 +124,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               title="Chrome Web Store"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-sky-400 transition-colors hover:border-white/20 hover:bg-zinc-800 hover:text-sky-300"
+              aria-label={`Chrome Web Store: ${project.title}`}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-sky-400 transition-colors hover:border-white/20 hover:bg-zinc-800 hover:text-sky-300"
             >
               <ChromeIcon className="h-3.5 w-3.5" />
             </a>
@@ -142,7 +137,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               title="Live Demo"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-zinc-400 transition-colors hover:border-cyan-500/40 hover:bg-cyan-950/30 hover:text-cyan-300"
+              aria-label={`Live Demo: ${project.title}`}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-zinc-400 transition-colors hover:border-cyan-500/40 hover:bg-cyan-950/30 hover:text-cyan-300"
             >
               <ExternalLink className="h-3.5 w-3.5" />
             </a>
@@ -154,7 +150,8 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               target="_blank"
               rel="noopener noreferrer"
               title="GitHub Repository"
-              className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-zinc-400 transition-colors hover:border-white/20 hover:bg-zinc-800 hover:text-white"
+              aria-label={`GitHub Repository: ${project.title}`}
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-zinc-900/60 text-zinc-400 transition-colors hover:border-white/20 hover:bg-zinc-800 hover:text-white"
             >
               <GithubIcon className="h-4 w-4" />
             </a>
@@ -164,7 +161,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         {/* Details Trigger */}
         <button
           onClick={() => onOpenDetails(project)}
-          className="flex items-center gap-1 rounded-lg border border-white/10 bg-zinc-900/70 px-3 py-1.5 text-xs font-medium text-zinc-200 transition-all hover:border-[#C76C6A]/60 hover:bg-[#C76C6A]/15 hover:text-white hover:shadow-glow-copper/20"
+          className="flex min-h-[36px] items-center gap-1 rounded-lg border border-white/10 bg-zinc-900/70 px-3 py-1.5 text-xs font-medium text-zinc-200 transition-all hover:border-[#C76C6A]/60 hover:bg-[#C76C6A]/15 hover:text-white"
         >
           <span>{t.details}</span>
           <ChevronRight className="h-3.5 w-3.5 text-[#C76C6A]" />

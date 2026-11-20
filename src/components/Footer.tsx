@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Coffee, Sparkles } from "lucide-react";
+import { Coffee, Info } from "lucide-react";
 import { GithubIcon } from "@/components/BrandIcons";
 import { Language, DICTIONARY } from "@/data/i18n";
 
@@ -20,16 +20,16 @@ export const Footer: React.FC<FooterProps> = ({ onOpenSponsor, language }) => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
             <div className="md:col-span-4">
               <div className="flex items-center gap-2 font-mono text-[10px] tracking-widest text-[#C76C6A] uppercase font-semibold">
-                <Sparkles className="h-3 w-3 text-[#C76C6A]" />
+                <Info className="h-3.5 w-3.5 text-[#C76C6A]" />
                 <span>{t.disclaimerBadge}</span>
               </div>
               <h4 className="mt-2 text-base font-semibold text-zinc-100 tracking-tight">
                 {t.disclaimerTitle}
               </h4>
             </div>
-            <div className="md:col-span-8 space-y-2.5 text-xs text-zinc-400 leading-relaxed">
+            <div className="md:col-span-8 space-y-2.5 text-xs text-zinc-300 leading-relaxed">
               <p>{t.disclaimerP1}</p>
-              <p className="text-zinc-500 border-t border-white/5 pt-2.5">
+              <p className="text-zinc-400 border-t border-white/5 pt-2.5">
                 {t.disclaimerP2}
               </p>
             </div>
@@ -54,7 +54,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenSponsor, language }) => {
                 Mellow Solutions
               </span>
               <p
-                className="text-[10px] text-zinc-500"
+                className="text-[11px] text-zinc-400"
                 dangerouslySetInnerHTML={{ __html: t.tagline }}
               />
             </div>
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenSponsor, language }) => {
             <p className="text-zinc-400">
               Next.js 15 &bull; TypeScript &bull; Tailwind CSS
             </p>
-            <p className="mt-1 text-[11px] text-zinc-600">
+            <p className="mt-1 text-[11px] text-zinc-400">
               Pragmatic Engineering &bull; Mellow Solutions Hub
             </p>
           </div>

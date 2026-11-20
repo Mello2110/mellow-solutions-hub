@@ -78,7 +78,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
               </span>
               <span>{categoryName}</span>
               <span
-                className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono ${
+                className={`rounded-md px-1.5 py-0.5 text-[10px] font-mono tabular-nums ${
                   isSelected
                     ? "bg-[#C76C6A]/40 text-white"
                     : "bg-white/5 text-zinc-400"

@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { X, Coffee, Heart, Check, ExternalLink, Sparkles } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { X, Coffee, Check, ExternalLink } from "lucide-react";
 import { Language, DICTIONARY } from "@/data/i18n";
 
 interface SponsorModalProps {
@@ -18,6 +18,15 @@ export const SponsorModal: React.FC<SponsorModalProps> = ({
   const [copied, setCopied] = useState(false);
   const t = DICTIONARY[language].sponsor;
   const coffeeUrl = "https://buymeacoffee.com/mellowsolutions";
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -36,10 +45,12 @@ export const SponsorModal: React.FC<SponsorModalProps> = ({
       />
 
       {/* Modal Dialog */}
-      <div className="relative z-10 max-h-[88dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-[#0c0e15] p-5 sm:p-6 shadow-2xl shadow-brand-copperGlow">
-        {/* Header Ambient Glow */}
-        <div className="pointer-events-none absolute -right-12 -top-12 h-32 w-32 rounded-full bg-brand-copper/20 blur-3xl" />
-
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="sponsor-modal-title"
+        className="relative z-10 max-h-[88dvh] w-full max-w-lg overflow-y-auto rounded-2xl border border-white/10 bg-[#0c0e15] p-5 sm:p-6 shadow-2xl shadow-brand-copperGlow"
+      >
         {/* Header Bar */}
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-3">
@@ -47,7 +58,7 @@ export const SponsorModal: React.FC<SponsorModalProps> = ({
               <Coffee className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">
+              <h3 id="sponsor-modal-title" className="text-base font-bold text-white">
                 {t.title}
               </h3>
               <p className="text-xs text-zinc-400">
@@ -58,6 +69,7 @@ export const SponsorModal: React.FC<SponsorModalProps> = ({
 
           <button
             onClick={onClose}
+            aria-label="Close"
             className="rounded-xl border border-white/10 bg-zinc-900/60 p-2 text-zinc-400 hover:border-white/20 hover:text-white"
           >
             <X className="h-4 w-4" />

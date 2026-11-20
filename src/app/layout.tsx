@@ -4,8 +4,6 @@ import "./globals.css";
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   viewportFit: "cover",
   themeColor: "#07080b",
 };
@@ -50,13 +48,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de" className="dark">
-      <body className="min-h-screen bg-[#07080b] text-zinc-100 antialiased tech-grid-bg relative selection:bg-cyan-400 selection:text-black">
-        {/* Tasteful Ambient Backlights: Strictly clipped inside viewport to prevent any horizontal scroll on mobile */}
+    <html lang="en" className="dark">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
+      <body className="min-h-screen bg-[#07080b] font-sans text-zinc-100 antialiased tech-grid-bg relative selection:bg-cyan-400 selection:text-black">
+        {/* Restrained Ambient Backlights: Clipped inside viewport to prevent horizontal scroll */}
         <div className="pointer-events-none fixed inset-0 overflow-hidden z-0">
-          <div className="glow-ambient w-[600px] h-[600px] bg-cyan-500/10 -top-40 -left-40" />
-          <div className="glow-ambient w-[550px] h-[550px] bg-[#C76C6A]/12 top-[40%] -right-40" />
-          <div className="glow-ambient w-[500px] h-[500px] bg-indigo-600/10 bottom-20 left-10" />
+          <div className="glow-ambient w-[520px] h-[520px] bg-cyan-500/[0.06] -top-48 -left-40" />
+          <div className="glow-ambient w-[480px] h-[480px] bg-[#C76C6A]/[0.08] top-[42%] -right-44" />
         </div>
 
         <div className="relative z-10 flex min-h-screen flex-col">
