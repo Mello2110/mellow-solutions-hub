@@ -145,6 +145,11 @@ export const INITIAL_PROJECTS: Project[] = [
       "Safe Multi-Tiered DOM Navigation with Focus Blurring Safeguards",
       "Zero-Telemetry Architecture with 100% Client-Side Privacy"
     ],
+    "screenshots": [
+      "/screenshots/lazyshorts/01-overview.png",
+      "/screenshots/lazyshorts/02-feature.png",
+      "/screenshots/lazyshorts/03-detail.png"
+    ],
     "links": {
       "chromeWebStore": "https://chromewebstore.google.com/detail/lazyshorts/hjmljblglniihpkakmmckapbllfjhmbi?authuser=0&hl=de",
       "githubUrl": "https://github.com/Mello2110/LazyShorts"
@@ -201,8 +206,8 @@ export const INITIAL_PROJECTS: Project[] = [
     "status": "production",
     "featured": false,
     "badge": "Web App",
-    "problemStatement": "New parents and caregivers frequently struggle to coordinate feeding routines, medication schedules, growth metrics, and daily milestones across fragmented notes or chat messages. Without a synchronized timeline, handoffs between partners, babysitters, and family members lead to duplicate feedings or missed health observations. In addition, sensitive infant wellness records often lack centralized, privacy-first access control.",
-    "technicalSolution": "BabyTrack delivers a real-time Next.js application backed by Firebase Firestore for instantaneous synchronization and granular document-level security. Caregiver collaboration is enforced via time-limited cryptographic invite tokens and role-based permissions, while an integrated QStash pipeline drives scheduled feeding and medication reminders. The interface utilizes a zero-overhead CSS custom property theming system and client-side internationalization for seamless everyday usage.",
+    "problemStatement": "New parents and caregivers frequently struggle to coordinate feeding routines, diaper logs, medication schedules, growth metrics, and daily milestones across fragmented notes or chat messages. Without a synchronized timeline, handoffs between partners, babysitters, and family members lead to duplicate feedings or missed health observations. In addition, sensitive infant wellness records often lack centralized, privacy-first access control.",
+    "technicalSolution": "BabyTrack delivers a real-time Next.js 14 application backed by Firebase Firestore for instantaneous synchronization, offline persistence, and granular document-level security. Caregiver collaboration is enforced via time-limited cryptographic invite tokens and role-based permissions, while an integrated Upstash QStash pipeline drives scheduled feeding and medication reminders. The interface utilizes a zero-overhead CSS custom property theming system and client-side internationalization for seamless everyday usage.",
     "techStack": [
       "Next.js 14",
       "TypeScript",
@@ -214,10 +219,15 @@ export const INITIAL_PROJECTS: Project[] = [
       "date-fns"
     ],
     "architectureHighlights": [
-      "Real-time NoSQL state synchronization with Firebase Firestore",
+      "Real-time NoSQL state synchronization with Firebase Firestore and offline persistence",
       "Role-based caregiver access control with expiring single-use invite tokens",
-      "Zero-runtime CSS custom properties theming engine (Light, Dark, Baby aesthetic)",
+      "Zero-runtime CSS custom properties theming engine (Warm Light, Espresso Dark, Soft Baby)",
       "Serverless scheduled health alarms via Upstash QStash and Firebase Admin"
+    ],
+    "screenshots": [
+      "/screenshots/track-dat-baby/01-overview.png",
+      "/screenshots/track-dat-baby/02-feature.png",
+      "/screenshots/track-dat-baby/03-detail.png"
     ],
     "links": {
       "demoUrl": "https://track-dat-baby.vercel.app/",
@@ -295,6 +305,11 @@ export const INITIAL_PROJECTS: Project[] = [
       "Sub-Second State Synchronization via Firebase Realtime Database",
       "Session-Resilient Local State Recovery & Sparse Array Normalization",
       "Algorithmic Procedural Win Detection across Dynamic Grid Sizes (3x3 - 5x5)"
+    ],
+    "screenshots": [
+      "/screenshots/bingo-multiplayer/01-overview.png",
+      "/screenshots/bingo-multiplayer/02-feature.png",
+      "/screenshots/bingo-multiplayer/03-detail.png"
     ],
     "links": {
       "demoUrl": "https://mello2110.github.io/bingo/",
