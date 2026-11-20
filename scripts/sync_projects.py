@@ -71,6 +71,7 @@ folder_order = [
     'TrackDatBaby',
     'SpieletagSystem',
     'Bingo',
+    'Binary-Explorer',
 ]
 
 cat_labels = {

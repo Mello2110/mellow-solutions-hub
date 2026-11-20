@@ -42,14 +42,14 @@ export const CATEGORIES: CategoryMeta[] = [
 export const INITIAL_PROJECTS: Project[] = [
   {
     "id": "kiniffler-stammtisch-app",
-    "title": "KANPAI - Stammtisch Web App",
-    "tagline": "All-in-one meetup hub featuring digital Yahtzee, automated treasury tracking, and event scheduling.",
+    "title": "KANPAI - Multi-Tenant Club & Game Platform",
+    "tagline": "Multi-tenant club SaaS featuring modular dice & bowling games, smart treasury sync, and OKLCH theming.",
     "category": "webapp",
     "status": "production",
     "featured": true,
     "badge": "Active",
-    "problemStatement": "Organizing regular social clubs ('Stammtisch') typically suffers from fragmented communication, manual scorekeeping with pen and paper, and cumbersome cash management for collective group expenses and penalty fines. Traditional chat groups lack centralized event attendance polling, while paper-based game records and unrecorded financial obligations lead to accounting friction and lost records over time.",
-    "technicalSolution": "KANPAI provides a serverless PWA built with Next.js 16 and Firebase, delivering an interactive multiplayer Kniffel game engine alongside full event scheduling and treasury tracking. Cloud Functions automate PayPal payment reconciliation via IMAP email ingestion, while Firestore with multi-tab IndexedDB caching ensures instantaneous updates and resilient offline operation.",
+    "problemStatement": "Social clubs, bowling groups, and regular meetups struggle with fragmented scheduling, pen-and-paper scorekeeping across different pub games, and opaque treasury management. Existing single-purpose tools lack strict tenant isolation, customizable house rules, and frictionless member onboarding without exposing sensitive payment credentials.",
+    "technicalSolution": "KANPAI is a serverless multi-tenant PWA built with Next.js 16 and Firebase, isolating every club under tenant-scoped Firestore collections and security rules. It combines a modular game plugin architecture (Kniffeln, Schocken, Kegeln) with configurable house rules, invite-link onboarding, dual payment reconciliation (1-click approval and webhook/IMAP ingestion), and a dynamic OKLCH theming engine.",
     "techStack": [
       "Next.js 16",
       "React 19",
@@ -58,14 +58,15 @@ export const INITIAL_PROJECTS: Project[] = [
       "Firebase Firestore",
       "Firebase Auth",
       "Firebase Cloud Functions",
+      "OKLCH Color Engine",
       "Cloudinary",
       "PWA"
     ],
     "architectureHighlights": [
-      "Automated Financial Reconciliation via Cloud Functions & IMAP PayPal ingestion",
-      "Persistent Multi-Tab Offline Caching with Firestore & IndexedDB",
-      "Component-Driven Modular Architecture with Next.js App Router & Tailwind CSS 4",
-      "Real-Time Multiplayer Game State Synchronization with Optimistic UI Updates"
+      "Strict Multi-Tenant Firestore Isolation with Role-Based Security Rules & Last-Admin Guard",
+      "Modular Game Plugin Engine (Kniffeln, Schocken, Kegeln) with Per-Discipline Season Matrices",
+      "Dual Payment Reconciliation via 1-Click Treasurer Approval, Smart-Pay QR Tokens & Webhook/IMAP",
+      "Dynamic OKLCH 2-Color Design System & Persistent Multi-Tab Offline Sync via IndexedDB"
     ],
     "links": {
       "demoUrl": "https://webapp-stammtisch.web.app",
@@ -78,7 +79,7 @@ export const INITIAL_PROJECTS: Project[] = [
     "sandboxPreview": {
       "enabled": true,
       "embedUrl": "https://webapp-stammtisch.web.app",
-      "description": "Live PWA hosted on Firebase Hosting with responsive mobile layout and guest access."
+      "description": "Live multi-tenant PWA hosted on Firebase Hosting with responsive mobile bottom navigation."
     }
   },
   {
@@ -307,6 +308,46 @@ export const INITIAL_PROJECTS: Project[] = [
       "enabled": true,
       "embedUrl": "https://mello2110.github.io/bingo/",
       "description": "Interactive sandbox preview of Bingo — Realtime Multiplayer."
+    }
+  },
+  {
+    "id": "binary-explorer",
+    "title": "0 / 1 — Binary Architecture & Data Explorer",
+    "tagline": "Interactive zero-dependency explorer showing how identical binary sequences map across CPUs and data standards.",
+    "category": "tool",
+    "status": "production",
+    "featured": false,
+    "badge": "Open Source",
+    "problemStatement": "Raw binary numbers look uniform on disk, making it difficult to grasp how identical sequences of ones and zeros are interpreted completely differently depending on the target processor instruction set or data encoding standard. Most online converters only translate binary to ASCII text without exposing machine-level decoding or abstraction layers.",
+    "technicalSolution": "A single-file, zero-dependency web application implements deterministic instruction decoders and register-level execution for MOS 6502, Zilog Z80, CHIP-8, and Intel 8086 alongside bidirectional UTF-8, raw hex dump, 24-bit RGB, and 24-bit HSL views. Every decoded line, character, or color swatch links back to its exact source bytes via hover highlighting and contextual error tooltips.",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "Vanilla JavaScript",
+      "Web Encoding API"
+    ],
+    "architectureHighlights": [
+      "Deterministic opcode decoders and register-level ALU state execution for MOS 6502, Zilog Z80, CHIP-8, and Intel 8086.",
+      "Two-dimensional navigation separating CPU architectures and abstraction layers (Assembler, C++, Python) from independent data standards (UTF-8, HEX, RGB, HSL).",
+      "Bidirectional UTF-8 encoding/decoding using native TextEncoder and TextDecoder with per-byte error classification tooltips.",
+      "Zero-dependency single-page architecture with responsive mobile touch controls and bilingual EN/DE interface."
+    ],
+    "screenshots": [
+      "/screenshots/binary-explorer/desktop.png",
+      "/screenshots/binary-explorer/mobile.png"
+    ],
+    "links": {
+      "demoUrl": "https://mello2110.github.io/binary-explorer/",
+      "githubUrl": "https://github.com/Mello2110/binary-explorer"
+    },
+    "stats": {
+      "version": "v1.0.0"
+    },
+    "categoryLabel": "HTML Tool",
+    "sandboxPreview": {
+      "enabled": true,
+      "embedUrl": "https://mello2110.github.io/binary-explorer/",
+      "description": "Zero-dependency static web application hosted on GitHub Pages."
     }
   },
   {

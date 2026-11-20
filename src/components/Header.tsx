@@ -10,7 +10,7 @@ import { Language, DICTIONARY } from "@/data/i18n";
 
 interface HeaderProps {
   onOpenCommandPalette?: () => void;
-  projectCount: number;
+  projectCount?: number;
   language: Language;
   onToggleLanguage: () => void;
   onScrollToTop?: () => void;
@@ -18,7 +18,6 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({
   onOpenCommandPalette,
-  projectCount,
   language,
   onToggleLanguage,
   onScrollToTop,
@@ -50,10 +49,6 @@ export const Header: React.FC<HeaderProps> = ({
               <MellowLogo variant="compact" />
             </Link>
           )}
-
-          <span className="hidden rounded-full border border-[#C76C6A]/30 bg-[#C76C6A]/10 px-2.5 py-0.5 text-[10px] font-mono tabular-nums text-zinc-300 lg:inline-block">
-            {t.productsCount(projectCount)}
-          </span>
 
           {/* Route Switcher: Hub vs. Client Solutions */}
           <nav aria-label="Primary" className="hidden md:flex items-center gap-1 border-l border-white/10 pl-3">
