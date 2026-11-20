@@ -72,7 +72,20 @@ folder_order = [
     'SpieletagSystem',
     'Bingo',
     'Binary-Explorer',
+    'TwitchTierlistMaker',
 ]
+
+# Auto-discover any additional repos in C:\Coding with YAML frontmatter in README.md
+coding_root = r'C:\Coding'
+excluded_folders = set(folder_order) | {'MellowSolutionsHub'}
+if os.path.isdir(coding_root):
+    for entry in sorted(os.listdir(coding_root)):
+        full_dir = os.path.join(coding_root, entry)
+        readme_path = os.path.join(full_dir, 'README.md')
+        if entry not in excluded_folders and os.path.isdir(full_dir) and os.path.isfile(readme_path):
+            with open(readme_path, 'r', encoding='utf-8') as rf:
+                if rf.read(4).startswith('---'):
+                    folder_order.append(entry)
 
 cat_labels = {
     'extension': 'Chrome Extension',

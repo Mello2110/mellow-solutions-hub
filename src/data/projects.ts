@@ -351,6 +351,46 @@ export const INITIAL_PROJECTS: Project[] = [
     }
   },
   {
+    "id": "twitch-tierlist-maker",
+    "title": "Twitch Tierlist Maker",
+    "tagline": "Interactive OBS broadcast overlay for live Twitch chat tierlist voting with real-time charts and IndexedDB storage.",
+    "category": "tool",
+    "status": "production",
+    "featured": false,
+    "badge": "OBS Studio Tool",
+    "problemStatement": "Standard web-based tierlist makers lack native Twitch chat integration and force streamers to capture cluttered browser windows instead of clean 1920x1080 OBS overlays. Furthermore, storing dozens of custom item images in localStorage quickly hits the 5 MB browser quota limit.",
+    "technicalSolution": "A self-contained single-file HTML5 broadcast application designed directly for OBS Studio Browser Sources, connecting to Twitch IRC over WebSockets with live Chart.js vote visualization. Uploaded images are compressed to WebP and persisted in IndexedDB to bypass localStorage limits while keeping all overlay controls, bilingual UI, and JSON backups offline-capable.",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Chart.js",
+      "IndexedDB",
+      "Twitch IRC WebSocket"
+    ],
+    "architectureHighlights": [
+      "Zero-dependency single-file architecture tailored for OBS Studio Browser Source and Interact window workflows",
+      "IndexedDB image store with synchronous in-memory cache and automatic localStorage migration",
+      "Twitch IRC WebSocket client with IRCv3 tags for broadcaster/moderator chat commands and silent exponential-backoff reconnect",
+      "Scoped 1400x1032 overlays keeping the 520x520 OBS chat area unobstructed during pause and result screens"
+    ],
+    "screenshots": [
+      "/screenshots/twitch-tierlist-maker/01-overview.png",
+      "/screenshots/twitch-tierlist-maker/02-feature.png",
+      "/screenshots/twitch-tierlist-maker/03-detail.png"
+    ],
+    "links": {
+      "githubUrl": "https://github.com/Mello2110/twitch-tierlist-maker"
+    },
+    "stats": {
+      "version": "v2.5.0"
+    },
+    "categoryLabel": "HTML Tool",
+    "sandboxPreview": {
+      "enabled": false
+    }
+  },
+  {
     "id": "mellow-solutions-hub",
     "title": "Mellow Solutions Hub",
     "tagline": "Curated portfolio & product showcase for developer utilities, Chrome extensions, and web applications.",
