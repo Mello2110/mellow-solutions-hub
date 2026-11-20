@@ -10,6 +10,7 @@ import {
   ChevronRight,
   Layers,
   ArrowRight,
+  ShieldCheck,
 } from "lucide-react";
 import { Language, DICTIONARY } from "@/data/i18n";
 
@@ -18,6 +19,8 @@ interface CommandPaletteProps {
   onClose: () => void;
   projects: Project[];
   onSelectProject: (project: Project) => void;
+  onOpenAdmin?: () => void;
+  isAdmin?: boolean;
   language?: Language;
 }
 
@@ -26,6 +29,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
   onClose,
   projects,
   onSelectProject,
+  onOpenAdmin,
+  isAdmin = false,
   language = "en",
 }) => {
   const [query, setQuery] = useState("");
@@ -101,48 +106,96 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
         {/* Results List */}
         <div className="max-h-[55dvh] sm:max-h-80 overflow-y-auto p-2">
-          {filtered.length === 0 ? (
-            <div className="py-8 text-center text-xs text-zinc-400">
-              {t.noResults(query)}
-            </div>
-          ) : (
-            <div className="space-y-1">
-              <div className="px-3 py-1.5 text-[10px] font-mono tabular-nums uppercase tracking-wider text-zinc-400">
-                {t.productsCount(filtered.length)}
-              </div>
-              {filtered.map((proj) => (
-                <button
-                  key={proj.id}
-                  onClick={() => {
-                    onSelectProject(proj);
-                    onClose();
-                  }}
-                  className="group flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-zinc-900/80 hover:text-cyan-300"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-[#141724] text-zinc-400 group-hover:border-cyan-500/40 group-hover:text-cyan-400">
-                      <Terminal className="h-4 w-4" />
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold text-white group-hover:text-cyan-300">
-                        {proj.title}
-                      </div>
-                      <div className="text-[11px] text-zinc-400 line-clamp-1">
-                        {proj.tagline}
-                      </div>
-                    </div>
-                  </div>
+          {(() => {
+            const normalized = query.trim().toLowerCase();
+            const showAdminAction =
+              Boolean(onOpenAdmin) &&
+              (normalized === "admin" || normalized.startsWith(">"));
 
-                  <div className="flex items-center gap-2">
-                    <span className="rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400">
-                      {proj.categoryLabel}
-                    </span>
-                    <ArrowRight className="h-3.5 w-3.5 text-zinc-500 opacity-0 group-hover:opacity-100 group-hover:text-cyan-400 transition-opacity" />
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
+            if (filtered.length === 0 && !showAdminAction) {
+              return (
+                <div className="py-8 text-center text-xs text-zinc-400">
+                  {t.noResults(query)}
+                </div>
+              );
+            }
+
+            return (
+              <div className="space-y-1">
+                {filtered.length > 0 && (
+                  <>
+                    <div className="px-3 py-1.5 text-[10px] font-mono tabular-nums uppercase tracking-wider text-zinc-400">
+                      {t.productsCount(filtered.length)}
+                    </div>
+                    {filtered.map((proj) => (
+                      <button
+                        key={proj.id}
+                        onClick={() => {
+                          onSelectProject(proj);
+                          onClose();
+                        }}
+                        className="group flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left transition-colors hover:bg-zinc-900/80 hover:text-cyan-300"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/10 bg-[#141724] text-zinc-400 group-hover:border-cyan-500/40 group-hover:text-cyan-400">
+                            <Terminal className="h-4 w-4" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-semibold text-white group-hover:text-cyan-300">
+                              {proj.title}
+                            </div>
+                            <div className="text-[11px] text-zinc-400 line-clamp-1">
+                              {proj.tagline}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span className="rounded border border-white/10 bg-white/5 px-1.5 py-0.5 text-[10px] font-mono text-zinc-400">
+                            {proj.categoryLabel}
+                          </span>
+                          <ArrowRight className="h-3.5 w-3.5 text-zinc-500 opacity-0 group-hover:opacity-100 group-hover:text-cyan-400 transition-opacity" />
+                        </div>
+                      </button>
+                    ))}
+                  </>
+                )}
+
+                {showAdminAction && onOpenAdmin && (
+                  <button
+                    onClick={() => {
+                      onClose();
+                      onOpenAdmin();
+                    }}
+                    className="group flex w-full items-center justify-between rounded-xl border border-[#C76C6A]/30 bg-[#C76C6A]/10 px-3 py-2.5 text-left transition-colors hover:bg-[#C76C6A]/20"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#C76C6A]/40 bg-[#C76C6A]/15 text-[#C76C6A]">
+                        <ShieldCheck className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-white">
+                          {isAdmin
+                            ? language === "de"
+                              ? "Admin-Modus beenden"
+                              : "Exit Admin Mode"
+                            : language === "de"
+                              ? "Admin-Modus aktivieren"
+                              : "Unlock Admin Mode"}
+                        </div>
+                        <div className="text-[11px] text-zinc-400">
+                          {language === "de"
+                            ? "Flagship-Projekte live hinzufügen oder entfernen"
+                            : "Add or remove Flagship projects live"}
+                        </div>
+                      </div>
+                    </div>
+                    <ArrowRight className="h-3.5 w-3.5 text-[#C76C6A]" />
+                  </button>
+                )}
+              </div>
+            );
+          })()}
         </div>
 
         {/* Footer Hint */}

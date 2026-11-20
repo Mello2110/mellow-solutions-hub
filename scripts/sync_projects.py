@@ -95,7 +95,12 @@ cat_labels = {
     'other': 'Sonstiges',
 }
 
-featured_ids = {'kiniffler-stammtisch-app', 'listz', 'lazyshorts'}
+flagship_json_path = os.path.join(os.path.dirname(__file__), '..', 'src', 'data', 'flagship.json')
+if os.path.isfile(flagship_json_path):
+    with open(flagship_json_path, 'r', encoding='utf-8') as ff:
+        featured_ids = set(json.load(ff))
+else:
+    featured_ids = {'kiniffler-stammtisch-app', 'listz', 'lazyshorts'}
 
 projects = []
 

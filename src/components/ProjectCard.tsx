@@ -7,6 +7,9 @@ import {
   ChevronRight,
   Star,
   Users,
+  Plus,
+  Minus,
+  Loader2,
 } from "lucide-react";
 import { ChromeIcon, GithubIcon } from "@/components/BrandIcons";
 import { Language, DICTIONARY } from "@/data/i18n";
@@ -15,12 +18,18 @@ interface ProjectCardProps {
   project: Project;
   onOpenDetails: (project: Project) => void;
   language: Language;
+  isAdmin?: boolean;
+  isTogglingFlagship?: boolean;
+  onToggleFlagship?: (project: Project) => void;
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
   project,
   onOpenDetails,
   language,
+  isAdmin = false,
+  isTogglingFlagship = false,
+  onToggleFlagship,
 }) => {
   const t = DICTIONARY[language].catalog;
   const tCat = DICTIONARY[language].categories;
@@ -42,12 +51,52 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
             )}
           </div>
 
-          {/* Calm Status Indicator */}
-          <div className="flex items-center gap-1.5 text-[11px] text-zinc-400">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span className="text-[10px] text-zinc-400">
-              {project.statusLabel || tModal.statusLive}
-            </span>
+          {/* Calm Status Indicator + Admin Flagship Toggle */}
+          <div className="flex items-center gap-2 text-[11px] text-zinc-400">
+            <div className="flex items-center gap-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              <span className="text-[10px] text-zinc-400">
+                {project.statusLabel || tModal.statusLive}
+              </span>
+            </div>
+
+            {isAdmin && onToggleFlagship && (
+              <button
+                type="button"
+                disabled={isTogglingFlagship}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleFlagship(project);
+                }}
+                title={
+                  project.featured
+                    ? language === "de"
+                      ? "Aus Flagship entfernen"
+                      : "Remove from Flagship"
+                    : language === "de"
+                      ? "Zu Flagship hinzufügen"
+                      : "Add to Flagship"
+                }
+                aria-label={
+                  project.featured
+                    ? "Remove from Flagship"
+                    : "Add to Flagship"
+                }
+                className={`flex h-6 w-6 items-center justify-center rounded-md border transition-all disabled:opacity-50 ${
+                  project.featured
+                    ? "border-[#C76C6A]/50 bg-[#C76C6A]/20 text-[#C76C6A] hover:bg-rose-500/25 hover:text-white"
+                    : "border-white/15 bg-zinc-900/90 text-zinc-300 hover:border-[#C76C6A]/50 hover:bg-[#C76C6A]/15 hover:text-white"
+                }`}
+              >
+                {isTogglingFlagship ? (
+                  <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                ) : project.featured ? (
+                  <Minus className="h-3.5 w-3.5" />
+                ) : (
+                  <Plus className="h-3.5 w-3.5" />
+                )}
+              </button>
+            )}
           </div>
         </div>
 

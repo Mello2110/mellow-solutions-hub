@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   ArrowRight,
   ChevronDown,
+  Minus,
 } from "lucide-react";
 import { ChromeIcon, GithubIcon } from "@/components/BrandIcons";
 import { Language, DICTIONARY } from "@/data/i18n";
@@ -17,6 +18,8 @@ interface SpotlightShowcaseProps {
   onOpenDetails: (project: Project) => void;
   onScrollToCatalog: () => void;
   language: Language;
+  isAdmin?: boolean;
+  onRemoveFlagship?: (project: Project) => void;
 }
 
 export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
@@ -24,13 +27,16 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
   onOpenDetails,
   onScrollToCatalog,
   language,
+  isAdmin = false,
+  onRemoveFlagship,
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const t = DICTIONARY[language].spotlight;
 
   if (!featuredProjects || featuredProjects.length === 0) return null;
 
-  const current = featuredProjects[activeIndex] || featuredProjects[0];
+  const safeIndex = Math.min(activeIndex, featuredProjects.length - 1);
+  const current = featuredProjects[safeIndex] || featuredProjects[0];
 
   return (
     <section
@@ -59,24 +65,42 @@ export const SpotlightShowcase: React.FC<SpotlightShowcaseProps> = ({
               )}
             </div>
 
-            {/* Project Switcher if multiple */}
-            {featuredProjects.length > 1 && (
-              <div className="flex max-w-full items-center gap-1.5 overflow-x-auto rounded-xl border border-white/10 bg-zinc-950 p-1">
-                {featuredProjects.map((proj, idx) => (
-                  <button
-                    key={proj.id}
-                    onClick={() => setActiveIndex(idx)}
-                    className={`whitespace-nowrap rounded-lg px-3 py-1 text-xs font-medium transition-all ${
-                      activeIndex === idx
-                        ? "border border-sky-500/40 bg-sky-950/40 text-white shadow-sm"
-                        : "text-zinc-400 hover:text-zinc-200"
-                    }`}
-                  >
-                    {proj.title}
-                  </button>
-                ))}
-              </div>
-            )}
+            {/* Project Switcher & Admin Remove Button */}
+            <div className="flex max-w-full items-center gap-2">
+              {featuredProjects.length > 1 && (
+                <div className="flex max-w-full items-center gap-1.5 overflow-x-auto rounded-xl border border-white/10 bg-zinc-950 p-1">
+                  {featuredProjects.map((proj, idx) => (
+                    <button
+                      key={proj.id}
+                      onClick={() => setActiveIndex(idx)}
+                      className={`whitespace-nowrap rounded-lg px-3 py-1 text-xs font-medium transition-all ${
+                        safeIndex === idx
+                          ? "border border-sky-500/40 bg-sky-950/40 text-white shadow-sm"
+                          : "text-zinc-400 hover:text-zinc-200"
+                      }`}
+                    >
+                      {proj.title}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {isAdmin && onRemoveFlagship && (
+                <button
+                  type="button"
+                  onClick={() => onRemoveFlagship(current)}
+                  title={
+                    language === "de"
+                      ? "Aus Flagship entfernen"
+                      : "Remove from Flagship"
+                  }
+                  aria-label="Remove from Flagship"
+                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-[#C76C6A]/50 bg-[#C76C6A]/20 text-[#C76C6A] transition-all hover:bg-rose-500/25 hover:text-white"
+                >
+                  <Minus className="h-3.5 w-3.5" />
+                </button>
+              )}
+            </div>
           </div>
 
           {/* 2-Column Content */}
