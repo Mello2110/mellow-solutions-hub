@@ -391,6 +391,120 @@ export const INITIAL_PROJECTS: Project[] = [
     }
   },
   {
+    "id": "twitch-blind-ranking-maker",
+    "title": "Twitch Blind Ranking Maker",
+    "tagline": "Interactive 1920x1080 OBS overlay for multiplayer and Twitch chat blind ranking with live charts.",
+    "category": "tool",
+    "status": "production",
+    "featured": false,
+    "badge": "OBS Studio Tool",
+    "problemStatement": "Running blind ranking games on Twitch with multiple players and live chat usually requires clunky spreadsheets or screen-capturing unformatted web pages without simultaneous reveal mechanics, chat vote averaging, or a clean 1920x1080 OBS layout. Furthermore, storing dozens of item images in localStorage quickly hits the 5 MB browser quota limit.",
+    "technicalSolution": "A self-contained single-file HTML5 broadcast application designed directly for OBS Studio Browser Sources, connecting to Twitch IRC over WebSockets with live Chart.js vote distribution. Players and chat lock in hidden tier placements until the timer ends for a simultaneous reveal, while uploaded images are center-cropped, WebP-compressed, and persisted in IndexedDB.",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Chart.js",
+      "IndexedDB",
+      "Twitch IRC WebSocket"
+    ],
+    "architectureHighlights": [
+      "Zero-dependency single-file architecture tailored for OBS Studio Browser Source and Interact window workflows",
+      "IndexedDB image store with synchronous in-memory cache and automatic localStorage migration",
+      "Twitch IRC WebSocket client with IRCv3 tags for broadcaster/moderator chat commands and silent exponential-backoff reconnect",
+      "Scoped 1400x1032 overlays keeping the 520x520 OBS chat area unobstructed during pause, reveal, and completion screens"
+    ],
+    "screenshots": [
+      "/screenshots/twitch-blind-ranking-maker/01-overview.png",
+      "/screenshots/twitch-blind-ranking-maker/02-feature.png",
+      "/screenshots/twitch-blind-ranking-maker/03-detail.png"
+    ],
+    "links": {},
+    "stats": {
+      "version": "v2.0.0"
+    },
+    "categoryLabel": "HTML Tool",
+    "sandboxPreview": {
+      "enabled": false
+    }
+  },
+  {
+    "id": "twitch-monopoly-multiplayer",
+    "title": "Twitch Monopoly Multiplayer",
+    "tagline": "Interactive 1920x1080 OBS Monopoly overlay with live Twitch chat commands, auctions, and bilingual UI.",
+    "category": "tool",
+    "status": "production",
+    "featured": false,
+    "badge": "OBS Studio Tool",
+    "problemStatement": "Running interactive multiplayer board games with Twitch chat usually requires clunky third-party browser captures, cluttered UIs, or manual chat moderation. Streamers need a clean 1920x1080 OBS Browser Source with native chat commands, real-time auctions, configurable rules, and an unobstructed 520x520 chat zone.",
+    "technicalSolution": "A zero-build, single-file HTML5 broadcast application designed directly for OBS Studio Browser Sources, connecting to Twitch IRC over WebSockets with IRCv3 tags for subscriber/streamer routing. Supports 2 to 8 players, a complete 40-field board, live auctions, jail & building mechanics, Street Unlock bonuses, adjustable background opacity, bilingual UI (EN/DE), and full JSON backup/restore.",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Twitch IRC WebSocket",
+      "LocalStorage"
+    ],
+    "architectureHighlights": [
+      "Zero-dependency single-file architecture tailored for OBS Studio Browser Source and Interact window workflows",
+      "Full 40-field Monopoly ruleset for 2–8 players with streamer, chat, and subscriber-only player sources",
+      "Twitch IRC WebSocket client with IRCv3 tags, PING/PONG heartbeat, auth-error handling, and silent exponential-backoff reconnect",
+      "Scoped 1400x1032 overlays keeping the 520x520 OBS chat zone unobstructed during card popups, pause, and game-over screens"
+    ],
+    "screenshots": [
+      "/screenshots/twitch-monopoly-multiplayer/01-overview.png",
+      "/screenshots/twitch-monopoly-multiplayer/02-feature.png",
+      "/screenshots/twitch-monopoly-multiplayer/03-detail.png"
+    ],
+    "links": {},
+    "stats": {
+      "version": "v2.0.0"
+    },
+    "categoryLabel": "HTML Tool",
+    "sandboxPreview": {
+      "enabled": false
+    }
+  },
+  {
+    "id": "twitch-tournament-maker",
+    "title": "Twitch Tournament Maker",
+    "tagline": "Interactive OBS broadcast overlay for live Twitch chat King of the Hill & single-elimination bracket battles with real-time charts and IndexedDB storage.",
+    "category": "tool",
+    "status": "production",
+    "featured": false,
+    "badge": "OBS Studio Tool",
+    "problemStatement": "Running community head-to-head battles or knockout tournaments on Twitch usually requires external websites with ads, mismatched aspect ratios, and manual vote counting. Furthermore, storing dozens of custom contestant images in localStorage quickly hits the 5 MB browser quota limit.",
+    "technicalSolution": "A self-contained single-file HTML5 broadcast application designed directly for OBS Studio Browser Sources, connecting to Twitch IRC over WebSockets with live Chart.js vote visualization. Supports both King of the Hill and Single-Elimination Tournament Bracket modes, compresses uploaded images to WebP in IndexedDB, and provides bilingual UI, adjustable background opacity, and offline JSON backups.",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Chart.js",
+      "IndexedDB",
+      "Twitch IRC WebSocket"
+    ],
+    "architectureHighlights": [
+      "Zero-dependency single-file architecture tailored for OBS Studio Browser Source and Interact window workflows",
+      "Dual game modes: King of the Hill (waiting/eliminated queues) and Single-Elimination Tournament Bracket with automatic bye balancing",
+      "IndexedDB image store with synchronous in-memory cache and automatic localStorage migration",
+      "Twitch IRC WebSocket client with IRCv3 tags for broadcaster/moderator chat commands and silent exponential-backoff reconnect",
+      "Scoped 1400x1032 overlays keeping the 520x520 OBS chat area unobstructed during pause, result, and champion screens"
+    ],
+    "screenshots": [
+      "/screenshots/twitch-tournament-maker/01-overview.png",
+      "/screenshots/twitch-tournament-maker/02-feature.png",
+      "/screenshots/twitch-tournament-maker/03-detail.png"
+    ],
+    "links": {},
+    "stats": {
+      "version": "v2.0.0"
+    },
+    "categoryLabel": "HTML Tool",
+    "sandboxPreview": {
+      "enabled": false
+    }
+  },
+  {
     "id": "mellow-solutions-hub",
     "title": "Mellow Solutions Hub",
     "tagline": "Curated portfolio & product showcase for developer utilities, Chrome extensions, and web applications.",
