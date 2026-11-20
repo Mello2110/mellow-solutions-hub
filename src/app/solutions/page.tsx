@@ -281,14 +281,21 @@ export default function SolutionsPage() {
               )}
 
               {previewItem.screenshots && previewItem.screenshots.length > 0 && (
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   {previewItem.screenshots.map((src, idx) => (
-                    <img
+                    <a
                       key={idx}
-                      src={src}
-                      alt={`${previewItem.title} Screenshot ${idx + 1}`}
-                      className="w-full rounded-xl border border-white/10 object-cover"
-                    />
+                      href={src}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-64 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#07080b] p-3 transition-colors hover:border-cyan-500/40"
+                    >
+                      <img
+                        src={src}
+                        alt={`${previewItem.title} Screenshot ${idx + 1}`}
+                        className="max-h-full w-auto max-w-full rounded-lg object-contain"
+                      />
+                    </a>
                   ))}
                 </div>
               )}

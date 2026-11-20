@@ -30,11 +30,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
   language,
 }) => {
   const [activeTab, setActiveTab] = useState<"overview" | "sandbox" | "screenshots">("overview");
+  const [selectedShot, setSelectedShot] = useState(0);
   const t = DICTIONARY[language].modal;
   const tCat = DICTIONARY[language].categories;
 
   useEffect(() => {
     setActiveTab("overview");
+    setSelectedShot(0);
   }, [project?.id]);
 
   useEffect(() => {
@@ -278,22 +280,61 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({
             </div>
           ) : (
             /* Screenshots Gallery Tab */
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 gap-4">
-                {(project.screenshots || []).map((src, idx) => (
-                  <div
-                    key={idx}
-                    className="overflow-hidden rounded-xl border border-white/10 bg-zinc-950"
-                  >
-                    <img
-                      src={src}
-                      alt={`${project.title} Screenshot ${idx + 1}`}
-                      className="w-full h-auto object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                ))}
-              </div>
+            <div className="space-y-3">
+              {(() => {
+                const shots = project.screenshots || [];
+                const activeSrc = shots[selectedShot] || shots[0];
+                if (!activeSrc) return null;
+
+                return (
+                  <>
+                    <div className="flex items-center justify-between text-xs text-zinc-400">
+                      <span className="font-mono tabular-nums">
+                        {selectedShot + 1} / {shots.length}
+                      </span>
+                      <a
+                        href={activeSrc}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-cyan-400 hover:underline"
+                      >
+                        <span>{t.openInNewTab}</span>
+                        <Maximize2 className="h-3 w-3" />
+                      </a>
+                    </div>
+
+                    <div className="flex min-h-[260px] max-h-[420px] w-full items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-[#07080b] p-3">
+                      <img
+                        src={activeSrc}
+                        alt={`${project.title} Screenshot ${selectedShot + 1}`}
+                        className="max-h-[390px] w-auto max-w-full rounded-lg object-contain"
+                      />
+                    </div>
+
+                    {shots.length > 1 && (
+                      <div className="flex items-center gap-2 overflow-x-auto pt-1">
+                        {shots.map((src, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => setSelectedShot(idx)}
+                            className={`relative h-14 w-24 shrink-0 overflow-hidden rounded-lg border bg-[#07080b] transition-all ${
+                              selectedShot === idx
+                                ? "border-cyan-400 ring-1 ring-cyan-400/50"
+                                : "border-white/10 opacity-60 hover:opacity-100"
+                            }`}
+                          >
+                            <img
+                              src={src}
+                              alt={`${project.title} Thumbnail ${idx + 1}`}
+                              className="h-full w-full object-cover"
+                            />
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
             </div>
           )}
         </div>

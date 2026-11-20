@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { CategoryMeta } from "@/types/project";
 import {
   LayoutGrid,
@@ -12,6 +12,7 @@ import {
   Filter,
   X,
   Boxes,
+  ChevronDown,
 } from "lucide-react";
 import { Language, DICTIONARY } from "@/data/i18n";
 
@@ -45,6 +46,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
   categoryCounts,
   language,
 }) => {
+  const [isTechExpanded, setIsTechExpanded] = useState(false);
   const t = DICTIONARY[language].catalog;
   const tCat = DICTIONARY[language].categories;
 
@@ -91,41 +93,73 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
         })}
       </div>
 
-      {/* Tech Stack Chips Filter */}
+      {/* Tech Stack Chips Filter (Collapsible) */}
       {availableTechStacks.length > 0 && (
-        <div className="flex items-center gap-1.5 overflow-x-auto pt-1 pb-1 sm:flex-wrap sm:overflow-visible sm:pb-0">
-          <div className="flex shrink-0 items-center gap-1.5 text-xs text-zinc-400 mr-2">
-            <Filter className="h-3 w-3 text-cyan-400" />
-            <span className="text-[11px] uppercase tracking-wider font-mono">
-              {t.techFilter}
-            </span>
+        <div className="space-y-2.5 pt-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setIsTechExpanded((prev) => !prev)}
+              aria-expanded={isTechExpanded}
+              className="group flex items-center gap-1.5 rounded-lg border border-white/10 bg-zinc-900/50 px-2.5 py-1.5 text-xs text-zinc-300 transition-colors hover:border-cyan-500/40 hover:text-white"
+            >
+              <Filter className="h-3 w-3 text-cyan-400" />
+              <span className="text-[11px] uppercase tracking-wider font-mono">
+                {t.techFilter}
+              </span>
+              <span className="rounded bg-white/5 px-1.5 py-0.5 text-[10px] font-mono tabular-nums text-zinc-400">
+                {availableTechStacks.length}
+              </span>
+              <ChevronDown
+                className={`h-3.5 w-3.5 text-zinc-400 transition-transform duration-200 ${
+                  isTechExpanded ? "rotate-180 text-cyan-400" : ""
+                }`}
+              />
+            </button>
+
+            {selectedTech && !isTechExpanded && (
+              <button
+                type="button"
+                onClick={() => onSelectTech(null)}
+                className="flex items-center gap-1 rounded-lg border border-cyan-500/60 bg-cyan-950/50 px-2.5 py-1 text-[11px] font-mono text-cyan-300 transition-colors hover:border-cyan-400"
+              >
+                <span>{selectedTech}</span>
+                <X className="h-2.5 w-2.5 ml-0.5" />
+              </button>
+            )}
+
+            {selectedTech && (
+              <button
+                type="button"
+                onClick={() => onSelectTech(null)}
+                className="text-[11px] text-zinc-400 hover:text-[#C76C6A] underline underline-offset-2 ml-1"
+              >
+                {t.clearFilter}
+              </button>
+            )}
           </div>
 
-          {availableTechStacks.map((tech) => {
-            const isSelected = selectedTech === tech;
-            return (
-              <button
-                key={tech}
-                onClick={() => onSelectTech(isSelected ? null : tech)}
-                className={`flex shrink-0 items-center gap-1 rounded-lg border px-2.5 py-1 text-[11px] font-mono transition-all ${
-                  isSelected
-                    ? "border-cyan-500/60 bg-cyan-950/50 text-cyan-300 shadow-glow-cyan/20"
-                    : "border-white/5 bg-zinc-900/40 text-zinc-400 hover:border-white/20 hover:text-zinc-300"
-                }`}
-              >
-                <span>{tech}</span>
-                {isSelected && <X className="h-2.5 w-2.5 ml-0.5" />}
-              </button>
-            );
-          })}
-
-          {selectedTech && (
-            <button
-              onClick={() => onSelectTech(null)}
-              className="shrink-0 text-[11px] text-zinc-400 hover:text-[#C76C6A] underline underline-offset-2 ml-1"
-            >
-              {t.clearFilter}
-            </button>
+          {isTechExpanded && (
+            <div className="flex flex-wrap items-center gap-1.5 pt-1">
+              {availableTechStacks.map((tech) => {
+                const isSelected = selectedTech === tech;
+                return (
+                  <button
+                    key={tech}
+                    type="button"
+                    onClick={() => onSelectTech(isSelected ? null : tech)}
+                    className={`flex shrink-0 items-center gap-1 rounded-lg border px-2.5 py-1 text-[11px] font-mono transition-all ${
+                      isSelected
+                        ? "border-cyan-500/60 bg-cyan-950/50 text-cyan-300 shadow-glow-cyan/20"
+                        : "border-white/5 bg-zinc-900/40 text-zinc-400 hover:border-white/20 hover:text-zinc-300"
+                    }`}
+                  >
+                    <span>{tech}</span>
+                    {isSelected && <X className="h-2.5 w-2.5 ml-0.5" />}
+                  </button>
+                );
+              })}
+            </div>
           )}
         </div>
       )}

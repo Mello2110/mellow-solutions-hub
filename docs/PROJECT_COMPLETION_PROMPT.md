@@ -1,6 +1,6 @@
 # Mellow Solutions Hub — Projekt-Abschluss-Prompt (Standard-Vorlage)
 
-> **Zweck:** Diesen Prompt am Ende jedes abgeschlossenen Projekts ausführen (ideal mit aktiviertem Browser-/DevTools-Zugriff), um das Repository aufzuräumen, Branding & Standard-Links zu prüfen, normierte Screenshots zu erzeugen und eine 100 % `sync_projects.py`-kompatible `README.md` zu generieren.
+> **Zweck:** Diesen Prompt am Ende jedes abgeschlossenen Projekts ausführen (ideal mit Browser-/Playwright-/DevTools-Zugriff), um das Repository aufzuräumen, Branding & Standard-Links zu prüfen, gestochen scharfe und inhaltlich unterschiedliche Feature-Screenshots zu erzeugen und eine 100 % `sync_projects.py`-kompatible `README.md` zu generieren.
 
 ---
 
@@ -12,19 +12,20 @@ Dieses Projekt ist Teil des **Mellow Solutions Hub** (gebaut mit Next.js 15, Typ
 
 Der Hub verfügt über eine **automatisierte Import-Pipeline (`scripts/sync_projects.py`)**: Sie liest die `README.md`-Dateien aller Repositories aus und parst das an oberster Stelle stehende **YAML-Frontmatter**, um daraus Produktkarten, Detailseiten (`/projects/[id]`), Filter, Suchindizes, Screenshot-Galerien und Sandbox-Vorschauen zu generieren.
 
-Deine Aufgabe ist es, dieses Projekt am Abschluss einmal sauber aufzuräumen, Branding & Standard-Links zu prüfen, standardisierte Screenshots zu erzeugen (falls ausführbar/darstellbar) und eine `README.md` direkt im Projekt-Root zu erstellen, die sowohl auf GitHub repräsentativ wirkt als auch 100 % maschinenlesbar für `sync_projects.py` ist.
+Deine Aufgabe ist es, dieses Projekt am Abschluss einmal sauber aufzuräumen, Branding & Standard-Links zu prüfen, 2–3 aussagekräftige und hochauflösende Screenshots zu erzeugen (falls eine UI existiert) und eine `README.md` direkt im Projekt-Root zu erstellen, die sowohl auf GitHub repräsentativ wirkt als auch 100 % maschinenlesbar für `sync_projects.py` ist.
 
 ---
 
 ### SCHRITT 1: AUFRÄUMEN & SAUBERE ORDNERSTRUKTUR
 Prüfe vor der Dokumentation die Repository-Hygiene:
-1. **Temporäre & verwaiste Dateien entfernen:** Lösche offensichtliche Test-Artefakte, Debug-Logs, ungenutzte Scratch-Dateien oder doppelte Asset-Entwürfe (keine produktiven Quell- oder Konfigurationsdateien antasten).
+1. **Temporäre & verwaiste Dateien entfernen:** Lösche offensichtliche Test-Artefakte, Debug-Logs, ungenutzte Scratch-Dateien, veraltete Screenshot-Entwürfe (`desktop.png`/`mobile.png`-Duplikate) oder doppelte Assets (keine produktiven Quell- oder Konfigurationsdateien antasten).
 2. **`.gitignore` prüfen:** Stelle sicher, dass `node_modules/`, `.next/`, `dist/`, `build/`, `.env*`, `*.log` und IDE-Caches sauber ignoriert werden.
-3. **Asset- & Screenshot-Ordner normieren:**
+3. **Asset- & Screenshot-Ordner normieren (festes Namensmuster):**
    - Lege Screenshots innerhalb des Projekt-Repos einheitlich unter `docs/screenshots/` ab:
-     - `docs/screenshots/<id>-desktop.png` (1440×900)
-     - Optional: `docs/screenshots/<id>-mobile.png` (390×844) oder `docs/screenshots/<id>-popup.png` (für Chrome Extensions)
-   - Falls du Zugriff auf das Hub-Repository (`MellowSolutionsHub`) hast, spiegele dieselben Dateien zusätzlich nach `public/screenshots/<id>/desktop.png` (und `mobile.png` / `popup.png`), damit der Hub sie direkt unter `/screenshots/<id>/...` ausliefern kann.
+     - `docs/screenshots/<id>-01-overview.png`
+     - `docs/screenshots/<id>-02-feature.png`
+     - Optional: `docs/screenshots/<id>-03-detail.png`
+   - Falls du Zugriff auf das Hub-Repository (`C:\Coding\MellowSolutionsHub`) hast, spiegele dieselben Dateien zusätzlich nach `public/screenshots/<id>/01-overview.png`, `02-feature.png` (und optional `03-detail.png`), damit der Hub sie direkt unter `/screenshots/<id>/...` ausliefern kann.
 
 ---
 
@@ -65,16 +66,28 @@ Ordne das Projekt exakt EINER dieser 5 Kategorien zu:
    - Sandbox-Regel: IMMER `sandbox.enabled: false`, `sandbox.type: "none"`.
 5. `category: "other"`
    - Kriterium: Libraries, Daten-Pipelines, UI-Kits, Templates oder experimentelle Prototypen.
-   - Sandbox-Regel: `sandbox.enabled: false`, `sandbox.type: "none"`.
+   - Sandbox-Regel: IMMER `sandbox.enabled: false`, `sandbox.type: "none"`.
 
 ---
 
-### SCHRITT 5: AUTOMATISCHE SCREENSHOT-ERSTELLUNG (Browser / DevTools)
-Erstelle – sofern eine lauffähige UI vorhanden ist (Live-URL, lokaler Dev-Server oder Extension-Popup) – automatisiert über Browser/DevTools die normierten Screenshots:
-- **Desktop:** `1440×900` → `docs/screenshots/<id>-desktop.png` (bzw. `/screenshots/<id>/desktop.png` im Hub).
-- **Mobile (bei Webapps/Tools):** `390×844` → `docs/screenshots/<id>-mobile.png` (bzw. `/screenshots/<id>/mobile.png` im Hub).
-- **Extension-Popup / Options-UI:** Passende Fenstergröße → `docs/screenshots/<id>-popup.png`.
-- Prüfe beim Erstellen kurz die Browser-Konsole auf 0 Fehler. Falls keine UI existiert (z. B. reines CLI-Skript), lasse `screenshots` als leere Liste bzw. weg.
+### SCHRITT 5: HOCHAUFLÖSENDE FEATURE-SCREENSHOTS (QUALITÄTS-STANDARD)
+Erstelle – sofern eine UI vorhanden ist – **2 bis 3 inhaltlich verschiedene, aussagekräftige Screenshots** statt zweimal denselben Startbildschirm in Desktop & Mobile abzulichten!
+
+**Verbindliche Qualitätsregeln:**
+1. **Keine leeren Startscreens & keine Desktop/Mobile-Doppelungen:**
+   - **Webapps & HTML-Tools:**
+     - `01-overview.png`: Hauptansicht **mit aktivem, sinnvollem Beispielzustand** (z. B. echte Beispieldaten, ausgewählte Ansicht, ausgeführte Berechnung).
+     - `02-feature.png`: Eine **zweite zentrale Funktion oder Unteransicht** (z. B. anderes Tab, Datenstandard, Analyse-/Ergebnis-Ansicht, Modal oder zweiter Modus).
+     - Optional `03-detail.png`: Weitere markante Ansicht (z. B. Export/Settings oder ein eigenständiges Mobile-Layout, sofern sich die UX dort wesentlich unterscheidet).
+   - **Chrome Extensions:**
+     - `01-overview.png`: Geöffnetes **Extension-Popup** mit realistischen Beispieldaten (in natürlicher Popup-Größe, nicht künstlich beschnitten).
+     - `02-feature.png`: **In-Page-Wirkung / Overlay / Options-Seite** im Browser (`1440×900`).
+2. **Scharfe Auflösung & sauberes Seitenverhältnis (KEIN `fullPage: true`, KEIN 1×-Low-Res):**
+   - Nutze für alle Desktop-Shots zwingend **16:10-Landscape (`1440×900` oder `1280×800`) mit `deviceScaleFactor: 2` (Retina)** → ergibt gestochen scharfe `2880×1800` bzw. `2560×1600` PNGs.
+   - Nutze **IMMER `fullPage: false`** (sauberer Viewport-Ausschnitt ohne überlange Scroll-Streifen).
+   - Bei Extension-Popups ebenfalls `deviceScaleFactor: 2` verwenden (z. B. `420×600` Popup → `840×1200` PNG).
+   - Achte auf eine saubere, ruhige Darstellung ohne DevTools-Overlays, abgeschnittene Modals oder Browser-Fehlermeldungen (Konsole = 0 Fehler).
+3. **Pflicht-Check vor Abschluss:** Prüfe die erzeugten Bilddateien (Pixelmaße & Sichtprüfung): Desktop-Shots müssen mindestens `1440px` Breite haben (bzw. `2560px+` bei 2× DPR) und unterschiedliche App-Zustände zeigen. Falls keine UI existiert (reines CLI-Skript), lasse `screenshots` weg.
 
 ---
 
@@ -87,7 +100,7 @@ WICHTIG: Der Parser in `scripts/sync_projects.py` arbeitet zeilenbasiert! Halte 
 - `technicalSolution`: 2–3 sachliche Sätze auf Englisch zur technischen Architektur.
 - `techStack`: Liste aus kanonischen Namen (`- "TypeScript"`).
 - `architectureHighlights`: Genau 3 bis 4 präzise technische Stichpunkte.
-- `screenshots`: Liste der Pfade im Hub-Format (`/screenshots/<id>/desktop.png`, `/screenshots/<id>/mobile.png`), sofern Screenshots erzeugt wurden.
+- `screenshots`: Liste der erzeugten Hub-Pfade (`/screenshots/<id>/01-overview.png`, `/screenshots/<id>/02-feature.png`, ...).
 - `status`: `"production"` | `"beta"` | `"wip"` | `"archived"`.
 - `featured`: IMMER `false` (wird nur zentral im Hub für das Flaggschiff gesetzt).
 - `sandbox`: `enabled` als echtes Boolean `true` oder `false` (niemals als String `"true"`).
@@ -117,7 +130,8 @@ architectureHighlights:
   - "<Highlight 2>"
   - "<Highlight 3>"
 screenshots:
-  - "/screenshots/<id>/desktop.png"
+  - "/screenshots/<id>/01-overview.png"
+  - "/screenshots/<id>/02-feature.png"
 links:
   chromeWebStore: "<URL oder leer lassen>"
   demoUrl: "<URL oder leer lassen>"

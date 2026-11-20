@@ -214,18 +214,22 @@ export const ProjectDetailClient: React.FC<ProjectDetailClientProps> = ({
               <h2 className="text-xs font-mono uppercase tracking-wider text-zinc-400 font-semibold mb-3">
                 {tPage.screenshotsHeading}
               </h2>
-              <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {project.screenshots.map((src, idx) => (
-                  <div
+                  <a
                     key={idx}
-                    className="overflow-hidden rounded-2xl border border-white/10 bg-zinc-950"
+                    href={src}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex h-64 items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-[#07080b] p-3 transition-colors hover:border-cyan-500/40"
+                    title={t.openInNewTab}
                   >
                     <img
                       src={src}
                       alt={`${project.title} Screenshot ${idx + 1}`}
-                      className="w-full h-auto object-cover"
+                      className="max-h-full w-auto max-w-full rounded-lg object-contain transition-transform duration-300 group-hover:scale-[1.02]"
                     />
-                  </div>
+                  </a>
                 ))}
               </div>
             </section>
