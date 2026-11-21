@@ -443,7 +443,8 @@ export const INITIAL_PROJECTS: Project[] = [
       "/screenshots/akquio/03-detail.png"
     ],
     "links": {
-      "demoUrl": "/sandboxes/akquio/index.html"
+      "demoUrl": "/sandboxes/akquio/index.html",
+      "githubUrl": "https://github.com/Mello2110/akquio"
     },
     "stats": {
       "version": "v6.1.0"
@@ -484,7 +485,9 @@ export const INITIAL_PROJECTS: Project[] = [
       "/screenshots/twitch-blind-ranking-maker/02-feature.png",
       "/screenshots/twitch-blind-ranking-maker/03-detail.png"
     ],
-    "links": {},
+    "links": {
+      "githubUrl": "https://github.com/Mello2110/twitch-blind-ranking-maker"
+    },
     "stats": {
       "version": "v2.0.0"
     },
@@ -521,7 +524,9 @@ export const INITIAL_PROJECTS: Project[] = [
       "/screenshots/twitch-monopoly-multiplayer/02-feature.png",
       "/screenshots/twitch-monopoly-multiplayer/03-detail.png"
     ],
-    "links": {},
+    "links": {
+      "githubUrl": "https://github.com/Mello2110/twitch-monopoly-multiplayer"
+    },
     "stats": {
       "version": "v2.0.0"
     },
@@ -560,7 +565,9 @@ export const INITIAL_PROJECTS: Project[] = [
       "/screenshots/twitch-tournament-maker/02-feature.png",
       "/screenshots/twitch-tournament-maker/03-detail.png"
     ],
-    "links": {},
+    "links": {
+      "githubUrl": "https://github.com/Mello2110/twitch-tournament-maker"
+    },
     "stats": {
       "version": "v2.0.0"
     },
