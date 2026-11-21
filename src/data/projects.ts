@@ -169,9 +169,9 @@ export const INITIAL_PROJECTS: Project[] = [
     "category": "extension",
     "status": "production",
     "featured": false,
-    "badge": "Chrome Extension",
-    "problemStatement": "Digital designers and front-end developers struggle to sample true on-screen colors due to browser color-space clipping and non-uniform legacy RGB models. Extracting harmonious, accessible palettes from complex interfaces requires tedious manual calculations across multiple external tools. Furthermore, verifying WCAG contrast compliance and color vision deficiency legibility disrupts active design workflows.",
-    "technicalSolution": "ColorCheck integrates an in-browser perceptual color science engine based on OKLab/OKLCH with native DeltaE distance calculations directly into a Manifest V3 extension. It pairs a high-precision canvas loupe eyedropper with a 60-30-10 dominant color clustering pipeline, real-time Daltonization preview filters, and multi-format CSS/Tailwind code generators.",
+    "badge": "Chrome Web Store",
+    "problemStatement": "Digital designers and front-end developers struggle to sample true on-screen colors due to non-uniform legacy RGB/HSL models. Extracting harmonious, accessible UI palettes and verifying WCAG contrast or color vision deficiency legibility normally requires manual calculations across multiple external tools.",
+    "technicalSolution": "ColorCheck integrates a shared client-side OKLab/OKLCH perceptual color engine with DeltaE clustering directly into a Manifest V3 Chrome extension. It combines a subpixel canvas loupe eyedropper, a 60-30-10 and saliency region extractor, real-time CVD simulation, WCAG auto-fixing, and CSS/Tailwind token export.",
     "techStack": [
       "JavaScript (ES2022)",
       "Chrome Extension Manifest V3",
@@ -181,17 +181,21 @@ export const INITIAL_PROJECTS: Project[] = [
       "CSS3 Custom Properties"
     ],
     "architectureHighlights": [
-      "Native OKLab & OKLCH perceptual engine with DeltaEOK distance calculation and gamuts",
-      "Manifest V3 background service worker with zero-latency tab communication via Scripting API",
-      "Client-side Daltonization matrix transformations for Protan, Deutan, Tritan, and Mono previews",
-      "Proportional 60-30-10 palette clustering with instant CSS Variables & Tailwind configuration export"
+      "Shared zero-dependency OKLab/OKLCH engine with gamut-mapped conversions, DeltaEOK distance, and WCAG 2.1 auto-fixer",
+      "Idempotent Manifest V3 service worker and content script injection with protected-tab error handling",
+      "Client-side Daltonization matrix simulation for Protanopia, Deuteranopia, Tritanopia, and Achromatopsia",
+      "Proportional 60-30-10 and saliency palette clustering with one-click CSS Variables and Tailwind config export"
+    ],
+    "screenshots": [
+      "/screenshots/colorcheck/01-overview.png",
+      "/screenshots/colorcheck/02-feature.png"
     ],
     "links": {
       "chromeWebStore": "https://chromewebstore.google.com/detail/colorcheck/imikgfjdmlolmahfaigjmdlkhjpobhpe?authuser=0&hl=de",
       "githubUrl": "https://github.com/Mello2110/ColorCheck"
     },
     "stats": {
-      "version": "v2.3.0"
+      "version": "v2.4.0"
     },
     "categoryLabel": "Chrome Extension",
     "sandboxPreview": {
