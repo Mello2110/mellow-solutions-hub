@@ -410,6 +410,52 @@ export const INITIAL_PROJECTS: Project[] = [
     }
   },
   {
+    "id": "akquio",
+    "title": "AKQUIO",
+    "tagline": "AI-powered B2B sales intelligence platform combining lead discovery, Firecrawl enrichment, and Claude scoring.",
+    "category": "webapp",
+    "status": "production",
+    "featured": false,
+    "badge": "Active",
+    "problemStatement": "Manual B2B prospecting across directories and company websites is slow, error-prone, and produces generic outreach with high bounce rates. Traditional scrapers rely on brittle regex patterns that miss decision-makers, hallucinate buying signals, and waste API credits on unqualified B2C businesses.",
+    "technicalSolution": "AKQUIO orchestrates a cost-optimized multi-stage pipeline built with Fastify, SQLite, React, Firecrawl v2, and the Anthropic Claude SDK. It combines Google Maps discovery, rule- and Haiku-based pre-filtering, a direct-fetch-first extractor with 1-credit Firecrawl Markdown fallback, DNS MX verification, ID-mapped structured scoring, and human-in-the-loop SMTP outreach.",
+    "techStack": [
+      "TypeScript",
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Fastify",
+      "Node.js",
+      "SQLite",
+      "Anthropic Claude SDK",
+      "Firecrawl API",
+      "Docker"
+    ],
+    "architectureHighlights": [
+      "Two-stage lead qualification (portal domain filter + Claude Haiku pre-screening) before spending enrichment credits, cutting Firecrawl usage by ~70%.",
+      "Direct-fetch-first website extraction with 1-credit Firecrawl Markdown fallback, strict source-text email verification, 30-day SQLite domain caching, and DNS MX checks.",
+      "Persistent SQLite job queue with 3x parallel worker pool, Server-Sent Events (SSE) live progress, cancellation, and resume support.",
+      "Forced tool-use structured outputs via @anthropic-ai/sdk with Zod validation, prompt caching, token/cost logging, and single-container Docker deployment."
+    ],
+    "screenshots": [
+      "/screenshots/akquio/01-overview.png",
+      "/screenshots/akquio/02-feature.png",
+      "/screenshots/akquio/03-detail.png"
+    ],
+    "links": {
+      "demoUrl": "/sandboxes/akquio/index.html"
+    },
+    "stats": {
+      "version": "v6.1.0"
+    },
+    "categoryLabel": "Web App / PWA",
+    "sandboxPreview": {
+      "enabled": true,
+      "embedUrl": "/sandboxes/akquio/index.html",
+      "description": "Interactive offline demo with sample B2B data (zero live backend, no login or API calls)."
+    }
+  },
+  {
     "id": "twitch-blind-ranking-maker",
     "title": "Twitch Blind Ranking Maker",
     "tagline": "Interactive 1920x1080 OBS overlay for multiplayer and Twitch chat blind ranking with live charts.",
