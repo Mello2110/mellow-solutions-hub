@@ -125,25 +125,25 @@ export const INITIAL_PROJECTS: Project[] = [
   {
     "id": "lazyshorts",
     "title": "LazyShorts",
-    "tagline": "Hands-free auto-advance and intelligent skipping for YouTube Shorts and TikTok.",
+    "tagline": "Hands-free auto-advance and smart negative-feedback skipping for YouTube Shorts and TikTok.",
     "category": "extension",
     "status": "production",
     "featured": true,
-    "badge": "Manifest V3",
-    "problemStatement": "Short-form video platforms like YouTube Shorts and TikTok loop videos indefinitely by default, forcing users into continuous manual interaction to proceed. Additionally, navigating past unwanted content or skipping after negative feedback requires repetitive clicks or keyboard inputs. This disrupts hands-free viewing, multitasking, and causes unnecessary interaction fatigue.",
-    "technicalSolution": "LazyShorts employs an event-driven Manifest V3 architecture featuring a content script with a dual video-end detection engine and loop-freeze protection. It tracks single-page application (SPA) navigations via chrome.webNavigation and executes safe, multi-tiered DOM scrolling with automatic focus blurring. User interactions such as disliking or selecting 'Not interested' are captured instantly via event delegation to auto-advance playback.",
+    "badge": "Chrome Web Store",
+    "problemStatement": "Short-form video platforms like YouTube Shorts and TikTok loop videos indefinitely by default, forcing users into repetitive manual swipes or clicks. Even after clicking Dislike or Not interested, viewers still have to manually advance to the next clip, which disrupts hands-free viewing and multitasking.",
+    "technicalSolution": "LazyShorts uses an event-driven Chrome Manifest V3 architecture with a background service worker for SPA navigation injection and a content script featuring dual video-end detection (ended event plus timeupdate guard) and loop-freeze protection. Negative feedback actions are captured via event delegation, and all user preferences persist locally via chrome.storage.sync with zero external network calls.",
     "techStack": [
       "JavaScript (ES2022+)",
       "Chrome Extension Manifest V3",
       "Chrome Web APIs",
       "HTML5 Video API",
-      "CSS3 Design System"
+      "CSS3"
     ],
     "architectureHighlights": [
-      "Dual-Trigger Video End Engine with Loop-Freeze Protection",
-      "Declarative SPA History State Routing via Background Service Worker",
-      "Safe Multi-Tiered DOM Navigation with Focus Blurring Safeguards",
-      "Zero-Telemetry Architecture with 100% Client-Side Privacy"
+      "Dual-trigger video completion engine combining ended events with a timeupdate loop-guard",
+      "Event-driven SPA navigation tracking via chrome.webNavigation and Navigation API",
+      "Trusted-Types-safe DOM countdown HUD with one-click skip cancellation",
+      "Zero-telemetry client-side state persisted solely via chrome.storage.sync"
     ],
     "screenshots": [
       "/screenshots/lazyshorts/01-overview.png",
@@ -155,7 +155,7 @@ export const INITIAL_PROJECTS: Project[] = [
       "githubUrl": "https://github.com/Mello2110/LazyShorts"
     },
     "stats": {
-      "version": "v1.5.1"
+      "version": "v1.6.0"
     },
     "categoryLabel": "Chrome Extension",
     "sandboxPreview": {
