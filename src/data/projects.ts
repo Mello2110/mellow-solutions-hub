@@ -457,6 +457,46 @@ export const INITIAL_PROJECTS: Project[] = [
     }
   },
   {
+    "id": "progress-bars",
+    "title": "Progress Bars",
+    "tagline": "Multi-tenant meta-progression tracker for long-term numeric goals and weighted milestone blocks.",
+    "category": "webapp",
+    "status": "production",
+    "featured": false,
+    "badge": "Open Source",
+    "problemStatement": "Long-term personal, financial, and learning goals often span months or years and get lost inside daily to-do apps. Traditional task managers focus on short-lived checklists instead of providing a calm, visual overview of cumulative progress and proportional milestones.",
+    "technicalSolution": "Progress Bars is a Next.js 16 and TypeScript web application backed by Supabase PostgreSQL with strict Row Level Security and an instant LocalStorage preview fallback. It supports both ascending/descending numeric targets with checkpoint markers and weighted milestone blocks, plus drag-and-drop and keyboard reordering.",
+    "techStack": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Supabase",
+      "Vitest"
+    ],
+    "architectureHighlights": [
+      "Repository pattern abstracting Supabase PostgreSQL (RLS) and LocalStorage demo persistence",
+      "Dual progression engine supporting ascending/descending numeric ranges and weighted milestone blocks",
+      "Native HTML <dialog> modals and slide-over drawer with accessible keyboard and mobile bar reordering",
+      "Static export configuration with next/font/google optimization and Vitest unit test coverage"
+    ],
+    "screenshots": [
+      "/screenshots/progress-bars/01-overview.png",
+      "/screenshots/progress-bars/02-feature.png",
+      "/screenshots/progress-bars/03-detail.png"
+    ],
+    "links": {
+      "githubUrl": "https://github.com/Mello2110/progress-bars"
+    },
+    "stats": {
+      "version": "v0.1.0"
+    },
+    "categoryLabel": "Web App / PWA",
+    "sandboxPreview": {
+      "enabled": false
+    }
+  },
+  {
     "id": "twitch-blind-ranking-maker",
     "title": "Twitch Blind Ranking Maker",
     "tagline": "Interactive 1920x1080 OBS overlay for multiplayer and Twitch chat blind ranking with live charts.",
