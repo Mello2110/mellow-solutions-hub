@@ -34,6 +34,7 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="space-y-3 max-w-3xl mx-auto">
           {/* Core Focus Proposition: Single line on sm+ screens */}
           <h1 className="text-base sm:text-lg md:text-xl lg:text-[23px] font-semibold tracking-tight text-white whitespace-normal sm:whitespace-nowrap leading-snug">
+            <span className="sr-only">Mellow Solutions Hub &mdash; </span>
             {t.subtitle}
           </h1>
 
